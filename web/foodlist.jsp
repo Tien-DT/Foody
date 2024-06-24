@@ -109,7 +109,7 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Bánh Xèo</h4>
+                <h4><a href="MainController?action=home">Bánh Xèo</a></h4>
                 <p class="ingredients">
                     3-4 người ăn
                 </p>
@@ -120,7 +120,7 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Cá Kho Tộ</h4>
+                <h4><a href="MainController?action=home">Cá Kho Tộ</a></h4>
                 <p class="ingredients">
                     2-3 người ăn
                 </p>
@@ -131,7 +131,7 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Bánh Xèo</h4>
+                <h4><a href="MainController?action=home">Bánh Tráng Trộn</a></h4>
                 <p class="ingredients">
                     3-4 người ăn
                 </p>
@@ -148,7 +148,7 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Bánh Xèo</h4>
+                <h4><a href="MainController?action=home">Khoai Tây Lắc</a></h4>
                 <p class="ingredients">
                     3-4 người ăn
                 </p>

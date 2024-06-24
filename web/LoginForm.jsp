@@ -5,6 +5,7 @@
     --%>
 
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -15,6 +16,7 @@
         <link rel="stylesheet" href="assets/css/LoginStyle.css">
     </head>
     <body>
+        <jsp:include page="Header.jsp" />
         <video src="assets/video/tvc.mp4" autoplay loop muted></video>
         <div class="container">
             <!-- Login Form -->
@@ -67,6 +69,8 @@
                     </div>
                 </form>
             </div>
+            
+            
         </div>
 
         <script>
@@ -82,6 +86,7 @@
                 }
             }
         </script>
+        
     </body>
     </html>
 
