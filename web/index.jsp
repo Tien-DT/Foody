@@ -16,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,8 @@
           <li><a href="MainController?action=video">Video</a></li>
           <li><a href="MainController?action=shop">Mua Sắm</a></li>
           </li>
-          <li><a href="MainController?action=loginform">Đăng Nhập / Đăng Kí</a></li>
+          <li><a href="LoginForm.html">Đăng Nhập / Đăng Kí</a></li>
+     
         </ul>
       </nav><!-- .navbar -->
 
