@@ -18,9 +18,10 @@
     <body>
         <jsp:include page="Header.jsp" />
         <video src="assets/video/tvc.mp4" autoplay loop muted></video>
-        <div class="container">
+        <div class="row big-box">
+        <div class="container box-input-div col-md-12">
             <!-- Login Form -->
-            <div class="login-box" id="login-form">
+            <div class="login-box col-md-12" id="login-form">
                 <form action="#">
                     <div class="inputBox">
                         <input type="text" required>
@@ -43,7 +44,7 @@
             </div>
 
             <!-- Register Form -->
-            <div class="login-box" id="register-form" style="display: none;">
+            <div class="login-box col-md-12" id="register-form" style="display: none;">
                 <form action="#">
                     <div class="inputBox">
                         <input type="text" required>
@@ -68,11 +69,10 @@
                         <a href="#" onclick="toggleForm()">Login</a>
                     </div>
                 </form>
+                
+            </div>
             </div>
             
-            
-        </div>
-
         <script>
             function toggleForm() {
                 var loginForm = document.getElementById("login-form");
@@ -86,7 +86,11 @@
                 }
             }
         </script>
-        
+        <div class="footediv col-md-12">
+                <jsp:include page ="Footer.jsp"/>
+            </div>
+        </div>
     </body>
+        
     </html>
 

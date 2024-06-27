@@ -5,6 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,10 +27,16 @@ video {
     justify-content: center;
     align-items: center;
     position: relative;
+    
+}
+
+big-box{
+    height: 100%;
+    width: 100%;
 }
 .login-box {
     position: relative;
-    width: 400px;
+    width: 40%;
     padding: 40px;
     background-color: rgba(165, 165, 165, 0.15);
     border: 2px solid rgba(255, 255, 255, 0.107);
@@ -97,7 +104,7 @@ input[type="checkbox"] {
     margin-right: 10px;
 }
 .register {
-    width: 100%; /* Ensure full width */
+    width: 40%; /* Ensure full width */
     display: flex;
     justify-content: center;
     margin-top: 20px; /* Add margin for spacing */
@@ -112,4 +119,14 @@ input[type="checkbox"] {
 }
 .register a:hover {
     color: #ccc;
+}
+.box-input-div{
+    width: 100%;
+}
+.fooddiv{
+    display:flex;
+   
+    width: 100%;
+    margin-top: 500px;
+    bottom: 0;
 }

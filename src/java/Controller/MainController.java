@@ -33,15 +33,15 @@ public class MainController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String a = request.getParameter("action");
             String url = "";
-            if(a == null || a!= null)
+            if(a == null)
                 a="welcome";
             
             switch(a){
                 case "welcome":
-                        url = "index.jsp";
+                        url = "Index.jsp";
                         break;
                 case "food":
-                        url="foodlist.jsp";
+                        url="FoodList.jsp";
                         break;
                 case "video":
                         url="videolist.jsp";
@@ -50,7 +50,7 @@ public class MainController extends HttpServlet {
                         url="shopping.jsp";
                         break;
                 case "loginform":
-                        url="LoginForm.html";
+                        url="LoginForm.jsp";
                         break;
                 case "register":
                         url="RegisterServlet";

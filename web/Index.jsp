@@ -1,7 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-- 
+    Document   : index
+    Created on : May 30, 2024, 5:48:34 PM
+    Author     : USER
+--%>
 
-<head>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -10,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +43,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" action="home" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="Maincontroller" action="home" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>Foody<span>.</span></h1>
@@ -45,14 +51,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero">Trang Chủ</a></li>
-          <li><a href="">Món Ăn</a></li>
-          <li><a href="">Video</a></li>
-          <li><a href="">Mua Sắm</a></li>
-          <li><a href="#contact">Hỗ Trợ</a></li>
-                
+            <li><a href="MainController?action=home">Trang Chủ</a></li>
+          <li><a href="MainController?action=food">Món Ăn</a></li>
+          <li><a href="MainController?action=video">Video</a></li>
+          <li><a href="MainController?action=shop">Mua Sắm</a></li>
           </li>
-          <li><a href="login.jsp">Đăng Nhập / Đăng Kí</a></li>
+          <li><a href="MainController?action=loginform">Đăng Nhập / Đăng Kí</a></li>
+     
         </ul>
       </nav><!-- .navbar -->
 
@@ -94,15 +99,15 @@
             <div class="container">
               <div class="row justify-content-between gy-5">
                 <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                  <h2 data-aos="fade-up">Bánh Xèo<br>Món Ăn Phổ Biến Ở Miền Nam</h2>
-                  <p data-aos="fade-up" data-aos-delay="100">Món ăn này thường xuất hiện ở Nam Trung Bộ và các tỉnh miền Nam. Bánh xèo ở từng vùng miền sẽ khác nhau về màu sắc, kích cỡ, loại nhân bên trong, nước chấm. Điểm chung của tất cả các loại đều được làm từ bột gạo tẻ pha loãng, sau đó được tráng mỏng trên chảo và chiên giòn.</p>
+                  <h2 data-aos="fade-up">Bánh Cuốn<br>Món Ăn Phổ Biến Ở Miền Trung</h2>
+                  <p data-aos="fade-up" data-aos-delay="100">Một món bánh cuốn ngon sẽ được tráng thật kỹ lưỡng, đảm bảo độ mỏng dính vừa phải nhưng lại vừa dai thơm. Bên trong ruột sẽ là phần nhân với thịt heo, tôm, mộc nhĩ, nấm hương. Phía trên bánh sẽ rắc thêm chút hành phi, khi ăn ta sẽ chấm với nước mắm tỏi ớt là số 1.</p>
                   <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <a href="#book-a-table" class="btn-book-a-table">Đặt Mua</a>
                     <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Xem Video</span></a>
                   </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                  <img src="assets/img/banhxeo.jpeg" class="img-fluid banhxeo " alt="" data-aos="zoom-out" data-aos-delay="300">
+                  <img src="assets/img/banhcuon.jpeg" class="img-fluid banhxeo " alt="" data-aos="zoom-out" data-aos-delay="300">
                 </div>
               </div>
             </div>
@@ -113,15 +118,15 @@
             <div class="container">
               <div class="row justify-content-between gy-5">
                 <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                  <h2 data-aos="fade-up">Bánh Xèo<br>Món Ăn Phổ Biến Ở Miền Nam</h2>
-                  <p data-aos="fade-up" data-aos-delay="100">Món ăn này thường xuất hiện ở Nam Trung Bộ và các tỉnh miền Nam. Bánh xèo ở từng vùng miền sẽ khác nhau về màu sắc, kích cỡ, loại nhân bên trong, nước chấm. Điểm chung của tất cả các loại đều được làm từ bột gạo tẻ pha loãng, sau đó được tráng mỏng trên chảo và chiên giòn.</p>
+                  <h2 data-aos="fade-up">Bún Chả<br>Món Ăn Phổ Biến Ở Miền Băc</h2>
+                  <p data-aos="fade-up" data-aos-delay="100">Bún chả là thức quà có sức sống bền lâu nhất của vùng đất Hà thành. Những viên chả thơm ngon được làm từ thịt nạc vai băm nhỏ, viên tròn, thêm một vài lát thịt ba chỉ thái lát, nướng vàng ăn kèm với bún, nước mắm pha loãng. Món ngon còn có vị chua của dưa góp cùng mùi thơm hài hòa của tỏi và sự thanh mát của rau sống ăn kèm.</p>
                   <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <a href="#book-a-table" class="btn-book-a-table">Đặt Mua</a>
                     <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Xem Video</span></a>
                   </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                  <img src="assets/img/banhxeo.jpeg" class="img-fluid banhxeo " alt="" data-aos="zoom-out" data-aos-delay="300">
+                  <img src="assets/img/buncha.jpeg" class="img-fluid banhxeo " alt="" data-aos="zoom-out" data-aos-delay="300">
                 </div>
               </div>
             </div>
@@ -197,7 +202,7 @@
 
           
 
-    <!-- ======= Testimonials Section ======= -->
+    <!-- ======= Testimonials Section ======= 
     <section id="testimonials" class="testimonials section-bg">
       <div class="container" data-aos="fade-up">
 
@@ -231,7 +236,7 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div><!-- End testimonial item 
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -255,7 +260,7 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div><!-- End testimonial item 
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -279,7 +284,7 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div><!-- End testimonial item 
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -303,14 +308,15 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div><!-- End testimonial item 
 
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End Testimonials Section --> 
+ 
 
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter">
@@ -420,5 +426,4 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
