@@ -14,14 +14,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Register Form</title>
         <link rel="stylesheet" href="assets/css/LoginStyle.css">
+        <link rel="stylesheet" href="assets/css/Main.css">
     </head>
     <body>
         <jsp:include page="Header.jsp" />
         <video src="assets/video/tvc.mp4" autoplay loop muted></video>
-        <div class="row big-box">
-        <div class="container box-input-div col-md-12">
+        
+        <div class="container box-input-div">
             <!-- Login Form -->
-            <div class="login-box col-md-12" id="login-form">
+            <div class="login-box" id="login-form">
                 <form action="#">
                     <div class="inputBox">
                         <input type="text" required>
@@ -44,7 +45,7 @@
             </div>
 
             <!-- Register Form -->
-            <div class="login-box col-md-12" id="register-form" style="display: none;">
+            <div class="login-box" id="register-form" style="display: none;">
                 <form action="#">
                     <div class="inputBox">
                         <input type="text" required>
@@ -86,10 +87,8 @@
                 }
             }
         </script>
-        <div class="footediv col-md-12">
-                <jsp:include page ="Footer.jsp"/>
-            </div>
-        </div>
+        <jsp:include page="Footer.jsp" />
+        
     </body>
         
     </html>
