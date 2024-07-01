@@ -40,20 +40,20 @@ public class MainController extends HttpServlet {
                 case "welcome":
                         url = "Index.jsp";
                         break;
-                case "food":
+                case "foodlist":
                         url="FoodList.jsp";
                         break;
-                case "video":
-                        url="videolist.jsp";
+                case "viewcart":
+                        url="Cart.jsp";
                         break;
-                case "shop":
-                        url="shopping.jsp";
+                case "vieworder":
+                        url="Order.jsp";
                         break;
-                case "loginform":
+                case "mydashboard":
+                        url="Dashboard.jsp";
+                        break;
+                case "login":
                         url="LoginForm.jsp";
-                        break;
-                case "register":
-                        url="RegisterServlet";
                         break;
                         
             }

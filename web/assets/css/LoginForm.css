@@ -106,6 +106,7 @@ input[type="checkbox"] {
 .register {
     width: 40%; /* Ensure full width */
     display: flex;
+    margin-left: 120px;
     justify-content: center;
     margin-top: 20px; /* Add margin for spacing */
 }

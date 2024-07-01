@@ -44,14 +44,14 @@
 
                 <nav id="navbar" class="navbar">
                     <ul>
-                        <li><a href="index.jsp">Trang Chủ</a></li>
-                        <li><a href="">Món Ăn</a></li>
-                        <li><a href="">Video</a></li>
-                        <li><a href="">Mua Sắm</a></li>
-                        <li><a href="#contact">Hỗ Trợ</a></li>
+                        <li><a href="MainController?action=welcome">Trang Chủ</a></li>
+                        <li><a href="MainController?action=foodlist">Món Ăn</a></li>
+                        <li><a href="MainController?action=viewcart">Giỏ Hàng</a></li>
+                        <li><a href="MainController?action=vieworder">Đơn Hàng</a></li>
+                        <li><a href="MainController?action=mydashboard">DashBoard</a></li>
 
                         </li>
-                        <li><a href="login.jsp">Đăng Nhập / Đăng Kí</a></li>
+                        <li><a href="MainController?action=login">Đăng Nhập / Đăng Kí</a></li>
                     </ul>
                 </nav><!-- .navbar -->
 

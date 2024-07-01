@@ -5,12 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="assets/css/Footer.css">
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
-
+        
             <div>
                 <div class="row gy-3 footercontent">
-                    <div class="col-lg-3 col-md-6 d-flex">
+                    <div class="col-lg-3 col-md-6 d-flex col-sm-12">
                         <i class="bi bi-geo-alt icon"></i>
                         <div>
                             <h4>172 Nguyễn An Ninh, TP.Dĩ An, Bình Dương</h4>
@@ -19,7 +20,7 @@
 
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <div class="col-lg-3 col-md-6 col-sm-12 footer-links d-flex">
                         <i class="bi bi-telephone icon"></i>
                         <div>
                             <h4>Liên Hệ</h4>
@@ -30,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <div class="col-lg-3 col-md-6  col-sm-12 footer-links d-flex">
                         <i class="bi bi-clock icon"></i>
                         <div>
                             <h4>Thời Gian Mở Cửa</h4>
@@ -40,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
+                    <div class="col-lg-3 col-md-6  col-sm-12 footer-links">
                         <h4>Theo Dõi</h4>
                         <div class="social-links d-flex">
 

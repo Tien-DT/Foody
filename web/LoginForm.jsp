@@ -13,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login and Register Form</title>
-        <link rel="stylesheet" href="assets/css/LoginStyle.css">
+        <link rel="stylesheet" href="assets/css/LoginForm.css">
         <link rel="stylesheet" href="assets/css/Main.css">
     </head>
     <body>
@@ -87,7 +87,7 @@
                 }
             }
         </script>
-        <jsp:include page="Footer.jsp" />
+ 
         
     </body>
         
