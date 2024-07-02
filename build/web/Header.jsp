@@ -53,7 +53,7 @@
                             <li><a href="MainController?action=mydashboard">Xin chào: ${sessionScope.LoginedUser}</a></li>
                             <c:if test="${not empty sessionScope.LoginedUser}">
                                 
-                                <li><a href="MainController?action=logout">Đăng xuất</li>
+                            <li><a href="MainController?action=logout">Đăng xuất</a></li>
                                
                                 </c:if>
                         </c:if>
