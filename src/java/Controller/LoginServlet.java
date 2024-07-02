@@ -49,8 +49,10 @@ public class LoginServlet extends HttpServlet {
                                                      
                    request.getRequestDispatcher("Index.jsp").forward(request, response);
                }else{
+                   HttpSession session = request.getSession();
                    String msg="Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại ";
-                   request.getRequestDispatcher("Index.jsp").forward(request, response);
+                   session.setAttribute("LoginError", msg);
+                   request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
 ;               }
            }
         }

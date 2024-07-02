@@ -1,13 +1,13 @@
-    <%-- 
-        Document   : LoginForm
-        Created on : Jun 19, 2024, 9:35:26 AM
-        Author     : USER
-    --%>
+<%-- 
+    Document   : LoginForm
+    Created on : Jun 19, 2024, 9:35:26 AM
+    Author     : USER
+--%>
 
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    
-    <!DOCTYPE html>
-    <html lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +18,9 @@
     </head>
     <body>
         <jsp:include page="Header.jsp" />
+
         <video src="assets/video/tvc.mp4" autoplay loop muted></video>
-        
+
         <div class="container box-input-div">
             <!-- Login Form -->
             <div class="login-box" id="login-form">
@@ -35,10 +36,21 @@
                     <div class="remember" name="checkbox">
                         <input type="checkbox">Remember me
                     </div>
+                    <%
+                        String msg = (String) session.getAttribute("LoginError");
+                        if (msg != null && msg.contains("Sai")) {
+                    %><p style="color: red; font-size: 20px; font-weight: bold; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-top: 10px; border-radius: 5px;">
+                        <%= msg%>
+                    </p><%
+                            session.removeAttribute("LoginError");
+                        }
+
+                    %>
+
                     <div class="button">
                         <input type="submit" value="Login">
                     </div>
-                   
+
                     <div class="register">
                         <a href="#" onclick="toggleForm()">Register</a>
                     </div>
@@ -71,10 +83,10 @@
                         <a href="#" onclick="toggleForm()">Login</a>
                     </div>
                 </form>
-                
+
             </div>
-            </div>
-            
+        </div>
+
         <script>
             function toggleForm() {
                 var loginForm = document.getElementById("login-form");
@@ -88,9 +100,9 @@
                 }
             }
         </script>
- 
-        
+
+
     </body>
-        
-    </html>
+
+</html>
 

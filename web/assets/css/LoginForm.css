@@ -27,7 +27,7 @@ video {
     justify-content: center;
     align-items: center;
     position: relative;
-    
+
 }
 
 big-box{
@@ -126,7 +126,7 @@ input[type="checkbox"] {
 }
 .fooddiv{
     display:flex;
-   
+
     width: 100%;
     margin-top: 500px;
     bottom: 0;
