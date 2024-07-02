@@ -5,18 +5,23 @@
  */
 package Controller;
 
+
+import DAO.UserDAO;
+import DTO.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,42 +36,23 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String a = request.getParameter("action");
-            String url = "";
-            if(a == null)
-                a="welcome";
             
-            switch(a){
-                case "welcome":
-                        url = "Index.jsp";
-                        break;
-                case "foodlist":
-                        url="GetFoodListServlet";
-                        break;
-                case "viewcart":
-                        url="Cart.jsp";
-                        break;
-                case "vieworder":
-                        url="Order.jsp";
-                        break;
-                case "mydashboard":
-                        url="Dashboard.jsp";
-                        break;
-                case "loginform":
-                        url="LoginForm.jsp";
-                        break;
-                        
-                case "login":
-                    url="LoginServlet";
-                    break;
-                    
-                case "register":
-                    url="RegisterServlet";
-                    break;
-                        
-            }
-            request.getRequestDispatcher(url).forward(request, response);
-            }
+            String userName = request.getParameter("txtusername");
+            String password = request.getParameter("txtpassword");
+            if(userName!=null&&password!=null){
+               UserDAO user = new UserDAO();
+               User userLogin = user.getUserLogin(userName, password);
+               if(userLogin!=null){
+                   
+                   
+                   
+                   request.getRequestDispatcher("Cart.jsp").forward(request, response);
+               }else{
+                   String msg="Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại ";
+                   request.getRequestDispatcher("Index.jsp").forward(request, response);
+;               }
+           }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

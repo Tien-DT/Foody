@@ -51,7 +51,7 @@
                         <li><a href="MainController?action=mydashboard">DashBoard</a></li>
 
                         </li>
-                        <li><a href="MainController?action=login">Đăng Nhập / Đăng Kí</a></li>
+                        <li><a href="MainController?action=loginform">Đăng Nhập / Đăng Kí</a></li>
                     </ul>
                 </nav><!-- .navbar -->
 

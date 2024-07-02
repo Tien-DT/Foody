@@ -23,13 +23,13 @@
         <div class="container box-input-div">
             <!-- Login Form -->
             <div class="login-box" id="login-form">
-                <form action="#">
+                <form action="MainController?action=login" method="POST">
                     <div class="inputBox">
-                        <input type="text" required>
+                        <input type="text" name="txtusername" required>
                         <label>Username</label>
                     </div>
                     <div class="inputBox">
-                        <input type="password" required>
+                        <input type="password" name="txtpassword" required>
                         <label>Password</label>
                     </div>
                     <div class="remember">
@@ -38,6 +38,7 @@
                     <div class="button">
                         <input type="submit" value="Login">
                     </div>
+                   
                     <div class="register">
                         <a href="#" onclick="toggleForm()">Register</a>
                     </div>
@@ -46,21 +47,21 @@
 
             <!-- Register Form -->
             <div class="login-box" id="register-form" style="display: none;">
-                <form action="#">
+                <form action="MainController?action=register" method="POST">
                     <div class="inputBox">
-                        <input type="text" required>
+                        <input type="text" name="txtfullname" required>
                         <label>Full Name</label>
                     </div>
                     <div class="inputBox">
-                        <input type="email" required>
+                        <input type="email" name="txtemail" required>
                         <label>Email</label>
                     </div>
                     <div class="inputBox">
-                        <input type="text" required>
+                        <input type="text" name="txtusername" required>
                         <label>Username</label>
                     </div>
                     <div class="inputBox">
-                        <input type="password" required>
+                        <input type="password" name="txtpassword" required>
                         <label>Password</label>
                     </div>
                     <div class="button">

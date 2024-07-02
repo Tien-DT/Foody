@@ -13,18 +13,20 @@ public class Food {
     private String ProductID;
     private String FoodStep;
     private int FoodPrice;
+    private String FoodImage;
 
     public Food() {
 
     }
 
-    public Food(String FoodID, String FoodName, Boolean FoodStatus, String ProductID, String FoodStep, int FoodPrice) {
+    public Food(String FoodID, String FoodName, Boolean FoodStatus, String ProductID, String FoodStep, int FoodPrice, String FoodImage) {
         this.FoodID = FoodID;
         this.FoodName = FoodName;
         this.FoodStatus = FoodStatus;
         this.ProductID = ProductID;
         this.FoodStep = FoodStep;
         this.FoodPrice = FoodPrice;
+        this.FoodImage = FoodImage;
     }
 
     public String getFoodID() {
@@ -39,6 +41,14 @@ public class Food {
         return FoodName;
     }
 
+    public String getFoodImage() {
+        return FoodImage;
+    }
+
+    public void setFoodImage(String FoodImage) {
+        this.FoodImage = FoodImage;
+    }
+    
     public void setFoodName(String FoodName) {
         this.FoodName = FoodName;
     }

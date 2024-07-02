@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import DAO.FoodDAO;
+import DTO.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+public class GetFoodListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,42 +34,11 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String a = request.getParameter("action");
-            String url = "";
-            if(a == null)
-                a="welcome";
-            
-            switch(a){
-                case "welcome":
-                        url = "Index.jsp";
-                        break;
-                case "foodlist":
-                        url="GetFoodListServlet";
-                        break;
-                case "viewcart":
-                        url="Cart.jsp";
-                        break;
-                case "vieworder":
-                        url="Order.jsp";
-                        break;
-                case "mydashboard":
-                        url="Dashboard.jsp";
-                        break;
-                case "loginform":
-                        url="LoginForm.jsp";
-                        break;
-                        
-                case "login":
-                    url="LoginServlet";
-                    break;
-                    
-                case "register":
-                    url="RegisterServlet";
-                    break;
-                        
-            }
-            request.getRequestDispatcher(url).forward(request, response);
-            }
+            FoodDAO FoodList = new FoodDAO();
+            ArrayList<Food> list = FoodList.getAllFood();
+            request.setAttribute("FoodList",list);
+            request.getRequestDispatcher("FoodList.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
