@@ -63,6 +63,9 @@ public class MainController extends HttpServlet {
                 case "register":
                     url="RegisterServlet";
                     break;
+                case "logout":
+                    url="LogOutServlet";
+                    break;
                         
             }
             request.getRequestDispatcher(url).forward(request, response);

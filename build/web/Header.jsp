@@ -1,8 +1,5 @@
-<%-- 
-    Document   : Header
-    Created on : Jun 24, 2024, 4:06:57 PM
-    Author     : USER
---%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,17 +46,26 @@
                         <li><a href="MainController?action=viewcart">Giỏ Hàng</a></li>
                         <li><a href="MainController?action=vieworder">Đơn Hàng</a></li>
                         <li><a href="MainController?action=mydashboard">DashBoard</a></li>
-
-                        </li>
-                        <li><a href="MainController?action=loginform">Đăng Nhập / Đăng Kí</a></li>
+                        <c:if test="${empty sessionScope.LoginedUser}">
+                            <li><a href="MainController?action=loginform">Đăng nhập</a></li>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.LoginedUser}">
+                            <li><a href="MainController?action=mydashboard">Xin chào: ${sessionScope.LoginedUser}</a></li>
+                            <c:if test="${not empty sessionScope.LoginedUser}">
+                                
+                                <li><a href="MainController?action=logout">Đăng xuất</li>
+                               
+                                </c:if>
+                        </c:if>
                     </ul>
                 </nav><!-- .navbar -->
-
 
                 <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                 <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
             </div>
+
+            
         </header><!-- End Header -->
     </body>
 </html>

@@ -32,7 +32,7 @@
                         <input type="password" name="txtpassword" required>
                         <label>Password</label>
                     </div>
-                    <div class="remember">
+                    <div class="remember" name="checkbox">
                         <input type="checkbox">Remember me
                     </div>
                     <div class="button">

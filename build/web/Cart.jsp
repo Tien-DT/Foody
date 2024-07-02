@@ -66,7 +66,7 @@
                             <td></td>
                             <td></td>
                             <td>Tổng Tiền Sản Phẩm</td>
-                            <td class="text-right">255,90 €</td>
+                            <td class="text-right">255,90 </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -74,7 +74,7 @@
                             <td></td>
                             <td></td>
                             <td>Phí Vận Chuyển</td>
-                            <td class="text-right">6,90 €</td>
+                            <td class="text-right">6,90 </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -82,7 +82,7 @@
                             <td></td>
                             <td></td>
                             <td><strong>Tổng Cộng</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td class="text-right"><strong>346,90</strong></td>
                         </tr>
                     </tbody>
                 </table>

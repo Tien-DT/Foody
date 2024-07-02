@@ -5,12 +5,8 @@
  */
 package Controller;
 
-
-import DAO.UserDAO;
-import DTO.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author USER
  */
-public class LoginServlet extends HttpServlet {
+public class LogOutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,23 +32,9 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            String userName = request.getParameter("txtusername");
-            String password = request.getParameter("txtpassword");
-            String checkBox = request.getParameter("checkbox");
-            if(userName!=null&&password!=null){
-               UserDAO user = new UserDAO();
-               User userLogin = user.getUserLogin(userName, password);
-               if(userLogin!=null){
-                        HttpSession session = request.getSession();
-                       session.setAttribute("LoginedUser", userName);
-                                                     
-                   request.getRequestDispatcher("Index.jsp").forward(request, response);
-               }else{
-                   String msg="Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại ";
-                   request.getRequestDispatcher("Index.jsp").forward(request, response);
-;               }
-           }
+            HttpSession session = request.getSession();
+            session.removeAttribute("LoginedUser");
+            request.getRequestDispatcher("Index.jsp").forward(request, response);
         }
     }
 
