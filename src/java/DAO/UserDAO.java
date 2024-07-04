@@ -17,7 +17,8 @@ import java.util.ArrayList;
  * @author USER
  */
 public class UserDAO {
-        public ArrayList<User> getUser() {
+
+    public ArrayList<User> getUser() {
         ArrayList<User> list = new ArrayList<>();
         Connection cn = null;
         try {
@@ -51,73 +52,104 @@ public class UserDAO {
         }
         return list;
     }
-        public User getUserLogin(String userName, String password) {
-           User userLogin=null;
-           Connection cn=null;
-           try {
 
-               cn = DBUtil.makeConnection();
-               if(cn!=null){
+    public User getUserLogin(String userName, String password) {
+        User userLogin = null;
+        Connection cn = null;
+        try {
 
-                   String sql = "select UserName, Password from dbo.[User]\n"
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
 
-                           + "where UserName=? and Password=? COLLATE Latin1_General_CS_AS";
-                   PreparedStatement pst=cn.prepareStatement(sql);
-                   pst.setString(1, userName);
-                   pst.setString(2, password);
-                   ResultSet rs=pst.executeQuery();
-                   if(rs!=null && rs.next()){
+                String sql = "select UserName, Password from dbo.[User]\n"
+                        + "where UserName=? and Password=? COLLATE Latin1_General_CS_AS";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, userName);
+                pst.setString(2, password);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
 
-                       String username = rs.getString("UserName");
+                    String username = rs.getString("UserName");
+                    userLogin = new User();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userLogin;
+    }
 
+    public User registerUser(String UserID, String Email, String UserName, String Password) {
+        User userRegister = null;
+        Connection cn = null;
+        try {
 
-                       userLogin = new User();
-                   }
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-           }finally{
-               try {
-                   if(cn!=null) cn.close();
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }
-           return userLogin;
-       }
-        
-        public User registerUser(String UserID,String Email, String UserName, String Password){
-            User userRegister=null;
-           Connection cn=null;
-           try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
 
-               cn = DBUtil.makeConnection();
-               if(cn!=null){
+                String sql = "select UserName, Password from dbo.[User]\n"
+                        + "where UserName=? and Password=? COLLATE Latin1_General_CS_AS";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, userName);
+                pst.setString(2, password);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
 
-                   String sql = "select UserName, Password from dbo.[User]\n"
+                    String username = rs.getString("UserName");
 
-                           + "where UserName=? and Password=? COLLATE Latin1_General_CS_AS";
-                   PreparedStatement pst=cn.prepareStatement(sql);
-                   pst.setString(1, userName);
-                   pst.setString(2, password);
-                   ResultSet rs=pst.executeQuery();
-                   if(rs!=null && rs.next()){
+                    userLogin = new User();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userRegister;
+    }
 
-                       String username = rs.getString("UserName");
+    public User getUserID(String userName) {
+        User user = null;
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "select UserID from dbo.[User] where UserName = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, userName);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    String userID = rs.getString("UserID");
+                    user = new User();
+                    user.setUserID(userID); 
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
 
-
-                       userLogin = new User();
-                   }
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-           }finally{
-               try {
-                   if(cn!=null) cn.close();
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }
-           return userRegister;
-        } 
 }

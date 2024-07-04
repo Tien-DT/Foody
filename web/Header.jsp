@@ -33,7 +33,7 @@
         <header id="header" class="header fixed-top d-flex align-items-center">
             <div class="container d-flex align-items-center justify-content-between">
 
-                <a href="index.html" action="home" class="logo d-flex align-items-center me-auto me-lg-0">
+                <a href="MainController?action=welcome" action="home" class="logo d-flex align-items-center me-auto me-lg-0">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1>Foody<span>.</span></h1>
@@ -45,6 +45,7 @@
                         <li><a href="MainController?action=foodlist">Món Ăn</a></li>
                         <li><a href="MainController?action=viewcart">Giỏ Hàng</a></li>
                         <li><a href="MainController?action=vieworder">Đơn Hàng</a></li>
+                        <li><a href="MainController?action=menu">Thực Đơn</a></li>
                         <li><a href="MainController?action=mydashboard">DashBoard</a></li>
                         <c:if test="${empty sessionScope.LoginedUser}">
                             <li><a href="MainController?action=loginform">Đăng nhập</a></li>
@@ -57,6 +58,7 @@
                                
                                 </c:if>
                         </c:if>
+                            
                     </ul>
                 </nav><!-- .navbar -->
 

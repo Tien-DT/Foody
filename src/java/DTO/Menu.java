@@ -10,51 +10,51 @@ package DTO;
  * @author USER
  */
 public class Menu {
-    private String MenuID;
-    private String FoodID;
-    private String MenuDate;
-    private String UserID;
+    private String menuID;
+    private String foodID;
+    private String menuDate;
+    private String userID;
 
     public Menu() {
     }
 
-    public Menu(String MenuID, String FoodID, String MenuDate, String UserID) {
-        this.MenuID = MenuID;
-        this.FoodID = FoodID;
-        this.MenuDate = MenuDate;
-        this.UserID = UserID;
+    public Menu(String menuID, String foodID, String menuDate, String userID) {
+        this.menuID = menuID;
+        this.foodID = foodID;
+        this.menuDate = menuDate;
+        this.userID = userID;
     }
 
-    public String getMenuID() {
-        return MenuID;
+    public String getmenuID() {
+        return menuID;
     }
 
-    public void setMenuID(String MenuID) {
-        this.MenuID = MenuID;
+    public void setmenuID(String menuID) {
+        this.menuID = menuID;
     }
 
-    public String getFoodID() {
-        return FoodID;
+    public String getfoodID() {
+        return foodID;
     }
 
-    public void setFoodID(String FoodID) {
-        this.FoodID = FoodID;
+    public void setfoodID(String foodID) {
+        this.foodID = foodID;
     }
 
-    public String getMenuDate() {
-        return MenuDate;
+    public String getmenuDate() {
+        return menuDate;
     }
 
-    public void setMenuDate(String MenuDate) {
-        this.MenuDate = MenuDate;
+    public void setmenuDate(String menuDate) {
+        this.menuDate = menuDate;
     }
 
-    public String getUserID() {
-        return UserID;
+    public String getuserID() {
+        return userID;
     }
 
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
+    public void setuserID(String userID) {
+        this.userID = userID;
     }
     
     

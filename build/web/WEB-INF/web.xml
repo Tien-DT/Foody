@@ -20,6 +20,22 @@
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>Controller.LogOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetMenuFoodServlet</servlet-name>
+        <servlet-class>Controller.GetMenuFoodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuyFoodServlet</servlet-name>
+        <servlet-class>Controller.BuyFoodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCartServlet</servlet-name>
+        <servlet-class>Controller.LoadCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCartServlet</servlet-name>
+        <servlet-class>Controller.GetCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -40,9 +56,25 @@
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMenuFoodServlet</servlet-name>
+        <url-pattern>/GetMenuFoodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyFoodServlet</servlet-name>
+        <url-pattern>/BuyFoodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCartServlet</servlet-name>
+        <url-pattern>/LoadCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCartServlet</servlet-name>
+        <url-pattern>/GetCartServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            1
+            30
         </session-timeout>
     </session-config>
     <welcome-file-list>

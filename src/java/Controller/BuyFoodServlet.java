@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.FoodDAO;
-import DTO.Food;
+import DAO.CartDAO;
+import DTO.Cart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,12 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class GetFoodListServlet extends HttpServlet {
+public class BuyFoodServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +34,21 @@ public class GetFoodListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            FoodDAO FoodList = new FoodDAO();
-            ArrayList<Food> list = FoodList.getAllFood();
-            request.setAttribute("FoodList",list);
-            request.getRequestDispatcher("FoodList.jsp").forward(request, response);
+          HttpSession session = request.getSession();
+        String userID = (String)session.getAttribute("LoginedUID");
+        String foodID = request.getParameter("FoodID");
+       
+        
+        if( userID != null && foodID != null ){
+                CartDAO cartDAO = new CartDAO();
+              ArrayList<Cart> cart = new CartDAO().insertFoodToCart(foodID, userID);
+              
+            
+            }else{
+            request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
         }
+       }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

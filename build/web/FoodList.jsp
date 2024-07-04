@@ -93,27 +93,25 @@ IMG FOR FOOD 332*202
                                     ArrayList<Food> list = (ArrayList) request.getAttribute("FoodList");
                                     if (list != null) {
                                         for (Food f : list) {
-                                            if (f.getFoodStatus()) {
-
-
+                                            if (f.getfoodStatus()) {
                                 %>
                                 <div class="col-lg-4 col-md-6 col-sm-12 menu-item">
                                     <div class="card h-150">
-                                        <a href="assets/img/menu/menu-item-1.png" class="glightbox">
-                                            <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
+                                        <a href="assets/img/menu/menu-item-1.png" class="glightbox item-card">
+                                            <img src="<%= f.getfoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
                                         </a>
                                         <div class="card-body d-flex flex-column">
-                                            <h4 class="card-title"><%= f.getFoodName()%></h4>
+                                            <h4 class="card-title"><%= f.getfoodName()%></h4>
                                             <p class="card-text">
                                                 <!-- Assuming there's a description -->
                                             </p>
                                             <p class="price card-text mt-auto">
-                                                <%= f.getFoodPrice()%> VNĐ
+                                                <%= f.getfoodPrice()%> VNĐ
                                             </p>
                                             <div class="d-grid gap-2">
-                                                <button class="btn btn-danger">Mua Món Ăn</button>
-                                                <button class="btn btn-primary">Mua Nguyên Liệu</button>
-                                                <button class="btn btn-secondary">Thêm vào Menu</button>
+                                                <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
+                                                <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
+                                                <a href="MainController?action=addtomenu"><button class="btn btn-secondary button-card">Thêm vào Menu</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -185,6 +183,24 @@ IMG FOR FOOD 332*202
         <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script>
+                        // Chuyển 1000 thành 1.000 và tương tự với 100000 thành 100.000
+                        function formatCurrency(amount) {
+                            return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        }
+
+                       
+                        function formatAllPrices() {
+                            var priceElements = document.querySelectorAll('.price');
+                            priceElements.forEach(function (element) {
+                                var price = parseInt(element.textContent.replace(/[^0-9]/g, ''), 10);
+                                element.textContent = formatCurrency(price) + ' VNĐ';
+                            });
+                        }
+
+                       
+                        window.onload = formatAllPrices;
+        </script>
 
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>

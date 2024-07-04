@@ -5,21 +5,28 @@
  */
 package Controller;
 
-import DAO.FoodDAO;
-import DTO.Food;
+import DAO.MenuDAO;
+import DAO.UserDAO;
+import DTO.Menu;
+import DTO.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  *
  * @author USER
  */
-public class GetFoodListServlet extends HttpServlet {
+public class GetMenuFoodServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +37,27 @@ public class GetFoodListServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            FoodDAO FoodList = new FoodDAO();
-            ArrayList<Food> list = FoodList.getAllFood();
-            request.setAttribute("FoodList",list);
-            request.getRequestDispatcher("FoodList.jsp").forward(request, response);
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    try (PrintWriter out = response.getWriter()) {       
+        HttpSession session = request.getSession();
+        String userID = (String)session.getAttribute("LoginedUID");
+        if( userID != null ){
+        MenuDAO MenuFood = new MenuDAO();     
+        Map<String, List<Menu>> menuMap = MenuFood.getMenuFood(userID);
+        
+        String[] days = {"2", "3", "4", "5", "6", "7", "CN"};
+        for (String day : days) {
+            request.setAttribute("Food" + day, menuMap.getOrDefault(day, new ArrayList<>()));
+        }
+        
+        request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
         }
     }
-
+}
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

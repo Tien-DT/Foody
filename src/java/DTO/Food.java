@@ -7,82 +7,82 @@ package DTO;
 
 public class Food {
 
-    private String FoodID;
-    private String FoodName;
-    private Boolean FoodStatus;
-    private String ProductID;
-    private String FoodStep;
-    private int FoodPrice;
-    private String FoodImage;
+    private String foodID;
+    private String foodName;
+    private Boolean foodStatus;
+    private String productID;
+    private String foodStep;
+    private int foodPrice;
+    private String foodImage;
 
     public Food() {
 
     }
 
-    public Food(String FoodID, String FoodName, Boolean FoodStatus, String ProductID, String FoodStep, int FoodPrice, String FoodImage) {
-        this.FoodID = FoodID;
-        this.FoodName = FoodName;
-        this.FoodStatus = FoodStatus;
-        this.ProductID = ProductID;
-        this.FoodStep = FoodStep;
-        this.FoodPrice = FoodPrice;
-        this.FoodImage = FoodImage;
+    public Food(String foodID, String foodName, Boolean foodStatus, String productID, String foodStep, int foodPrice, String foodImage) {
+        this.foodID = foodID;
+        this.foodName = foodName;
+        this.foodStatus = foodStatus;
+        this.productID = productID;
+        this.foodStep = foodStep;
+        this.foodPrice = foodPrice;
+        this.foodImage = foodImage;
     }
 
-    public String getFoodID() {
-        return FoodID;
+    public String getfoodID() {
+        return foodID;
     }
 
-    public void setFoodID(String FoodID) {
-        this.FoodID = FoodID;
+    public void setfoodID(String foodID) {
+        this.foodID = foodID;
     }
 
-    public String getFoodName() {
-        return FoodName;
+    public String getfoodName() {
+        return foodName;
     }
 
-    public String getFoodImage() {
-        return FoodImage;
+    public String getfoodImage() {
+        return foodImage;
     }
 
-    public void setFoodImage(String FoodImage) {
-        this.FoodImage = FoodImage;
+    public void setfoodImage(String foodImage) {
+        this.foodImage = foodImage;
     }
     
-    public void setFoodName(String FoodName) {
-        this.FoodName = FoodName;
+    public void setfoodName(String foodName) {
+        this.foodName = foodName;
     }
 
-    public Boolean getFoodStatus() {
-        return FoodStatus;
+    public Boolean getfoodStatus() {
+        return foodStatus;
     }
 
-    public void setFoodStatus(Boolean FoodStatus) {
-        this.FoodStatus = FoodStatus;
+    public void setfoodStatus(Boolean foodStatus) {
+        this.foodStatus = foodStatus;
     }
 
-    public String getProductID() {
-        return ProductID;
+    public String getproductID() {
+        return productID;
     }
 
-    public void setProductID(String ProductID) {
-        this.ProductID = ProductID;
+    public void setproductID(String productID) {
+        this.productID = productID;
     }
 
-    public String getFoodStep() {
-        return FoodStep;
+    public String getfoodStep() {
+        return foodStep;
     }
 
-    public void setFoodStep(String FoodStep) {
-        this.FoodStep = FoodStep;
+    public void setfoodStep(String foodStep) {
+        this.foodStep = foodStep;
     }
 
-    public int getFoodPrice() {
-        return FoodPrice;
+    public int getfoodPrice() {
+        return foodPrice;
     }
 
-    public void setFoodPrice(int FoodPrice) {
-        this.FoodPrice = FoodPrice;
+    public void setfoodPrice(int foodPrice) {
+        this.foodPrice = foodPrice;
     }
 
 }

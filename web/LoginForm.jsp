@@ -17,8 +17,14 @@
         <link rel="stylesheet" href="assets/css/Main.css">
     </head>
     <body>
-        <jsp:include page="Header.jsp" />
 
+        <jsp:include page="Header.jsp" />
+        <%
+            String checkLogin = (String) session.getAttribute("LoginedUser");
+            if (checkLogin != null) {
+                request.getRequestDispatcher("Index.jsp").forward(request, response);
+            }
+        %>
         <video src="assets/video/tvc.mp4" autoplay loop muted></video>
 
         <div class="container box-input-div">
@@ -37,15 +43,16 @@
                         <input type="checkbox">Remember me
                     </div>
                     <%
-                        String msg = (String) session.getAttribute("LoginError");
-                        if (msg != null && msg.contains("Sai")) {
+                        String msg = (String) session.getAttribute("Error");
+                        if (msg != null) {
                     %><p style="color: red; font-size: 20px; font-weight: bold; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-top: 10px; border-radius: 5px;">
                         <%= msg%>
                     </p><%
-                            session.removeAttribute("LoginError");
+                            session.removeAttribute("Error");
                         }
 
                     %>
+                    
 
                     <div class="button">
                         <input type="submit" value="Login">

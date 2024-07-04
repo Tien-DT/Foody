@@ -33,43 +33,50 @@ public class MainController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String a = request.getParameter("action");
             String url = "";
-            if(a == null)
-                a="welcome";
-            
-            switch(a){
+            if (a == null) {
+                a = "welcome";
+            }
+
+            switch (a) {
                 case "welcome":
-                        url = "Index.jsp";
-                        break;
-                case "foodlist":
-                        url="GetFoodListServlet";
-                        break;
-                case "viewcart":
-                        url="Cart.jsp";
-                        break;
-                case "vieworder":
-                        url="Order.jsp";
-                        break;
-                case "mydashboard":
-                        url="Dashboard.jsp";
-                        break;
-                case "loginform":
-                        url="LoginForm.jsp";
-                        break;
-                        
-                case "login":
-                    url="LoginServlet";
+                    url = "Index.jsp";
                     break;
-                    
+                case "foodlist":
+                    url = "GetFoodListServlet";
+                    break;
+                case "viewcart":
+                    url = "Cart.jsp";
+                    break;
+                case "vieworder":
+                    url = "Order.jsp";
+                    break;
+                case "mydashboard":
+                    url = "Dashboard.jsp";
+                    break;
+                case "loginform":
+                    url = "LoginForm.jsp";
+                    break;
+
+                case "login":
+                    url = "LoginServlet";
+                    break;
+
                 case "register":
-                    url="RegisterServlet";
+                    url = "RegisterServlet";
                     break;
                 case "logout":
-                    url="LogOutServlet";
+                    url = "LogOutServlet";
                     break;
-                        
+                case "menu":
+                    url = "GetMenuFoodServlet";
+                    break;
+                case "buyfood":
+                    url = "BuyFoodServlet";
+                    break;
+
             }
             request.getRequestDispatcher(url).forward(request, response);
-            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

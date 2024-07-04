@@ -33,31 +33,35 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        throws ServletException, IOException {
+    response.setContentType("text/html;charset=UTF-8");
+    try (PrintWriter out = response.getWriter()) {
+        
+        String userName = request.getParameter("txtusername");
+        String password = request.getParameter("txtpassword");
+        String checkBox = request.getParameter("checkbox");
+        
+        if (userName != null && password != null) {
+            UserDAO userDAO = new UserDAO();
+            User userLogin = userDAO.getUserLogin(userName, password);
             
-            String userName = request.getParameter("txtusername");
-            String password = request.getParameter("txtpassword");
-            String checkBox = request.getParameter("checkbox");
-            if(userName!=null&&password!=null){
-               UserDAO user = new UserDAO();
-               User userLogin = user.getUserLogin(userName, password);
-               if(userLogin!=null){
-                        HttpSession session = request.getSession();
-                       session.setAttribute("LoginedUser", userName);
-                                                     
-                   request.getRequestDispatcher("Index.jsp").forward(request, response);
-               }else{
-                   HttpSession session = request.getSession();
-                   String msg="Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại ";
-                   session.setAttribute("LoginError", msg);
-                   request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
-;               }
-           }
+            if (userLogin != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("LoginedUser", userName);
+                User user = userDAO.getUserID(userName);
+                if (user != null) {
+                    session.setAttribute("LoginedUID", user.getUserID());
+                }           
+                request.getRequestDispatcher("Index.jsp").forward(request, response);
+            } else {
+                HttpSession session = request.getSession();
+                String msg = "Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại";
+                session.setAttribute("Error", msg);
+                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+            }
         }
     }
-
+}
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -10,71 +10,71 @@ package DTO;
  * @author USER
  */
 public class Order {
-    private String OrderID;
-    private String OrderDate;
-    private Byte OrderStatus;
-    private int OrderTotalPrice;
-    private String UserID;
-    private int FoodPrice;
+    private String orderID;
+    private String orderDate;
+    private Byte orderStatus;
+    private int orderTotalPrice;
+    private String userID;
+    private int foodPrice;
 
     public Order() {
     }
 
-    public Order(String OrderID, String OrderDate, Byte OrderStatus, int OrderTotalPrice, String UserID, int FoodPrice) {
-        this.OrderID = OrderID;
-        this.OrderDate = OrderDate;
-        this.OrderStatus = OrderStatus;
-        this.OrderTotalPrice = OrderTotalPrice;
-        this.UserID = UserID;
-        this.FoodPrice = FoodPrice;
+    public Order(String orderID, String orderDate, Byte orderStatus, int orderTotalPrice, String userID, int foodPrice) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.orderTotalPrice = orderTotalPrice;
+        this.userID = userID;
+        this.foodPrice = foodPrice;
     }
 
-    public String getOrderID() {
-        return OrderID;
+    public String getorderID() {
+        return orderID;
     }
 
-    public void setOrderID(String OrderID) {
-        this.OrderID = OrderID;
+    public void setorderID(String orderID) {
+        this.orderID = orderID;
     }
 
-    public String getOrderDate() {
-        return OrderDate;
+    public String getorderDate() {
+        return orderDate;
     }
 
-    public void setOrderDate(String OrderDate) {
-        this.OrderDate = OrderDate;
+    public void setorderDate(String orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public Byte getOrderStatus() {
-        return OrderStatus;
+    public Byte getorderStatus() {
+        return orderStatus;
     }
 
-    public void setOrderStatus(Byte OrderStatus) {
-        this.OrderStatus = OrderStatus;
+    public void setorderStatus(Byte orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public int getOrderTotalPrice() {
-        return OrderTotalPrice;
+    public int getorderTotalPrice() {
+        return orderTotalPrice;
     }
 
-    public void setOrderTotalPrice(int OrderTotalPrice) {
-        this.OrderTotalPrice = OrderTotalPrice;
+    public void setorderTotalPrice(int orderTotalPrice) {
+        this.orderTotalPrice = orderTotalPrice;
     }
 
-    public String getUserID() {
-        return UserID;
+    public String getuserID() {
+        return userID;
     }
 
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
+    public void setuserID(String userID) {
+        this.userID = userID;
     }
 
-    public int getFoodPrice() {
-        return FoodPrice;
+    public int getfoodPrice() {
+        return foodPrice;
     }
 
-    public void setFoodPrice(int FoodPrice) {
-        this.FoodPrice = FoodPrice;
+    public void setfoodPrice(int foodPrice) {
+        this.foodPrice = foodPrice;
     }
             
 }
