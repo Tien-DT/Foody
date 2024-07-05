@@ -42,11 +42,12 @@ public class GetMenuFoodServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     try (PrintWriter out = response.getWriter()) {       
         HttpSession session = request.getSession();
-        String userID = (String)session.getAttribute("LoginedUID");
-        if( userID != null ){
+        int userID = 0;
+        userID = (int) session.getAttribute("LoginedUID");
+        if( userID != 0 ){
         MenuDAO Menu = new MenuDAO(); 
         ArrayList<Menu> list = Menu.getMenuFood(userID);
-        session.setAttribute("MenuFood", list);
+        request.setAttribute("MenuFood", list);
         request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
         }else{
             request.getRequestDispatcher("LoginForm.jsp").forward(request, response);

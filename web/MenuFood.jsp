@@ -29,12 +29,13 @@
         <div class="row">
             <div class="col-md-12 menu-title">
                 <h1 id="title-list">Danh Sách Thực Đơn</h1>
+                <h1><%= session.getAttribute("LoginedUID") %></h1>
             </div>
         </div>
         <div class="box-menu box-list">
             <ul class="list-group row">
                 <%
-                    ArrayList<Menu> list = (ArrayList<Menu>) session.getAttribute("MenuFood");
+                    ArrayList<Menu> list = (ArrayList<Menu>) request.getAttribute("MenuFood");
                     if (list != null && !list.isEmpty()) {
                         int count = 0;
                         for (Menu m : list) {
@@ -44,7 +45,7 @@
                 <form action="MainController?action=" method="POST">
                     <input type="hidden" name="menuId" value="<%= m.getMenuID()%>">
                     <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
-                        <%= m.getMenuName() %>
+                        <%= m.getMenuName()%>
                     </button>
                 </form>
                 <%

@@ -93,29 +93,29 @@ IMG FOR FOOD 332*202
                                     ArrayList<Food> list = (ArrayList) request.getAttribute("FoodList");
                                     if (list != null) {
                                         for (Food f : list) {
-                                            if (f.getfoodStatus()) {
+                                            if (f.getFoodStatus()) {
                                 %>
                                 <div class="col-lg-4 col-md-6 col-sm-12 menu-item">
                                     <div class="card h-150">
                                         <a href="assets/img/menu/menu-item-1.png" class="glightbox item-card">
-                                            <img src="<%= f.getfoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
+                                            <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
                                         </a>
                                         <div class="card-body d-flex flex-column">
-                                            <h4 class="card-title"><%= f.getfoodName()%></h4>
+                                            <h4 class="card-title"><%= f.getFoodName()%></h4>
                                             <p class="card-text">
                                                 <!-- Assuming there's a description -->
                                             </p>
                                             <p class="price card-text mt-auto">
-                                                <%= f.getfoodPrice()%> VNĐ
+                                                <%= f.getFoodPrice()%> VNĐ
                                             </p>
                                             <div class="d-grid gap-2">
                                                 <form action="MainController?action=" method="POST">
-                                                    <input type="hidden" name="menuId" value="<%= f.getfoodID()%>">
+                                                    <input type="hidden" name="menuId" value="<%= f.getFoodID()%>">
                                                     <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
                                                 </form>
 
                                                 <form action="MainController?action=" method="POST">
-                                                    <input type="hidden" name="menuId" value="<%= f.getfoodID()%>">
+                                                    <input type="hidden" name="menuId" value="<%= f.getFoodID()%>">
                                                     <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
                                                 </form>
                                                 <a href="MainController?action=addtomenu"><button class="btn btn-secondary button-card">Thêm vào Menu</button></a>

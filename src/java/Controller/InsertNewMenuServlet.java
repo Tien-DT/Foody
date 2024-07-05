@@ -41,12 +41,12 @@ public class InsertNewMenuServlet extends HttpServlet {
             String menuWeek = request.getParameter("txtweek");
             String menuTag = request.getParameter("txttag");
             HttpSession session = request.getSession();
-            String userID = (String) session.getAttribute("LoginedUID");
+            int userID = (int) session.getAttribute("LoginedUID");
 
-            if (userID == null) {
-                request.setAttribute("Result", "User not logged in");
-                request.getRequestDispatcher("NewMenuFood.jsp").forward(request, response);
-                return;
+            if (userID == 0) {
+                request.setAttribute("Result", "Vui Lòng Đăng Nhập Lại");
+                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+                
             }
 
             MenuDAO menuDAO = new MenuDAO();

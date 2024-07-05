@@ -23,10 +23,10 @@ public class FoodDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
-                    String FoodID = rs.getString("FoodID");
+                    int FoodID = rs.getInt("FoodID");
                     String FoodName = rs.getString("FoodName");
                     boolean FoodStatus = rs.getBoolean("FoodStatus");
-                    String ProductID = rs.getString("ProductID");
+                    int ProductID = rs.getInt("ProductID");
                     String FoodStep = rs.getString("FoodStep");
                     int FoodPrice = rs.getInt("FoodPrice");
                     String FoodImage = rs.getString("FoodImage");

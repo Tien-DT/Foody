@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class MenuDAO {
 
-    public ArrayList<Menu> getMenuFood(String userID) {
+    public ArrayList<Menu> getMenuFood(int userID) {
         ArrayList<Menu> list = new ArrayList<>();
         Connection cn = null;
         try {
@@ -33,7 +33,45 @@ public class MenuDAO {
                         + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
                         + "WHERE m.UserID=?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userID);
+                pst.setInt(1, userID);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int menuID = rs.getInt("MenuID");
+                    int foodID = rs.getInt("FoodID");
+                    String menuDate = rs.getNString("MenuDate");
+                    int uID = rs.getInt("UserID");
+                    String menuName = rs.getNString("MenuName");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    Menu menu = new Menu(menuID, foodID, menuDate, userID, menuName, menuStatus);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Menu> insertNewMenu(int userID) {
+        ArrayList<Menu> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
+                        + "FROM dbo.Menu m\n"
+                        + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
+                        + "WHERE m.UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     int menuID = rs.getInt("MenuID");
@@ -60,45 +98,7 @@ public class MenuDAO {
         return list;
     }
 
-    public ArrayList<Menu> insertNewMenu(String userID) {
-        ArrayList<Menu> list = new ArrayList<>();
-        Connection cn = null;
-        try {
-            cn = DBUtil.makeConnection();
-            if (cn != null) {
-                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
-                        + "FROM dbo.Menu m\n"
-                        + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
-                        + "WHERE m.UserID=?";
-                PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userID);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    String menuID = rs.getString("MenuID");
-                    String foodID = rs.getString("FoodID");
-                    String menuDate = rs.getString("MenuDate");
-                    String uID = rs.getString("UserID");
-                    String menuName = rs.getNString("MenuName");
-                    boolean menuStatus = rs.getBoolean("MenuStatus");
-                    Menu menu = new Menu(menuID, foodID, menuDate, uID, menuName, menuStatus);
-                    list.add(menu);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (cn != null) {
-                    cn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
-
-    public String checkWeekMenu(String userID, String menuWeek) {
+    public String checkWeekMenu(int userID, String menuWeek) {
         Connection cn = null;
         String check = null;
         try {
@@ -107,7 +107,7 @@ public class MenuDAO {
                 String sql = "SELECT UserID, MenuDate, MenuStatus FROM dbo.Menu\n"
                         + "WHERE UserID=? AND MenuDate LIKE N%?% AND MenuStatus ='1'";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userID);
+                pst.setInt(1, userID);
                 pst.setString(2, menuWeek);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
@@ -133,7 +133,7 @@ public class MenuDAO {
         return check;
     }
 
-    public String insertWeekMenu(String userID, String menuWeek, String newMenuName, String menuTag) {
+    public String insertWeekMenu(int userID, String menuWeek, String newMenuName, String menuTag) {
         Connection cn = null;
         String result = null;
         try {
@@ -144,7 +144,7 @@ public class MenuDAO {
 
                 String sql = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus) VALUES (?, ?, ?, ?, '1')";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userID);
+                pst.setInt(1, userID);
                 pst.setString(2, menuWeek);
                 pst.setString(3, newMenuName);
                 pst.setString(4, menuTag);
