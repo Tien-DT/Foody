@@ -5,28 +5,18 @@
  */
 package Controller;
 
-import DAO.MenuDAO;
-import DAO.UserDAO;
-import DTO.Menu;
-import DTO.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 /**
  *
  * @author USER
  */
-public class GetMenuFoodServlet extends HttpServlet {
+public class InsertNewMenuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +27,17 @@ public class GetMenuFoodServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = response.getWriter()) {       
-        HttpSession session = request.getSession();
-        String userID = (String)session.getAttribute("LoginedUID");
-        if( userID != null ){
-        MenuDAO Menu = new MenuDAO(); 
-        ArrayList<Menu> list = Menu.getMenuFood(userID);
-        session.setAttribute("MenuFood", list);
-        request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String newMenuName = request.getParameter("txtmenuname");
+            FoodDAO FoodList = new FoodDAO();
+            ArrayList<Food> list = FoodList.getAllFood();
+            
         }
     }
-}
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

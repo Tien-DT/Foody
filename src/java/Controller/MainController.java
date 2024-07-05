@@ -73,6 +73,9 @@ public class MainController extends HttpServlet {
                 case "buyfood":
                     url = "BuyFoodServlet";
                     break;
+                case "createmenu":
+                    url ="NewMenuFood.jsp";
+                    break;
 
             }
             request.getRequestDispatcher(url).forward(request, response);

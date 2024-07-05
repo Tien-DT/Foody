@@ -33,7 +33,7 @@
 
         <!-- Template Main CSS File -->
         <link href="assets/css/Main.css" rel="stylesheet">
-        <link href="assets/css/Footer.css" rel="stylesheet">
+      
 
 
     </head>

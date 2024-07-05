@@ -1,10 +1,37 @@
-.table-food{
-    margin-top: 30px;
-    height: 650px;
-}
-.Food-name-menu{
 
-    font-size: 1.2em; /* Đổi kích cỡ chữ lớn hơn */
-    line-height: 2em;
+.body-content {
+    
+    margin-top: 100px;
+   min-height: 73vh;
+    
+}
+.menu-title.h1 {
+  
+    
 }
 
+#title-list{
+    display:flex;
+    justify-content: center;
+    color: red;
+}
+.menu-title.h1{
+   
+}
+.box-menu {
+    
+}
+
+.box-list{
+    min-width: 100%;
+    min-height: 80%;
+}
+
+.button-menu-food{
+
+    border-radius: 15px;
+    border-color: buttonhighlight;
+    border-width: 10px;  
+    margin: 10px;
+        
+}

@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Menu;
+import DTO.MenuDetail;
 import MyLib.DBUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,13 +22,13 @@ import java.util.Map;
  */
 public class MenuDAO {
 
-    public Map<String, List<Menu>> getMenuFood(String userID) {
-        Map<String, List<Menu>> menuMap = new HashMap<>();
+    public ArrayList<Menu> getMenuFood(String userID) {
+        ArrayList<Menu> list = new ArrayList<>();
         Connection cn = null;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "SELECT m.MenuID, m.FoodID, m.MenuDate, m.UserID, f.FoodName\n"
+                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
                         + "FROM dbo.Menu m\n"
                         + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
                         + "WHERE m.UserID=?";
@@ -35,14 +36,14 @@ public class MenuDAO {
                 pst.setString(1, userID);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
-                    String MenuID = rs.getString("MenuID");
-                    String FoodID = rs.getString("FoodName");
-                    //String FoodName = rs.getString("FoodName");
-                    String MenuDate = rs.getString("MenuDate");
-                    String UserID = rs.getString("UserID");
-                    Menu menu = new Menu(MenuID, FoodID,MenuDate, UserID);
-
-                    menuMap.computeIfAbsent(MenuDate, k -> new ArrayList<>()).add(menu);
+                    String menuID = rs.getString("MenuID");          
+                    String foodID = rs.getString("FoodID");
+                    String menuDate = rs.getString("MenuDate");
+                    String uID= rs.getString("UserID");
+                    String menuName = rs.getNString("MenuName");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    Menu menu = new Menu(menuID, foodID, menuDate, uID, menuName, menuStatus);
+                    list.add(menu);
                 }
             }
         } catch (Exception e) {
@@ -56,6 +57,46 @@ public class MenuDAO {
                 e.printStackTrace();
             }
         }
-        return menuMap;
+        return list;
+    }
+    
+    
+    
+    public ArrayList<Menu> insertNewMenu(String userID) {
+        ArrayList<Menu> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
+                        + "FROM dbo.Menu m\n"
+                        + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
+                        + "WHERE m.UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, userID);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    String menuID = rs.getString("MenuID");          
+                    String foodID = rs.getString("FoodID");
+                    String menuDate = rs.getString("MenuDate");
+                    String uID= rs.getString("UserID");
+                    String menuName = rs.getNString("MenuName");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    Menu menu = new Menu(menuID, foodID, menuDate, uID, menuName, menuStatus);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }

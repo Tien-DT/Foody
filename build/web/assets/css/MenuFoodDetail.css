@@ -1,0 +1,27 @@
+.body-content{
+    margin-top:100px;
+}
+.box-body{
+    min-width: 100%;
+    min-height: 80%;
+}
+
+.schedule {
+    margin: 20px 0;
+}
+.schedule .day, .schedule .period {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.schedule .day {
+    background-color: #007bff;
+    color: white;
+}
+.schedule .time-slot {
+    background-color: #f8f9fa;
+}
+.period-time {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

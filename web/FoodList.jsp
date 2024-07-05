@@ -109,8 +109,15 @@ IMG FOR FOOD 332*202
                                                 <%= f.getfoodPrice()%> VNĐ
                                             </p>
                                             <div class="d-grid gap-2">
-                                                <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
-                                                <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
+                                                <form action="MainController?action=" method="POST">
+                                                    <input type="hidden" name="menuId" value="<%= f.getfoodID()%>">
+                                                    <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
+                                                </form>
+
+                                                <form action="MainController?action=" method="POST">
+                                                    <input type="hidden" name="menuId" value="<%= f.getfoodID()%>">
+                                                    <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
+                                                </form>
                                                 <a href="MainController?action=addtomenu"><button class="btn btn-secondary button-card">Thêm vào Menu</button></a>
                                             </div>
                                         </div>
@@ -189,7 +196,7 @@ IMG FOR FOOD 332*202
                             return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                         }
 
-                       
+
                         function formatAllPrices() {
                             var priceElements = document.querySelectorAll('.price');
                             priceElements.forEach(function (element) {
@@ -198,7 +205,7 @@ IMG FOR FOOD 332*202
                             });
                         }
 
-                       
+
                         window.onload = formatAllPrices;
         </script>
 
