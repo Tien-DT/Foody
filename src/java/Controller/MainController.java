@@ -30,6 +30,7 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
             String a = request.getParameter("action");
             String url = "";
@@ -74,7 +75,10 @@ public class MainController extends HttpServlet {
                     url = "BuyFoodServlet";
                     break;
                 case "createmenu":
-                    url ="NewMenuFood.jsp";
+                    url = "NewMenuFood.jsp";
+                    break;
+                case "insertmenu":
+                    url = "InsertNewMenuServlet";
                     break;
 
             }

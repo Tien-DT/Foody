@@ -10,21 +10,21 @@ package DTO;
  * @author USER
  */
 public class User {
-    private String userID;
+
+    private int userID;
     private String userName;
     private String fullName;
     private String email;
     private boolean role;
     private String password;
-    private String menuID;
-    private String orderID;
+    private int menuID;
+    private int orderID;
     private boolean userStatus;
-    
 
     public User() {
     }
 
-    public User(String userID, String userName, String fullName, String email, boolean role, String password, String menuID, String orderID, boolean userStatus) {
+    public User(int userID, String userName, String fullName, String email, boolean role, String password, int menuID, int orderID, boolean userStatus) {
         this.userID = userID;
         this.userName = userName;
         this.fullName = fullName;
@@ -36,11 +36,11 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -51,7 +51,6 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
 
     public String getFullName() {
         return fullName;
@@ -85,19 +84,19 @@ public class User {
         this.password = password;
     }
 
-    public String getMenuID() {
+    public int getMenuID() {
         return menuID;
     }
 
-    public void setMenuID(String menuID) {
+    public void setMenuID(int menuID) {
         this.menuID = menuID;
     }
 
-    public String getUserOrder() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setUserOrder(String orderID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
@@ -108,8 +107,4 @@ public class User {
     public void setUserStatus(boolean userStatus) {
         this.userStatus = userStatus;
     }
-
-               
-       
-       
 }

@@ -10,17 +10,18 @@ package DTO;
  * @author USER
  */
 public class Order {
-    private String orderID;
+
+    private int orderID;
     private String orderDate;
-    private Byte orderStatus;
+    private byte orderStatus;
     private int orderTotalPrice;
-    private String userID;
+    private int userID;
     private int foodPrice;
 
     public Order() {
     }
 
-    public Order(String orderID, String orderDate, Byte orderStatus, int orderTotalPrice, String userID, int foodPrice) {
+    public Order(int orderID, String orderDate, byte orderStatus, int orderTotalPrice, int userID, int foodPrice) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -29,52 +30,51 @@ public class Order {
         this.foodPrice = foodPrice;
     }
 
-    public String getorderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setorderID(String orderID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
-    public String getorderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setorderDate(String orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Byte getorderStatus() {
+    public byte getOrderStatus() {
         return orderStatus;
     }
 
-    public void setorderStatus(Byte orderStatus) {
+    public void setOrderStatus(byte orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    public int getorderTotalPrice() {
+    public int getOrderTotalPrice() {
         return orderTotalPrice;
     }
 
-    public void setorderTotalPrice(int orderTotalPrice) {
+    public void setOrderTotalPrice(int orderTotalPrice) {
         this.orderTotalPrice = orderTotalPrice;
     }
 
-    public String getuserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setuserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
-    public int getfoodPrice() {
+    public int getFoodPrice() {
         return foodPrice;
     }
 
-    public void setfoodPrice(int foodPrice) {
+    public void setFoodPrice(int foodPrice) {
         this.foodPrice = foodPrice;
     }
-            
 }

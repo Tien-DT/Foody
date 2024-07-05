@@ -10,17 +10,17 @@ package DTO;
  * @author USER
  */
 public class Cart {
-    private String cartID;
-    private String userID;
-    private String foodID;
+    private int cartID;
+    private int userID;
+    private int foodID;
     private int foodPrice;
-    private String productID;
+    private int productID;
     private int productPrice;
 
     public Cart() {
     }
 
-    public Cart(String cartID, String userID, String foodID, int foodPrice, String productID, int productPrice) {
+    public Cart(int cartID, int userID, int foodID, int foodPrice, int productID, int productPrice) {
         this.cartID = cartID;
         this.userID = userID;
         this.foodID = foodID;
@@ -29,27 +29,27 @@ public class Cart {
         this.productPrice = productPrice;
     }
 
-    public String getCartID() {
+    public int getCartID() {
         return cartID;
     }
 
-    public void setCartID(String cartID) {
+    public void setCartID(int cartID) {
         this.cartID = cartID;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
-    public String getFoodID() {
+    public int getFoodID() {
         return foodID;
     }
 
-    public void setFoodID(String foodID) {
+    public void setFoodID(int foodID) {
         this.foodID = foodID;
     }
 
@@ -61,11 +61,11 @@ public class Cart {
         this.foodPrice = foodPrice;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 
@@ -76,6 +76,5 @@ public class Cart {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
-    
-    
 }
+

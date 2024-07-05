@@ -5,12 +5,16 @@
  */
 package Controller;
 
+import DAO.MenuDAO;
+import DTO.Menu;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,10 +34,37 @@ public class InsertNewMenuServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         try (PrintWriter out = response.getWriter()) {
             String newMenuName = request.getParameter("txtmenuname");
-            FoodDAO FoodList = new FoodDAO();
-            ArrayList<Food> list = FoodList.getAllFood();
+            String menuWeek = request.getParameter("txtweek");
+            String menuTag = request.getParameter("txttag");
+            HttpSession session = request.getSession();
+            String userID = (String) session.getAttribute("LoginedUID");
+
+            if (userID == null) {
+                request.setAttribute("Result", "User not logged in");
+                request.getRequestDispatcher("NewMenuFood.jsp").forward(request, response);
+                return;
+            }
+
+            MenuDAO menuDAO = new MenuDAO();
+            String menuCheck = menuDAO.checkWeekMenu(userID, menuWeek);
+
+            if (menuCheck != null) {
+                String checkInsert = menuDAO.insertWeekMenu(userID, menuWeek, newMenuName, menuTag);
+                if (checkInsert != null) {
+                    request.setAttribute("Result", "Đã tạo menu thành công");
+                    request.getRequestDispatcher("NewMenuFood.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("Result", "Có lỗi xảy ra trong quá trình tạo menu");
+                    request.getRequestDispatcher("NewMenuFood.jsp").forward(request, response);
+                }
+            } else {
+                request.setAttribute("Result", "Menu của tuần này đã tồn tại");
+                request.getRequestDispatcher("NewMenuFood.jsp").forward(request, response);
+            }
             
         }
     }
@@ -50,6 +81,8 @@ public class InsertNewMenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         processRequest(request, response);
     }
 
@@ -64,6 +97,8 @@ public class InsertNewMenuServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         processRequest(request, response);
     }
 

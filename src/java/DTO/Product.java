@@ -10,26 +10,44 @@ package DTO;
  * @author USER
  */
 public class Product {
-    private String productID;
+
+    private int productID;
     private String productName;
     private boolean productStatus;
     private int productPrice;
+
     public Product() {
     }
 
-    public Product(String productID, String productName, boolean productStatus) {
+    public Product(int productID, String productName, boolean productStatus, int productPrice) {
         this.productID = productID;
         this.productName = productName;
         this.productStatus = productStatus;
         this.productPrice = productPrice;
     }
 
-    public String getproductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setproductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public boolean isProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(boolean productStatus) {
+        this.productStatus = productStatus;
     }
 
     public int getProductPrice() {
@@ -39,22 +57,4 @@ public class Product {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
-    
-    public String getproductName() {
-        return productName;
-    }
-
-    public void setproductName(String productName) {
-        this.productName = productName;
-    }
-
-    public boolean isproductStatus() {
-        return productStatus;
-    }
-
-    public void setproductStatus(boolean productStatus) {
-        this.productStatus = productStatus;
-    }
-    
-    
 }

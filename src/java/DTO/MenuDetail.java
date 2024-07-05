@@ -10,72 +10,71 @@ package DTO;
  * @author USER
  */
 public class MenuDetail {
-        private String MenuID;
-        private String MenuName;
-        private String UserID;
-        private String FoodID;
-        private String FoodName;
-        private boolean MenuStatus;      
+
+    private int menuID;
+    private String menuName;
+    private int userID;
+    private int foodID;
+    private String foodName;
+    private boolean menuStatus;
 
     public MenuDetail() {
     }
 
-    public MenuDetail(String MenuID, String MenuName, String UserID, String FoodID, String FoodName, boolean MenuStatus) {
-        this.MenuID = MenuID;
-        this.MenuName = MenuName;
-        this.UserID = UserID;
-        this.FoodID = FoodID;
-        this.FoodName = FoodName;
-        this.MenuStatus = MenuStatus;
+    public MenuDetail(int menuID, String menuName, int userID, int foodID, String foodName, boolean menuStatus) {
+        this.menuID = menuID;
+        this.menuName = menuName;
+        this.userID = userID;
+        this.foodID = foodID;
+        this.foodName = foodName;
+        this.menuStatus = menuStatus;
     }
 
-    public String getMenuID() {
-        return MenuID;
+    public int getMenuID() {
+        return menuID;
     }
 
-    public void setMenuID(String MenuID) {
-        this.MenuID = MenuID;
+    public void setMenuID(int menuID) {
+        this.menuID = menuID;
     }
 
     public String getMenuName() {
-        return MenuName;
+        return menuName;
     }
 
-    public void setMenuName(String MenuName) {
-        this.MenuName = MenuName;
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
-    public String getUserID() {
-        return UserID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public String getFoodID() {
-        return FoodID;
+    public int getFoodID() {
+        return foodID;
     }
 
-    public void setFoodID(String FoodID) {
-        this.FoodID = FoodID;
+    public void setFoodID(int foodID) {
+        this.foodID = foodID;
     }
 
     public String getFoodName() {
-        return FoodName;
+        return foodName;
     }
 
-    public void setFoodName(String FoodName) {
-        this.FoodName = FoodName;
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public boolean isMenuStatus() {
-        return MenuStatus;
+        return menuStatus;
     }
 
-    public void setMenuStatus(boolean MenuStatus) {
-        this.MenuStatus = MenuStatus;
+    public void setMenuStatus(boolean menuStatus) {
+        this.menuStatus = menuStatus;
     }
-        
-        
 }

@@ -10,17 +10,18 @@ package DTO;
  * @author USER
  */
 public class Menu {
-    private String menuID;
-    private String foodID;
+
+    private int menuID;
+    private int foodID;
     private String menuDate;
-    private String userID;
+    private int userID;
     private String menuName;
     private boolean menuStatus;
 
     public Menu() {
     }
 
-    public Menu(String menuID, String foodID, String menuDate, String userID, String menuName, boolean menuStatus) {
+    public Menu(int menuID, int foodID, String menuDate, int userID, String menuName, boolean menuStatus) {
         this.menuID = menuID;
         this.foodID = foodID;
         this.menuDate = menuDate;
@@ -29,27 +30,19 @@ public class Menu {
         this.menuStatus = menuStatus;
     }
 
-    public String getmenuID() {
+    public int getMenuID() {
         return menuID;
     }
 
-    public void setmenuID(String menuID) {
+    public void setMenuID(int menuID) {
         this.menuID = menuID;
     }
 
-    public String getMenuID() {
-        return menuID;
-    }
-
-    public void setMenuID(String menuID) {
-        this.menuID = menuID;
-    }
-
-    public String getFoodID() {
+    public int getFoodID() {
         return foodID;
     }
 
-    public void setFoodID(String foodID) {
+    public void setFoodID(int foodID) {
         this.foodID = foodID;
     }
 
@@ -61,11 +54,11 @@ public class Menu {
         this.menuDate = menuDate;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -77,30 +70,6 @@ public class Menu {
         this.menuName = menuName;
     }
 
-    public String getfoodID() {
-        return foodID;
-    }
-
-    public void setfoodID(String foodID) {
-        this.foodID = foodID;
-    }
-
-    public String getmenuDate() {
-        return menuDate;
-    }
-
-    public void setmenuDate(String menuDate) {
-        this.menuDate = menuDate;
-    }
-
-    public String getuserID() {
-        return userID;
-    }
-
-    public void setuserID(String userID) {
-        this.userID = userID;
-    }
-
     public boolean isMenuStatus() {
         return menuStatus;
     }
@@ -108,6 +77,4 @@ public class Menu {
     public void setMenuStatus(boolean menuStatus) {
         this.menuStatus = menuStatus;
     }
-    
-    
 }
