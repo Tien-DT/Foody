@@ -2,6 +2,7 @@ package DAO;
 
 import DTO.Food;
 import MyLib.DBUtil;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author USER
  */
-public class FoodDAO {
+public class FoodDAO implements Serializable{
 
     public ArrayList<Food> getAllFood() {
         ArrayList<Food> list = new ArrayList<>();

@@ -29,7 +29,6 @@
         <div class="row">
             <div class="col-md-12 menu-title">
                 <h1 id="title-list">Danh Sách Thực Đơn</h1>
-                <h1><%= session.getAttribute("LoginedUID") %></h1>
             </div>
         </div>
         <div class="box-menu box-list">

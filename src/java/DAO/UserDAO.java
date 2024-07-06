@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.User;
 import MyLib.DBUtil;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author USER
  */
-public class UserDAO {
+public class UserDAO implements Serializable {
 
     public ArrayList<User> getUser() {
         ArrayList<User> list = new ArrayList<>();

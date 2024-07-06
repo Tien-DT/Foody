@@ -5,10 +5,12 @@
  */
 package DAO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author USER
  */
-public class ProductDAO {
+public class ProductDAO implements Serializable {
     
 }

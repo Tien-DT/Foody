@@ -8,6 +8,7 @@ package DAO;
 import DTO.Menu;
 import DTO.MenuDetail;
 import MyLib.DBUtil;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import java.util.Map;
  *
  * @author USER
  */
-public class MenuDAO {
+public class MenuDAO implements Serializable {
 
     public ArrayList<Menu> getMenuFood(int userID) {
         ArrayList<Menu> list = new ArrayList<>();

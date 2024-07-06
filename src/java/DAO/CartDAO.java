@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.Cart;
 import MyLib.DBUtil;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.util.HashMap;
  *
  * @author USER
  */
-public class CartDAO {
+public class CartDAO implements Serializable {
 
     public ArrayList<HashMap<String, Object>> loadCart(String userID) {
         ArrayList<HashMap<String, Object>> list = new ArrayList<>();
