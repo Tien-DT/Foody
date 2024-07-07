@@ -37,20 +37,20 @@ public class LoginServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     try (PrintWriter out = response.getWriter()) {
         
-        String userName = request.getParameter("txtusername");
+        String email = request.getParameter("txtemail");
         String password = request.getParameter("txtpassword");
         String checkBox = request.getParameter("checkbox");
         
-        if (userName != null && password != null) {
+        if (email != null && password != null) {
             UserDAO userDAO = new UserDAO();
-            User userLogin = userDAO.getUserLogin(userName, password);
+            String Email = userDAO.getUserLogin(email, password);
             
-            if (userLogin != null) {
+            if (Email != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("LoginedUser", userName);
-                User user = userDAO.getUserID(userName);
-                if (user != null) {
-                    session.setAttribute("LoginedUID", user.getUserID());
+                session.setAttribute("LoginedUser", Email);
+                int userID = userDAO.getUserID(email);
+                if (userID != 0) {
+                    session.setAttribute("LoginedUID", userID);
                 }           
                 request.getRequestDispatcher("Index.jsp").forward(request, response);
             } else {

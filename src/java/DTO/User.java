@@ -12,7 +12,6 @@ package DTO;
 public class User {
 
     private int userID;
-    private String userName;
     private String fullName;
     private String email;
     private boolean role;
@@ -24,9 +23,8 @@ public class User {
     public User() {
     }
 
-    public User(int userID, String userName, String fullName, String email, boolean role, String password, int menuID, int orderID, boolean userStatus) {
+    public User(int userID, String fullName, String email, boolean role, String password, int menuID, int orderID, boolean userStatus) {
         this.userID = userID;
-        this.userName = userName;
         this.fullName = fullName;
         this.email = email;
         this.role = role;
@@ -42,14 +40,6 @@ public class User {
 
     public void setUserID(int userID) {
         this.userID = userID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getFullName() {

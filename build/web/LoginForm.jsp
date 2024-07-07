@@ -32,15 +32,12 @@
             <div class="login-box" id="login-form">
                 <form action="MainController?action=login" method="POST">
                     <div class="inputBox">
-                        <input type="text" name="txtusername" required>
-                        <label>Username</label>
+                        <input type="text" name="txtemail" required>
+                        <label>Email</label>
                     </div>
                     <div class="inputBox">
                         <input type="password" name="txtpassword" required>
-                        <label>Password</label>
-                    </div>
-                    <div class="remember" name="checkbox">
-                        <input type="checkbox">Remember me
+                        <label>Mật Khẩu</label>
                     </div>
                     <%
                         String msg = (String) session.getAttribute("Error");
@@ -74,10 +71,6 @@
                     <div class="inputBox">
                         <input type="email" name="txtemail" required>
                         <label>Email</label>
-                    </div>
-                    <div class="inputBox">
-                        <input type="text" name="txtusername" required>
-                        <label>Username</label>
                     </div>
                     <div class="inputBox">
                         <input type="password" name="txtpassword" required>

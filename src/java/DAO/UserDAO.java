@@ -54,24 +54,22 @@ public class UserDAO implements Serializable {
         return list;
     }
 
-    public User getUserLogin(String userName, String password) {
-        User userLogin = null;
+    public String getUserLogin(String email, String password) {
+        String Email = null;
         Connection cn = null;
         try {
 
             cn = DBUtil.makeConnection();
             if (cn != null) {
 
-                String sql = "select UserName, Password from dbo.[User]\n"
-                        + "where UserName=? and Password=? COLLATE Latin1_General_CS_AS";
+                String sql = "select Email, Password from dbo.[User]\n"
+                        + "where Email=? and Password=? COLLATE Latin1_General_CS_AS";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userName);
+                pst.setString(1, email);
                 pst.setString(2, password);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
-
-                    String username = rs.getString("UserName");
-                    userLogin = new User();
+                    Email = rs.getString("Email");
                 }
             }
         } catch (Exception e) {
@@ -85,23 +83,22 @@ public class UserDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return userLogin;
+        return Email;
     }
 
-    public User getUserID(String userName) {
-        User user = null;
+    public int getUserID(String email) {
+        int userID = 0;
         Connection cn = null;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "select UserID from dbo.[User] where UserName = ?";
+                String sql = "select UserID from dbo.[User] where Email = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userName);
+                pst.setString(1, email);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
-                    int userID = rs.getInt("UserID");
-                    user = new User();
-                    user.setUserID(userID); 
+                    userID = rs.getInt("UserID");
+
                 }
             }
         } catch (Exception e) {
@@ -115,7 +112,38 @@ public class UserDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return user;
+        return userID;
+    }
+
+    public ArrayList<User> getUserByEmail(String email) {
+        ArrayList<User> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "select Email, UserName from dbo.[User]\n"
+                        + "where UserName =? OR Email =?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1,email);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    String Email = rs.getString("Email");
+                   User user = new User(0, Email, Email, true, sql, 0, 0, true);
+                    list.add(user);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 
 }
