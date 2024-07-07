@@ -54,7 +54,7 @@ public class UserDAO implements Serializable {
         return list;
     }
 
-    public String getUserLogin(String email, String password) {
+    public String getUserLogin(String email, String passwordDecoded) {
         String Email = null;
         Connection cn = null;
         try {
@@ -66,7 +66,7 @@ public class UserDAO implements Serializable {
                         + "where Email=? and Password=? COLLATE Latin1_General_CS_AS";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, email);
-                pst.setString(2, password);
+                pst.setString(2, passwordDecoded);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
                     Email = rs.getString("Email");
@@ -173,32 +173,32 @@ public class UserDAO implements Serializable {
         return Email;
     }
 
-    public String registerUser(String fullName, String email, String password) {
+    public String registerUser(String fullName, String email, String passwordEncoded ) {
         Connection cn = null;
         String result = null;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                // Tắt chế độ tự động commit
+                // Disable auto-commit mode
                 cn.setAutoCommit(false);
 
                 String sql = "INSERT INTO [User] (FullName, Email, Password, UserStatus, Role) VALUES (?, ?, ?, '1', '0')";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setNString(1, fullName);
                 pst.setString(2, email);
-                pst.setString(3, password);
+                pst.setString(3, passwordEncoded);
 
-                // Thực thi lệnh insert và nhận số dòng bị ảnh hưởng
+                // Execute update and get affected rows
                 int affectedRows = pst.executeUpdate();
 
                 if (affectedRows > 0) {
-                    // Commit giao dịch nếu insert thành công
+                    // Commit the transaction if insert is successful
                     cn.commit();
                     result = "Insert successful";
                 } else {
-                    // Rollback giao dịch nếu insert thất bại
+                    // Rollback the transaction if insert failed
                     cn.rollback();
-                    result = "Insert failed";
+                    result = null;
                 }
             }
         } catch (Exception e) {

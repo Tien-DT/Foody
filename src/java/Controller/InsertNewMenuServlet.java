@@ -38,7 +38,8 @@ public class InsertNewMenuServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             String newMenuName = request.getParameter("txtmenuname");
-            String menuWeek = request.getParameter("txtweek");
+            String menuWeekString = request.getParameter("txtweek");
+            int menuWeek = Integer.parseInt(menuWeekString);
             String menuTag = request.getParameter("txttag");
             HttpSession session = request.getSession();
             int userID = (int) session.getAttribute("LoginedUID");

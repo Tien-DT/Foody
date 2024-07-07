@@ -13,7 +13,7 @@ public class Menu {
 
     private int menuID;
     private int foodID;
-    private String menuDate;
+    private int menuDate;
     private int userID;
     private String menuName;
     private boolean menuStatus;
@@ -21,7 +21,7 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int menuID, int foodID, String menuDate, int userID, String menuName, boolean menuStatus) {
+    public Menu(int menuID, int foodID, int menuDate, int userID, String menuName, boolean menuStatus) {
         this.menuID = menuID;
         this.foodID = foodID;
         this.menuDate = menuDate;
@@ -46,11 +46,11 @@ public class Menu {
         this.foodID = foodID;
     }
 
-    public String getMenuDate() {
+    public int getMenuDate() {
         return menuDate;
     }
 
-    public void setMenuDate(String menuDate) {
+    public void setMenuDate(int menuDate) {
         this.menuDate = menuDate;
     }
 

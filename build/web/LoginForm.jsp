@@ -46,6 +46,7 @@
                         <%= msg%>
                     </p><%
                             request.removeAttribute("Error");
+                            request.removeAttribute("PasswordEncoded");
                         }
 
                     %>

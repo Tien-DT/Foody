@@ -99,25 +99,25 @@ public class MenuDAO implements Serializable {
         return list;
     }
 
-    public String checkWeekMenu(int userID, String menuWeek) {
+    public String checkWeekMenu(int userID, int menuWeek) {
         Connection cn = null;
-        String check = null;
+        String check = null; // Assume menu does not exist
+        int uid = 0;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "SELECT UserID, MenuDate, MenuStatus FROM dbo.Menu\n"
-                        + "WHERE UserID=? AND MenuDate LIKE N%?% AND MenuStatus ='1'";
+                String sql = "SELECT MenuName, UserID FROM dbo.Menu WHERE UserID=? AND MenuDate=? AND MenuStatus ='1'";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userID);
-                pst.setString(2, menuWeek);
+                pst.setInt(2, menuWeek);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
-                    if (rs.next()) {
-                        check = null; // Menu exists
-                    } else {
-                        check = "1"; // Menu does not exist
-                    }
-
+                    uid = rs.getInt("UserID");
+                }
+                if(uid > 0){
+                    check = null;
+                }else{
+                    check ="1";
                 }
             }
         } catch (Exception e) {
@@ -134,7 +134,7 @@ public class MenuDAO implements Serializable {
         return check;
     }
 
-    public String insertWeekMenu(int userID, String menuWeek, String newMenuName, String menuTag) {
+    public String insertWeekMenu(int userID, int menuWeek, String newMenuName, String menuTag) {
         Connection cn = null;
         String result = null;
         try {
@@ -146,7 +146,7 @@ public class MenuDAO implements Serializable {
                 String sql = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus) VALUES (?, ?, ?, ?, '1')";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userID);
-                pst.setString(2, menuWeek);
+                pst.setInt(2, menuWeek);
                 pst.setString(3, newMenuName);
                 pst.setString(4, menuTag);
 

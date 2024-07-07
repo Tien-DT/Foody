@@ -5,11 +5,11 @@
  */
 package Filter;
 
-import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Base64;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -21,7 +21,7 @@ import javax.servlet.ServletResponse;
  *
  * @author USER
  */
-public class CheckUserFilter implements Filter {
+public class DecodePasswordFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -30,13 +30,13 @@ public class CheckUserFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public CheckUserFilter() {
+    public DecodePasswordFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("CheckUserFilter:DoBeforeProcessing");
+            log("DecodePasswordFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -64,7 +64,7 @@ public class CheckUserFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("CheckUserFilter:DoAfterProcessing");
+            log("DecodePasswordFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -100,7 +100,7 @@ public class CheckUserFilter implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("CheckUserFilter:doFilter()");
+            log("DecodePasswordFilter:doFilter()");
         }
         
         doBeforeProcessing(request, response);
@@ -108,14 +108,10 @@ public class CheckUserFilter implements Filter {
         Throwable problem = null;
         try {
             String email = request.getParameter("txtemail");
-            UserDAO User = new UserDAO();
-            String emailCheck = User.getUserByEmail(email);
-            if(emailCheck == null){
+            String password = request.getParameter("txtpassword");
+            String passwordDecoded = decodePassword(password);
+            request.setAttribute("PasswordDecoded", passwordDecoded);
             chain.doFilter(request, response);
-            }else{
-                request.setAttribute("Error", "Email đã được đăng kí, vui lòng điền Email Khác");
-                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
-            }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
@@ -139,6 +135,9 @@ public class CheckUserFilter implements Filter {
         }
     }
 
+    private String decodePassword(String password) {
+        return Base64.getEncoder().encodeToString(password.getBytes());
+    }
     /**
      * Return the filter configuration object for this filter.
      */
@@ -168,7 +167,7 @@ public class CheckUserFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("CheckUserFilter:Initializing filter");
+                log("DecodePasswordFilter:Initializing filter");
             }
         }
     }
@@ -179,9 +178,9 @@ public class CheckUserFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("CheckUserFilter()");
+            return ("DecodePasswordFilter()");
         }
-        StringBuffer sb = new StringBuffer("CheckUserFilter(");
+        StringBuffer sb = new StringBuffer("DecodePasswordFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

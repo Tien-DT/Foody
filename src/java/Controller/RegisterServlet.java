@@ -35,8 +35,9 @@ public class RegisterServlet extends HttpServlet {
            String fullName = request.getParameter("txtfullname");
             String email = request.getParameter("txtemail");
             String password = request.getParameter("txtpassword");
+            String passwordEncoded = (String) request.getAttribute("PasswordEncoded");
             UserDAO user = new UserDAO();
-            String registerCheck = user.registerUser(fullName, email, password);
+            String registerCheck = user.registerUser(fullName, email, passwordEncoded);
             if(registerCheck != null){
                 request.setAttribute("Error", "Bạn đã đăng kí thành công, vui lòng đăng nhập");
                 request.getRequestDispatcher("LoginForm.jsp").forward(request, response);

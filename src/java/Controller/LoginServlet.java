@@ -40,10 +40,10 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("txtemail");
         String password = request.getParameter("txtpassword");
         String checkBox = request.getParameter("checkbox");
-        
+        String passwordDecoded = (String) request.getAttribute("PasswordDecoded");
         if (email != null && password != null) {
             UserDAO userDAO = new UserDAO();
-            String Email = userDAO.getUserLogin(email, password);
+            String Email = userDAO.getUserLogin(email, passwordDecoded);
             
             if (Email != null) {
                 HttpSession session = request.getSession();
@@ -51,7 +51,8 @@ public class LoginServlet extends HttpServlet {
                 int userID = userDAO.getUserID(email);               
                 session.setAttribute("LoginedUID", userID);
                 String fullName = userDAO.getFullName(Email);
-                session.setAttribute("LoginedUser", fullName);        
+                session.setAttribute("LoginedUser", fullName);     
+                request.removeAttribute("PasswordDecoded");
                 request.getRequestDispatcher("Index.jsp").forward(request, response);
             } else {
                 HttpSession session = request.getSession();

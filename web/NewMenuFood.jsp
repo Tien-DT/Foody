@@ -28,11 +28,11 @@
                     </div>
                     <select type="text" id="inputState" class="form-control" name="txtweek" required>
                         <option selected>Chọn Tuần</option>
-                        <option value="Tuần 1">Tuần 1</option> 
-                        <option value="Tuần 2">Tuần 2</option>
-                        <option value="Tuần 3">Tuần 3</option> 
-                        <option value="Tuần 4">Tuần 4</option>
-                        <option value="Tuần 5">Tuần 5</option>
+                        <option value="1">Tuần 1</option> 
+                        <option value="2">Tuần 2</option>
+                        <option value="3">Tuần 3</option> 
+                        <option value="4">Tuần 4</option>
+                        <option value="5">Tuần 5</option>
                     </select>
                     <div class="mb-3">
                         <label for="Tên Nhãn" class="form-label">Tên Nhãn</label>
