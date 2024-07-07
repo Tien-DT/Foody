@@ -30,7 +30,7 @@
         <div class="container box-input-div">
             <!-- Login Form -->
             <div class="login-box" id="login-form">
-                <form action="MainController?action=login" method="POST">
+                <form action="MainController?action=login" method="POST"">
                     <div class="inputBox">
                         <input type="text" name="txtemail" required>
                         <label>Email</label>
@@ -49,14 +49,14 @@
                         }
 
                     %>
-                    
+
 
                     <div class="button">
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Đăng Nhập">
                     </div>
 
                     <div class="register">
-                        <a href="#" onclick="toggleForm()">Register</a>
+                        <a href="#" onclick="toggleForm()">Đăng Kí</a>
                     </div>
                 </form>
             </div>
@@ -77,10 +77,10 @@
                         <label>Mật Khẩu</label>
                     </div>
                     <div class="button">
-                        <input type="submit" value="Register">
+                        <input type="submit" value="Đăng Kí">
                     </div>
                     <div class="register">
-                        <a href="#" onclick="toggleForm()">Login</a>
+                        <a href="#" onclick="toggleForm()">Đăng Nhập</a>
                     </div>
                 </form>
 
@@ -99,6 +99,18 @@
                     registerForm.style.display = "block";
                 }
             }
+            
+            function validateForm() {
+            var email = document.querySelector("input[name='txtemail']").value.trim();
+            var regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+            if (!email.match(regex)) {
+                alert("Email không hợp lệ. Email phải có đuôi @gmail.com");
+                return false; 
+            }
+
+            return true;
+        }
         </script>
 
 
