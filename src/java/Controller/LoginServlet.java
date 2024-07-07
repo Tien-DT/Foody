@@ -47,15 +47,15 @@ public class LoginServlet extends HttpServlet {
             
             if (Email != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("LoginedUser", Email);
-                int userID = userDAO.getUserID(email);
-                if (userID != 0) {
-                    session.setAttribute("LoginedUID", userID);
-                }           
+                session.setAttribute("LoginedEmail", Email);
+                int userID = userDAO.getUserID(email);               
+                session.setAttribute("LoginedUID", userID);
+                String fullName = userDAO.getFullName(Email);
+                session.setAttribute("LoginedUser", fullName);        
                 request.getRequestDispatcher("Index.jsp").forward(request, response);
             } else {
                 HttpSession session = request.getSession();
-                String msg = "Sai Tài Khoản hoặc Mật Khẩu vui lòng kiểm tra lại";
+                String msg = "Sai Email hoặc Mật Khẩu vui lòng kiểm tra lại";
                 session.setAttribute("Error", msg);
                 request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
             }

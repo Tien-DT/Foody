@@ -115,21 +115,19 @@ public class UserDAO implements Serializable {
         return userID;
     }
 
-    public ArrayList<User> getUserByEmail(String email) {
-        ArrayList<User> list = new ArrayList<>();
+    public String getFullName(String email) {
+        String fullName = null;
         Connection cn = null;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "select Email, UserName from dbo.[User]\n"
-                        + "where UserName =? OR Email =?";
+                String sql = "select FullName from dbo.[User] where Email = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1,email);
+                pst.setString(1, email);
                 ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    String Email = rs.getString("Email");
-                   User user = new User(0, Email, Email, true, sql, 0, 0, true);
-                    list.add(user);
+                if (rs != null && rs.next()) {
+                    fullName = rs.getNString("FullName");
+
                 }
             }
         } catch (Exception e) {
@@ -143,7 +141,86 @@ public class UserDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return list;
+        return fullName;
+    }
+
+    public String getUserByEmail(String email) {
+        String Email = null;
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "select Email from dbo.[User]\n"
+                        + "where Email=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, email);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    Email = rs.getString("Email");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return Email;
+    }
+
+    public String registerUser(String fullName, String email, String password) {
+        Connection cn = null;
+        String result = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                // Tắt chế độ tự động commit
+                cn.setAutoCommit(false);
+
+                String sql = "INSERT INTO [User] (FullName, Email, Password, UserStatus, Role) VALUES (?, ?, ?, '1', '0')";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setNString(1, fullName);
+                pst.setString(2, email);
+                pst.setString(3, password);
+
+                // Thực thi lệnh insert và nhận số dòng bị ảnh hưởng
+                int affectedRows = pst.executeUpdate();
+
+                if (affectedRows > 0) {
+                    // Commit giao dịch nếu insert thành công
+                    cn.commit();
+                    result = "Insert successful";
+                } else {
+                    // Rollback giao dịch nếu insert thất bại
+                    cn.rollback();
+                    result = "Insert failed";
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                if (cn != null) {
+                    cn.rollback();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            result = "An error occurred: " + e.getMessage();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
 }

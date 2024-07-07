@@ -5,25 +5,24 @@
  */
 package Filter;
 
-import DAO.UserDAO;
-import DTO.User;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author USER
  */
-public class CheckUserFilter implements Filter {
+public class CheckUrlFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -32,13 +31,13 @@ public class CheckUserFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public CheckUserFilter() {
+    public CheckUrlFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("CheckUserFilter:DoBeforeProcessing");
+            log("CheckUrlFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -66,7 +65,7 @@ public class CheckUserFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("CheckUserFilter:DoAfterProcessing");
+            log("CheckUrlFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -101,19 +100,21 @@ public class CheckUserFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
+        if (debug) {
+            log("CheckUrlFilter:doFilter()");
+        }
+        
         doBeforeProcessing(request, response);
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        String url = httpRequest.getServletPath();
+        if(url.endsWith(".jsp")){
+            request.getRequestDispatcher("Index.jsp").forward(request, response);
+        }
         
         Throwable problem = null;
         try {
-            String email = request.getParameter("txtemail");
-            UserDAO User = new UserDAO();
-            String emailCheck = User.getUserByEmail(email);
-            if(emailCheck == null){
             chain.doFilter(request, response);
-            }else{
-                request.setAttribute("Error", "Email đã được đăng kí, vui lòng điền Email Khác");
-                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
-            }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
@@ -166,7 +167,7 @@ public class CheckUserFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("CheckUserFilter:Initializing filter");
+                log("CheckUrlFilter:Initializing filter");
             }
         }
     }
@@ -177,9 +178,9 @@ public class CheckUserFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("CheckUserFilter()");
+            return ("CheckUrlFilter()");
         }
-        StringBuffer sb = new StringBuffer("CheckUserFilter(");
+        StringBuffer sb = new StringBuffer("CheckUrlFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

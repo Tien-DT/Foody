@@ -40,12 +40,12 @@
                         <label>Mật Khẩu</label>
                     </div>
                     <%
-                        String msg = (String) session.getAttribute("Error");
+                        String msg = (String) request.getAttribute("Error");
                         if (msg != null) {
                     %><p style="color: red; font-size: 20px; font-weight: bold; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; margin-top: 10px; border-radius: 5px;">
                         <%= msg%>
                     </p><%
-                            session.removeAttribute("Error");
+                            request.removeAttribute("Error");
                         }
 
                     %>
@@ -66,7 +66,7 @@
                 <form action="MainController?action=register" method="POST">
                     <div class="inputBox">
                         <input type="text" name="txtfullname" required>
-                        <label>Full Name</label>
+                        <label>Họ và Tên</label>
                     </div>
                     <div class="inputBox">
                         <input type="email" name="txtemail" required>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="inputBox">
                         <input type="password" name="txtpassword" required>
-                        <label>Password</label>
+                        <label>Mật Khẩu</label>
                     </div>
                     <div class="button">
                         <input type="submit" value="Register">

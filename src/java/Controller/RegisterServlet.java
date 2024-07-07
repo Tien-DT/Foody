@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,16 +32,18 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           String fullName = (String) request.getAttribute("fullname");
-           String email = (String) request.getAttribute("email");
-           String userName = (String) request.getAttribute("username");
-           String password = (String) request.getAttribute("passwordencoded");
-           
-            out.print("<p>"+fullName+"</p>");
-            out.print("<p>"+email+"</p>");
-             out.print("<p>"+userName+"</p>");
-             out.print("<p>"+password+"</p>"); 
-             
+           String fullName = request.getParameter("txtfullname");
+            String email = request.getParameter("txtemail");
+            String password = request.getParameter("txtpassword");
+            UserDAO user = new UserDAO();
+            String registerCheck = user.registerUser(fullName, email, password);
+            if(registerCheck != null){
+                request.setAttribute("Error", "Bạn đã đăng kí thành công, vui lòng đăng nhập");
+                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+            }else{
+                request.setAttribute("Error", "Có lỗi sảy ra trong quá trinh đăng ký, vui lòng thử lại");
+                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+            }          
         }
     }
 
