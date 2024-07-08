@@ -17,7 +17,8 @@
     </head>
     <body>
     <h1>
-        <h1><%= request.getAttribute("Temp1") %></h1>
+        
+        <h1><%= request.getAttribute("Test") %></h1>
 
         
     </h1>

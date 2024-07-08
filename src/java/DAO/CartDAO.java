@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public class CartDAO implements Serializable {
 
-    public ArrayList<HashMap<String, Object>> loadCart(String userID) {
+    public ArrayList<HashMap<String, Object>> loadCart(int userID) {
         ArrayList<HashMap<String, Object>> list = new ArrayList<>();
         Connection cn = null;
         try {
@@ -70,19 +70,18 @@ public class CartDAO implements Serializable {
         return list;
     }
 
-    public ArrayList<Cart> insertFoodToCart(String foodID, String userID) {
-        ArrayList<Cart> list = new ArrayList<>();
+    public int insertFoodToCart(int foodID, int userID) {
         Connection cn = null;
+        int check = 0;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Food";
+                String sql = "INSERT Cart (FoodID, UserID) VALUES (?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-
-                    list.add(cart);
-                }
+                pst.setInt(1,foodID);
+                pst.setInt(1,userID);
+                check = pst.executeUpdate();
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +94,9 @@ public class CartDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        return list;
+        return check;
     }
+    
+   
 
 }

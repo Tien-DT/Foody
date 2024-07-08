@@ -7,10 +7,12 @@ package Controller;
 
 import DAO.CartDAO;
 import DTO.Cart;
+import DTO.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +40,34 @@ public class GetCartServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             String userID = (String) session.getAttribute("LoginedUID");
-            CartDAO cartDAO = new CartDAO();
-            ArrayList<HashMap<String, Object>> list = cartDAO.loadCart(userID);
-            request.setAttribute("CartList", list);
+
+            // Retrieve the cart from the session
+            HashMap<Food, Integer> cart = (HashMap<Food, Integer>) session.getAttribute("cart");
+
+            // If the cart is not in the session, initialize it
+            if (cart == null) {
+                cart = new HashMap<>();
+            }
+
+            // Prepare a list to hold cart details to pass to JSP
+            ArrayList<HashMap<String, Object>> cartList = new ArrayList<>();
+
+            // Convert the cart items to a list of maps for easier use in JSP
+            for (Map.Entry<Food, Integer> entry : cart.entrySet()) {
+                Food food = entry.getKey();
+                Integer quantity = entry.getValue();
+
+                HashMap<String, Object> cartItem = new HashMap<>();
+                cartItem.put("Food", food);
+                cartItem.put("Quantity", quantity);
+
+                cartList.add(cartItem);
+            }
+
+            // Set the cart list as a request attribute
+            request.setAttribute("CartList", cartList);
+
+            // Forward the request to the JSP page for rendering
             request.getRequestDispatcher("Cart.jsp").forward(request, response);
         }
     }

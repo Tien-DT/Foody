@@ -15,15 +15,17 @@ public class Product {
     private String productName;
     private boolean productStatus;
     private int productPrice;
+    private String productImage;
 
     public Product() {
     }
 
-    public Product(int productID, String productName, boolean productStatus, int productPrice) {
+    public Product(int productID, String productName, boolean productStatus, int productPrice, String productImage) {
         this.productID = productID;
         this.productName = productName;
         this.productStatus = productStatus;
         this.productPrice = productPrice;
+        this.productImage = productImage;
     }
 
     public int getProductID() {
@@ -57,4 +59,13 @@ public class Product {
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
 }

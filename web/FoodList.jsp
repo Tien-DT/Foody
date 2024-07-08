@@ -7,7 +7,7 @@ IMG FOR FOOD 332*202
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Food"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -109,13 +109,13 @@ IMG FOR FOOD 332*202
                                                 <%= f.getFoodPrice()%> VNĐ
                                             </p>
                                             <div class="d-grid gap-2">
-                                                <form action="MainController?action=" method="POST">
-                                                    <input type="hidden" name="menuId" value="<%= f.getFoodID()%>">
+                                                <form action="MainController?action=addfoodtocart" method="POST">
+                                                    <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
                                                     <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
                                                 </form>
 
-                                                <form action="MainController?action=" method="POST">
-                                                    <input type="hidden" name="menuId" value="<%= f.getFoodID()%>">
+                                                <form action="MainController?action=addproductcart" method="POST">
+                                                    <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
                                                     <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
                                                 </form>
                                                 <a href="MainController?action=addtomenu"><button class="btn btn-secondary button-card">Thêm vào Menu</button></a>

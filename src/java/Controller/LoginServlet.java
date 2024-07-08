@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 String msg = "Sai Email hoặc Mật Khẩu vui lòng kiểm tra lại";
-                session.setAttribute("Error", msg);
+                request.setAttribute("Error", msg);
                 request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
             }
         }

@@ -39,7 +39,7 @@ public class MenuDAO implements Serializable {
                 while (rs.next()) {
                     int menuID = rs.getInt("MenuID");
                     int foodID = rs.getInt("FoodID");
-                    String menuDate = rs.getNString("MenuDate");
+                    int menuDate = rs.getInt("MenuDate");
                     int uID = rs.getInt("UserID");
                     String menuName = rs.getNString("MenuName");
                     boolean menuStatus = rs.getBoolean("MenuStatus");
@@ -77,7 +77,7 @@ public class MenuDAO implements Serializable {
                 while (rs.next()) {
                     int menuID = rs.getInt("MenuID");
                     int foodID = rs.getInt("FoodID");
-                    String menuDate = rs.getNString("MenuDate");
+                    int menuDate = rs.getInt("MenuDate");
                     int uID = rs.getInt("UserID");
                     String menuName = rs.getNString("MenuName");
                     boolean menuStatus = rs.getBoolean("MenuStatus");

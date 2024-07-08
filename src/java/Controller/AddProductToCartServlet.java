@@ -5,18 +5,22 @@
  */
 package Controller;
 
+import DAO.FoodDAO;
+import DTO.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+public class AddProductToCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,66 +34,47 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
-            String a = request.getParameter("action");
-            String url = "";
-            if (a == null) {
-                a = "welcome";
+            String productIDString = request.getParameter("productid");
+            int productID = Integer.parseInt(productIDString);
+
+            // Retrieve food item from database
+            FoodDAO foodDAO = new FoodDAO();
+            ArrayList<Food> productList = foodDAO.getFoodByID(productID);
+
+            // Get the session and cart from session
+            HttpSession session = request.getSession();
+            ArrayList<Food> cart = (ArrayList<Food>) session.getAttribute("cart");
+
+            if (cart == null) {
+                cart = new ArrayList<>();
+              
             }
 
-            switch (a) {
-                case "welcome":
-                    url = "Index.jsp";
+            // Add item to cart if not already present
+            boolean found = false;
+            for (Food food : cart) {
+                if (food.getFoodID() == productID) {
+                    found = true;
                     break;
-                case "foodlist":
-                    url = "GetFoodListServlet";
-                    break;
-                case "viewcart":
-                    url = "Cart.jsp";
-                    break;
-                case "vieworder":
-                    url = "Order.jsp";
-                    break;
-                case "mydashboard":
-                    url = "Dashboard.jsp";
-                    break;
-                case "loginform":
-                    url = "LoginForm.jsp";
-                    break;
-
-                case "login":
-                    url = "LoginServlet";
-                    break;
-
-                case "register":
-                    url = "RegisterServlet";
-                    break;
-                case "logout":
-                    url = "LogOutServlet";
-                    break;
-                case "menu":
-                    url = "GetMenuFoodServlet";
-                    break;
-                case "buyfood":
-                    url = "BuyFoodServlet";
-                    break;
-                case "createmenu":
-                    url = "NewMenuFood.jsp";
-                    break;
-                case "insertmenu":
-                    url = "InsertNewMenuServlet";
-                    break;
-                case "addfoodtocart":
-                    url ="AddFoodToCartServlet";
-                    break;
-                case "addproductcart":
-                    url="AddProductToCartServlet";
-                    break;
-                
-
+                }
             }
-            request.getRequestDispatcher(url).forward(request, response);
+
+            if (!found && !productList.isEmpty()) {
+                // Add new food item to cart
+                cart.add(productList.get(0)); // Assuming foodList contains only one item
+            }
+
+            // Update session with the updated cart
+            session.setAttribute("cart", cart);
+
+            // Forward to Cart.jsp to display cart
+            request.getRequestDispatcher("Cart.jsp").forward(request, response);
+        } catch (NumberFormatException | ServletException | IOException e) {
+            // Handle exceptions appropriately
+            e.printStackTrace();
+            // Optionally redirect to an error page
+            response.sendRedirect("error.jsp");
         }
     }
 

@@ -9,13 +9,17 @@ package DTO;
  *
  * @author USER
  */
-public class Cart {
-    private Food food;
-    private int quantity;
+public class FoodQuantity {
 
-    public Cart(Food food, int quantity) {
+    Food food;
+    int foodQuantity;
+
+    public FoodQuantity() {
+    }
+
+    public FoodQuantity(Food food, int foodQuantity) {
         this.food = food;
-        this.quantity = quantity;
+        this.foodQuantity = foodQuantity;
     }
 
     public Food getFood() {
@@ -26,13 +30,12 @@ public class Cart {
         this.food = food;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getFoodQuantity() {
+        return foodQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setFoodQuantity(int foodQuantity) {
+        this.foodQuantity = foodQuantity;
     }
+
 }
-
-  
