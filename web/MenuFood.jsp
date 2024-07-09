@@ -41,8 +41,8 @@
                                 if (m.isMenuStatus()) {
                                     count++;
                     %>
-                    <form action="MainController?action=" method="POST">
-                        <input type="hidden" name="menuId" value="<%= m.getMenuID()%>">
+                    <form action="MainController?action=menudetail" method="POST">
+                        <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
                         <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
                             Tên Menu: <%= m.getMenuName()%><br>
                             Tuần: <%= m.getMenuDate()%><br>

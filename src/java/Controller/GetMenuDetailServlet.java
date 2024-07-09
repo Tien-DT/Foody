@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import DAO.MenuDAO;
+import DTO.MenuDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+public class GetMenuDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,67 +33,15 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
-            String a = request.getParameter("action");
-            String url = "";
-            if (a == null) {
-                a = "welcome";
+            String menuIDString =request.getParameter("menuid");
+            int menuID = Integer.parseInt(menuIDString);
+            if(menuID > 0){
+                MenuDAO menu = new MenuDAO();
+                ArrayList<MenuDetail> list = menu.getMenuDetail(menuID);
+                request.setAttribute("MenuDetail",list);
+                request.getRequestDispatcher("MenuFoodDetail.jsp").forward(request, response);
             }
-
-            switch (a) {
-                case "welcome":
-                    url = "Index.jsp";
-                    break;
-                case "foodlist":
-                    url = "GetFoodListServlet";
-                    break;
-                case "viewcart":
-                    url = "GetCartServlet";
-                    break;
-                case "vieworder":
-                    url = "Order.jsp";
-                    break;
-                case "mydashboard":
-                    url = "Dashboard.jsp";
-                    break;
-                case "loginform":
-                    url = "LoginForm.jsp";
-                    break;
-
-                case "login":
-                    url = "LoginServlet";
-                    break;
-
-                case "register":
-                    url = "RegisterServlet";
-                    break;
-                case "logout":
-                    url = "LogOutServlet";
-                    break;
-                case "menu":
-                    url = "GetMenuFoodServlet";
-                    break;
-                case "buyfood":
-                    url = "BuyFoodServlet";
-                    break;
-                case "createmenu":
-                    url = "NewMenuFood.jsp";
-                    break;
-                case "insertmenu":
-                    url = "InsertNewMenuServlet";
-                    break;
-                case "addfoodtocart":
-                    url ="AddFoodCartServlet";
-                    break;
-                case "addproductcart":
-                    url="AddProductToCartServlet";
-                    break;
-                case "menudetail":
-                    url="GetMenuDetailServlet";
-                    break;
-            }
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

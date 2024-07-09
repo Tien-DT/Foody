@@ -90,6 +90,14 @@
         <servlet-name>GetCartServlet</servlet-name>
         <servlet-class>Controller.GetCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetMenuDayServlet</servlet-name>
+        <servlet-class>Controller.GetMenuDayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetMenuDetailServlet</servlet-name>
+        <servlet-class>Controller.GetMenuDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -141,6 +149,14 @@
     <servlet-mapping>
         <servlet-name>GetCartServlet</servlet-name>
         <url-pattern>/GetCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMenuDayServlet</servlet-name>
+        <url-pattern>/GetMenuDayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMenuDetailServlet</servlet-name>
+        <url-pattern>/GetMenuDetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

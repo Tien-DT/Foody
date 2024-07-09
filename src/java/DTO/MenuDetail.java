@@ -13,21 +13,18 @@ public class MenuDetail {
 
     private int menuID;
     private String menuName;
-    private int userID;
-    private int foodID;
+    private int menuDay;
     private String foodName;
-    private boolean menuStatus;
+
 
     public MenuDetail() {
     }
 
-    public MenuDetail(int menuID, String menuName, int userID, int foodID, String foodName, boolean menuStatus) {
+    public MenuDetail(int menuID, String menuName, int menuDay, String foodName) {
         this.menuID = menuID;
         this.menuName = menuName;
-        this.userID = userID;
-        this.foodID = foodID;
+        this.menuDay = menuDay;
         this.foodName = foodName;
-        this.menuStatus = menuStatus;
     }
 
     public int getMenuID() {
@@ -46,21 +43,6 @@ public class MenuDetail {
         this.menuName = menuName;
     }
 
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(int foodID) {
-        this.foodID = foodID;
-    }
 
     public String getFoodName() {
         return foodName;
@@ -70,11 +52,12 @@ public class MenuDetail {
         this.foodName = foodName;
     }
 
-    public boolean isMenuStatus() {
-        return menuStatus;
+    public int getMenuDay() {
+        return menuDay;
     }
 
-    public void setMenuStatus(boolean menuStatus) {
-        this.menuStatus = menuStatus;
+    public void setMenuDay(int menuDay) {
+        this.menuDay = menuDay;
     }
+
 }

@@ -186,4 +186,47 @@ public class MenuDAO implements Serializable {
         return result;
     }
 
+    public ArrayList<MenuDetail> getMenuDetail(int menuID) {
+        ArrayList<MenuDetail> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT \n"
+                        + "    Menu.MenuID,\n"
+                        + "    Menu.MenuName,\n"
+                        + "    MenuDetail.MenuDay,\n"
+                        + "    Food.FoodName\n"
+                        + "FROM \n"
+                        + "    Menu\n"
+                        + "INNER JOIN \n"
+                        + "    MenuDetail ON Menu.MenuID = MenuDetail.MenuID\n"
+                        + "INNER JOIN \n"
+                        + "    Food ON MenuDetail.FoodID = Food.FoodID\n"
+                        + "WHERE Menu.MenuID =? ";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menuID);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int MenuID = rs.getInt("MenuID");
+                    String menuName = rs.getNString("MenuName");
+                    int menuDay = rs.getInt("MenuDay");
+                    String foodName = rs.getNString("FoodName");
+                    MenuDetail menu = new MenuDetail(MenuID, menuName, menuDay, foodName);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 }
