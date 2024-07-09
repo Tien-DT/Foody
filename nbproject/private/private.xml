@@ -6,10 +6,10 @@
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodList.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Cart.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/MainController.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/Cart.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetCartServlet.java</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/FoodDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/Food.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/AddFoodToCartServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/CartDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetFoodListServlet.java</file>
         </group>
     </open-files>
 </project-private>

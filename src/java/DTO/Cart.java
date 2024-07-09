@@ -10,29 +10,54 @@ package DTO;
  * @author USER
  */
 public class Cart {
-    private Food food;
-    private int quantity;
+    private int CartID;
+    private int UserID;
+    private int FoodID;
+    private int ProductID;
 
-    public Cart(Food food, int quantity) {
-        this.food = food;
-        this.quantity = quantity;
+    public Cart() {
     }
 
-    public Food getFood() {
-        return food;
+    public Cart(int CartID, int UserID, int FoodID, int ProductID) {
+        this.CartID = CartID;
+        this.UserID = UserID;
+        this.FoodID = FoodID;
+        this.ProductID = ProductID;
     }
 
-    public void setFood(Food food) {
-        this.food = food;
+    public int getCartID() {
+        return CartID;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public void setCartID(int CartID) {
+        this.CartID = CartID;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public int getUserID() {
+        return UserID;
     }
+
+    public void setUserID(int UserID) {
+        this.UserID = UserID;
+    }
+
+    public int getFoodID() {
+        return FoodID;
+    }
+
+    public void setFoodID(int FoodID) {
+        this.FoodID = FoodID;
+    }
+
+    public int getProductID() {
+        return ProductID;
+    }
+
+    public void setProductID(int ProductID) {
+        this.ProductID = ProductID;
+    }
+
+    
 }
 
   

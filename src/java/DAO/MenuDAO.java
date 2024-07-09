@@ -29,21 +29,22 @@ public class MenuDAO implements Serializable {
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
-                        + "FROM dbo.Menu m\n"
-                        + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
-                        + "WHERE m.UserID=?";
+                String sql = "SELECT * \n"
+                        + "FROM dbo.Menu \n"
+                        + "WHERE UserID=?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userID);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     int menuID = rs.getInt("MenuID");
-                    int foodID = rs.getInt("FoodID");
+                    String menuName = rs.getNString("MenuName");
                     int menuDate = rs.getInt("MenuDate");
                     int uID = rs.getInt("UserID");
-                    String menuName = rs.getNString("MenuName");
+
                     boolean menuStatus = rs.getBoolean("MenuStatus");
-                    Menu menu = new Menu(menuID, foodID, menuDate, userID, menuName, menuStatus);
+                    String menuTag = rs.getNString("MenuTag");
+                    boolean menuRole = rs.getBoolean("MenuRole");
+                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus, menuTag, menuRole);
                     list.add(menu);
                 }
             }
@@ -81,7 +82,7 @@ public class MenuDAO implements Serializable {
                     int uID = rs.getInt("UserID");
                     String menuName = rs.getNString("MenuName");
                     boolean menuStatus = rs.getBoolean("MenuStatus");
-                    Menu menu = new Menu(menuID, foodID, menuDate, uID, menuName, menuStatus);
+                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus);
                     list.add(menu);
                 }
             }
@@ -114,10 +115,10 @@ public class MenuDAO implements Serializable {
                 while (rs.next()) {
                     uid = rs.getInt("UserID");
                 }
-                if(uid > 0){
+                if (uid > 0) {
                     check = null;
-                }else{
-                    check ="1";
+                } else {
+                    check = "1";
                 }
             }
         } catch (Exception e) {
@@ -143,7 +144,7 @@ public class MenuDAO implements Serializable {
                 // Disable auto-commit mode
                 cn.setAutoCommit(false);
 
-                String sql = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus) VALUES (?, ?, ?, ?, '1')";
+                String sql = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus, MenuRole) VALUES (?, ?, ?, ?, '1','0')";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userID);
                 pst.setInt(2, menuWeek);

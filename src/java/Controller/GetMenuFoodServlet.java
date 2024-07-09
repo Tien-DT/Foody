@@ -44,16 +44,18 @@ public class GetMenuFoodServlet extends HttpServlet {
         HttpSession session = request.getSession();
         int userID = 0;
         userID = (int) session.getAttribute("LoginedUID");
-        if( userID != 0 ){
+        if( userID > 0 ){
         MenuDAO Menu = new MenuDAO(); 
         ArrayList<Menu> list = Menu.getMenuFood(userID);
-        request.setAttribute("MenuFood", list);
+        if(list != null){
+        request.setAttribute("MenuFood",list);    
         request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
         }else{
             request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
         }
     }
 }
+   }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -94,3 +96,4 @@ public class GetMenuFoodServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+

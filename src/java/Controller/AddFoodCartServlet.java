@@ -5,18 +5,23 @@
  */
 package Controller;
 
+import DAO.CartDAO;
+import DAO.FoodDAO;
+import DTO.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+public class AddFoodCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,66 +35,29 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
-            String a = request.getParameter("action");
-            String url = "";
-            if (a == null) {
-                a = "welcome";
+            String foodIDString = request.getParameter("foodid");
+            int foodID = Integer.parseInt(foodIDString);
+            HttpSession session = request.getSession();
+            int UID = (int) session.getAttribute("LoginedUID");
+            CartDAO cart = new CartDAO();
+            int CartID = cart.checkCart(UID);
+            if(CartID == 0){
+                int checkInsert = cart.insertCart(UID);
+                cart.insertFoodCart(CartID, foodID);
+                request.getRequestDispatcher("GetCartServlet").forward(request, response);
+            }else{
+                int quantity = cart.checkFoodCart(CartID, foodID);
+                if(quantity >= 1){
+                    int quantityUpdate = quantity + 1;       
+                    cart.updateFoodQuantity(CartID, foodID, quantityUpdate);
+                    request.getRequestDispatcher("GetCartServlet").forward(request, response);
+                }else{
+                    cart.insertFoodCart(CartID, foodID);
+                    request.getRequestDispatcher("GetCartServlet").forward(request, response);
+                }
             }
-
-            switch (a) {
-                case "welcome":
-                    url = "Index.jsp";
-                    break;
-                case "foodlist":
-                    url = "GetFoodListServlet";
-                    break;
-                case "viewcart":
-                    url = "GetCartServlet";
-                    break;
-                case "vieworder":
-                    url = "Order.jsp";
-                    break;
-                case "mydashboard":
-                    url = "Dashboard.jsp";
-                    break;
-                case "loginform":
-                    url = "LoginForm.jsp";
-                    break;
-
-                case "login":
-                    url = "LoginServlet";
-                    break;
-
-                case "register":
-                    url = "RegisterServlet";
-                    break;
-                case "logout":
-                    url = "LogOutServlet";
-                    break;
-                case "menu":
-                    url = "GetMenuFoodServlet";
-                    break;
-                case "buyfood":
-                    url = "BuyFoodServlet";
-                    break;
-                case "createmenu":
-                    url = "NewMenuFood.jsp";
-                    break;
-                case "insertmenu":
-                    url = "InsertNewMenuServlet";
-                    break;
-                case "addfoodtocart":
-                    url ="AddFoodCartServlet";
-                    break;
-                case "addproductcart":
-                    url="AddProductToCartServlet";
-                    break;
-                
-
-            }
-            request.getRequestDispatcher(url).forward(request, response);
+            
         }
     }
 

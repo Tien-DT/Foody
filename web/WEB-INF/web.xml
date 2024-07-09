@@ -71,10 +71,6 @@
         <servlet-class>Controller.LoadCartServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetCartServlet</servlet-name>
-        <servlet-class>Controller.GetCartServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>InsertNewMenuServlet</servlet-name>
         <servlet-class>Controller.InsertNewMenuServlet</servlet-class>
     </servlet>
@@ -85,6 +81,14 @@
     <servlet>
         <servlet-name>AddProductToCartServlet</servlet-name>
         <servlet-class>Controller.AddProductToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFoodCartServlet</servlet-name>
+        <servlet-class>Controller.AddFoodCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCartServlet</servlet-name>
+        <servlet-class>Controller.GetCartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -119,10 +123,6 @@
         <url-pattern>/LoadCartServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetCartServlet</servlet-name>
-        <url-pattern>/GetCartServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>InsertNewMenuServlet</servlet-name>
         <url-pattern>/InsertNewMenuServlet</url-pattern>
     </servlet-mapping>
@@ -133,6 +133,14 @@
     <servlet-mapping>
         <servlet-name>AddProductToCartServlet</servlet-name>
         <url-pattern>/AddProductToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFoodCartServlet</servlet-name>
+        <url-pattern>/AddFoodCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCartServlet</servlet-name>
+        <url-pattern>/GetCartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

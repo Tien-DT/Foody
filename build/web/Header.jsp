@@ -43,7 +43,7 @@
                     <ul>
                         <li><a href="MainController?action=welcome">Trang Chủ</a></li>
                         <li><a href="MainController?action=foodlist">Món Ăn</a></li>
-                        <li><a href="MainController?action=viewcart">Giỏ Hàng</a></li>
+                        <li><a href="GetCartServlet">Giỏ Hàng</a></li>
                         <li><a href="MainController?action=vieworder">Đơn Hàng</a></li>
                         <li><a href="MainController?action=menu">Thực Đơn</a></li>
                         <li><a href="MainController?action=mydashboard">DashBoard</a></li>

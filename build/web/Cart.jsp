@@ -1,6 +1,5 @@
+<%@page import="DTO.ItemCart"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DTO.Food"%>
-<%@page import="java.util.HashMap"%>
 <%@page import="javax.servlet.http.HttpSession"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,7 +28,6 @@
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Sản Phẩm</th>
-                                    <th scope="col">Tình Trạng</th>
                                     <th scope="col" class="text-center">Số Lượng</th>
                                     <th scope="col" class="text-right">Giá (VNĐ)</th>
                                     <th scope="col" class="text-right">Tổng</th>
@@ -38,28 +36,17 @@
                             </thead>
                             <tbody>
                                 <%
-                                    ArrayList<Food> list = (ArrayList<Food>) session.getAttribute("cart");
-                                    int totalPrice = 0;
-
-                                    if (list != null && !list.isEmpty()) {
-                                        for (Food f : list) {
-                                            int quantity = 1; // Default quantity (you should adjust this to get actual quantity from session)
-
-                                            // Calculate item total
-                                            int itemTotal = quantity * f.getFoodPrice();
-
-                                            // Update total price
-                                            totalPrice += itemTotal;
+                                   ArrayList<ItemCart> listitem = (ArrayList) request.getAttribute("ItemCart");
+                                    if (listitem != null) {
+                                        for (ItemCart i : listitem) {
                                 %>
                                 <tr>
-                                    <td><img src="<%= f.getFoodImage()%>" width="50" height="50" /></td>
-                                    <td><%= f.getFoodName()%></td>
-                                    <td><% if (f.getFoodStatus()) { %>Còn hàng<% } else { %>Hết hàng<% }%></td>
-                                    <td class="text-center">
-                                        <input type="number" value="1" class="form-control quantity-input" value="<%= quantity%>" min="1" name="quantity_<%= f.getFoodID()%>" onchange="updateItemTotal(<%= f.getFoodID()%>, this.value, <%= f.getFoodPrice()%>)">
-                                    </td>
-                                    <td class="text-right"><span class="formatted-price"><%= f.getFoodPrice()%></span></td>
-                                    <td class="text-right item-total"><span class="formatted-price"><%= itemTotal%></span></td>
+                                    <td><img src="<%= i.getItemImage()%>" width="50" height="50" /></td>
+                                    <td><%= i.getItemName() %></td>
+                                
+                                 
+                                    <td class="text-right"><span class="formatted-price"><%= i.getItemQuantity() %></span></td>
+                                    <td class="text-right item-total"><span class="formatted-price"><%= i.getItemPrice() %></span></td>
                                     <td class="text-right">
                                         <button class="btn btn-sm btn-danger">
                                             <i class="fa fa-trash"></i>
@@ -68,7 +55,9 @@
                                 </tr>
                                 <%
                                         }
-                                    }
+                                    }else{
+                                    request.getRequestDispatcher("Index.jsp").forward(request, response);
+}
                                 %>
                                 <tr>
                                     <td></td>
@@ -76,7 +65,7 @@
                                     <td></td>
                                     <td></td>
                                     <td><strong>Tổng Tiền Sản Phẩm:</strong></td>
-                                    <td class="text-right"><strong id="totalPrice"><span class="formatted-price"><%= totalPrice%></span></strong></td>
+                                    <td class="text-right"><strong id="totalPrice"><span class="formatted-price"></span></strong></td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -95,37 +84,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            function formatNumber(number) {
-                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            }
-
-            function updateItemTotal(foodId, quantity, price) {
-                var itemTotal = quantity * price;
-                var row = document.querySelector('input[name="quantity_' + foodId + '"]').closest('tr');
-                row.querySelector('.item-total .formatted-price').textContent = formatNumber(itemTotal);
-
-                updateTotalPrice();
-            }
-
-            function updateTotalPrice() {
-                var itemTotals = document.querySelectorAll('.item-total .formatted-price');
-                var totalPrice = 0;
-                itemTotals.forEach(function (item) {
-                    totalPrice += parseInt(item.textContent.replace(/\./g, ''));
-                });
-                document.querySelector('#totalPrice .formatted-price').textContent = formatNumber(totalPrice);
-            }
-
-            // Format all prices on page load
-            document.addEventListener('DOMContentLoaded', function () {
-                var prices = document.querySelectorAll('.formatted-price');
-                prices.forEach(function (price) {
-                    price.textContent = formatNumber(parseInt(price.textContent));
-                });
-            });
-        </script>
 
         <%@include file="Footer.jsp" %>
     </body>

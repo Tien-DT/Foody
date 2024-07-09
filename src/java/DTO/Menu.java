@@ -12,22 +12,23 @@ package DTO;
 public class Menu {
 
     private int menuID;
-    private int foodID;
     private int menuDate;
     private int userID;
     private String menuName;
     private boolean menuStatus;
-
+    private String menuTag;
+    private boolean menuRole;
     public Menu() {
     }
 
-    public Menu(int menuID, int foodID, int menuDate, int userID, String menuName, boolean menuStatus) {
+    public Menu(int menuID, int menuDate, int userID, String menuName, boolean menuStatus, String menuTag, boolean menuRole) {
         this.menuID = menuID;
-        this.foodID = foodID;
         this.menuDate = menuDate;
         this.userID = userID;
         this.menuName = menuName;
         this.menuStatus = menuStatus;
+        this.menuTag = menuTag;
+        this.menuRole = menuRole;
     }
 
     public int getMenuID() {
@@ -38,13 +39,6 @@ public class Menu {
         this.menuID = menuID;
     }
 
-    public int getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(int foodID) {
-        this.foodID = foodID;
-    }
 
     public int getMenuDate() {
         return menuDate;
@@ -77,4 +71,21 @@ public class Menu {
     public void setMenuStatus(boolean menuStatus) {
         this.menuStatus = menuStatus;
     }
+
+    public String getMenuTag() {
+        return menuTag;
+    }
+
+    public void setMenuTag(String menuTag) {
+        this.menuTag = menuTag;
+    }
+
+    public boolean isMenuRole() {
+        return menuRole;
+    }
+
+    public void setMenuRole(boolean menuRole) {
+        this.menuRole = menuRole;
+    }
+    
 }
