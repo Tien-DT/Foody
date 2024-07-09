@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.CartDAO;
-import DTO.ItemCart;
+import DAO.FoodDAO;
+import DTO.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,13 +14,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class GetCartServlet extends HttpServlet {
+public class GetFoodDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +34,15 @@ public class GetCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-          
-            HttpSession session = request.getSession();
-            int userID = 0;
-            userID = (int) session.getAttribute("LoginedUID");
-            if (userID == 0) {
-                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+            String foodIDString = request.getParameter("foodid");
+            int foodID = Integer.parseInt(foodIDString);
+            if(foodID > 0){
+                FoodDAO food = new FoodDAO();
+                ArrayList<Food> list = food.getFoodByID(foodID);
+                request.setAttribute("FoodDetail",list);
+                request.getRequestDispatcher("FoodDetail.jsp").forward(request, response);
             }else{
-            CartDAO cart = new CartDAO();
-            ArrayList<ItemCart> list = cart.getAllCart(userID);
-            request.setAttribute("ItemCart", list);
-            request.getRequestDispatcher("Cart.jsp").forward(request, response);
+                request.getRequestDispatcher("GetFoodListServlet").forward(request, response);
             }
         }
     }

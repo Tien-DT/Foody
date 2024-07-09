@@ -1,9 +1,13 @@
 .body-content{
     margin-top:100px;
+    min-height: 75%;
+}
+.table-detail{
+    min-height: 80%;
 }
 .box-body{
-    min-width: 100%;
-    min-height: 80%;
+    min-height: 75%;
+   
 }
 
 .schedule {

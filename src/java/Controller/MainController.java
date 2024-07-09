@@ -89,6 +89,9 @@ public class MainController extends HttpServlet {
                 case "menudetail":
                     url="GetMenuDetailServlet";
                     break;
+                case "viewfood":
+                    url="GetFoodDetailServlet";
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

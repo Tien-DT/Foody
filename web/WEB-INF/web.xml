@@ -98,6 +98,10 @@
         <servlet-name>GetMenuDetailServlet</servlet-name>
         <servlet-class>Controller.GetMenuDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetFoodDetailServlet</servlet-name>
+        <servlet-class>Controller.GetFoodDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -157,6 +161,10 @@
     <servlet-mapping>
         <servlet-name>GetMenuDetailServlet</servlet-name>
         <url-pattern>/GetMenuDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetFoodDetailServlet</servlet-name>
+        <url-pattern>/GetFoodDetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -12,26 +12,14 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
         <title>Trang chủ-Foody.</title>
-        <meta content="" name="description">
-        <meta content="" name="keywords">
-
-        <!-- Favicons -->
         <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
         <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
-
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-        <!-- Vendor CSS Files -->
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-        <!-- Template Main CSS File -->
         <link href="assets/css/Main.css" rel="stylesheet">
       
 
@@ -43,6 +31,7 @@
         <!-- ======= Header ======= -->
         <jsp:include page="Header.jsp" />
         <!-- End Header -->
+        <div style="min-height: 85%!important;">
         <div class="container">
         <!--Start Slide hero section-->
         <div id="carouselExampleIndicators" class="carousel slide slidebanner" data-bs-ride="carousel">
@@ -119,112 +108,14 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <!--EndSlide hero section-->
-        <!-- ======= Hero Section ======= -->
-
-
-
-        <!-- ======= Menu Section ======= -->
-        <section id="menu" class="menu">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-
-                    <p>Bán<span> Chạy Nhất</span></p>
-                </div>
-
-                <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
-                    <div class="tab-pane fade active show" id="menu-starters">
-
-                        <div class="row gy-5">
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Bánh Xèo</h4>
-                                <p class="ingredients">
-                                    3-4 người ăn
-                                </p>
-                                <p class="price">
-                                    200.000 VNĐ
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Cá Kho Tộ</h4>
-                                <p class="ingredients">
-                                    2-3 người ăn
-                                </p>
-                                <p class="price">
-                                    150.000 VNĐ
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Bánh Xèo</h4>
-                                <p class="ingredients">
-                                    3-4 người ăn
-                                </p>
-                                <p class="price">
-                                    200.000 VNĐ
-                                </p>
-                            </div><!-- Menu Item -->
-
-
-                        </div><!-- End Breakfast Menu Content -->
-
-                        <!-- ======= Stats Counter Section ======= -->
-                        <section id="stats-counter" class="stats-counter">
-                            <div class="container" data-aos="zoom-out">
-
-                                <div class="row gy-4">
-
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="stats-item text-center w-100 h-100">
-                                            <span data-purecounter-start="0" data-purecounter-end="2000" data-purecounter-duration="1" class="purecounter"></span>
-                                            <p>Lượt truy cập</p>
-                                        </div>
-                                    </div><!-- End Stats Item -->
-
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="stats-item text-center w-100 h-100">
-                                            <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter"></span>
-                                            <p>Món Ăn</p>
-                                        </div>
-                                    </div><!-- End Stats Item -->
-
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="stats-item text-center w-100 h-100">
-                                            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-                                            <p>Lượt mua</p>
-                                        </div>
-                                    </div><!-- End Stats Item -->
-
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="stats-item text-center w-100 h-100">
-                                            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-                                            <p>Đánh giá tốt</p>
-                                        </div>
-                                    </div><!-- End Stats Item -->
-
-                                </div>
-
-                            </div>
-                        </section><!-- End Stats Counter Section -->
-                        </main><!-- End #main -->
-                        <!-- Start Footer -->
-                        <jsp:include page="Footer.jsp" />
+        
+                        
                     </div>
-                </div>
-                     </div>
-                     </div>
+        </div>
+                <jsp:include page="Footer.jsp" />
                         <!-- End Footer -->
 
-                        <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-                        <div id="preloader"></div>
 
                         <!-- Vendor JS Files -->
                         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

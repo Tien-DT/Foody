@@ -11,13 +11,14 @@
         <link href="assets/css/Cart.css" rel="stylesheet">
         <link href="assets/css/Footer.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <title>Giỏ Hàng</title>
     </head>
     <body>
         <%@include file="Header.jsp" %> 
 
         <div>
             <h1 class="jumbotron-heading cart">Giỏ Hàng</h1>
-        </div>
+        </div>  
 
         <div class="container mb-4 cart-frame">
             <div class="row">
@@ -28,6 +29,7 @@
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Sản Phẩm</th>
+                                    
                                     <th scope="col" class="text-center">Số Lượng</th>
                                     <th scope="col" class="text-right">Giá (VNĐ)</th>
                                     <th scope="col" class="text-right">Tổng</th>
@@ -43,8 +45,6 @@
                                 <tr>
                                     <td><img src="<%= i.getItemImage()%>" width="50" height="50" /></td>
                                     <td><%= i.getItemName() %></td>
-                                
-                                 
                                     <td class="text-right"><span class="formatted-price"><%= i.getItemQuantity() %></span></td>
                                     <td class="text-right item-total"><span class="formatted-price"><%= i.getItemPrice() %></span></td>
                                     <td class="text-right">

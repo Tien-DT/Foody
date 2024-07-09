@@ -15,37 +15,21 @@ IMG FOR FOOD 332*202
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Trang chủ-Foody.</title>
+        <title>Danh Sách Món Ăn</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
-
-        <!-- Favicons -->
         <link href="assets/img/favicon.png" rel="icon">
         <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-        <!-- Vendor CSS Files -->
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-        <!-- Template Main CSS File -->
         <link href="assets/css/Main.css" rel="stylesheet">
-
-
     </head>
 
     <body>
-        <!-- ======= Header ======= -->
         <jsp:include page="Header.jsp" />
-        <!-- End Header -->
-        <!-- ======= Menu Section ======= -->
         <section class="row filter-food">
             <div class="col-md-2">
                 <!-- Filter For List -->
@@ -101,7 +85,9 @@ IMG FOR FOOD 332*202
                                             <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
                                         </a>
                                         <div class="card-body d-flex flex-column">
-                                            <h4 class="card-title"><%= f.getFoodName()%></h4>
+                                           
+                                                <h4 class="card-title"><%= f.getFoodName()%></h4>                                     
+                                          
                                             <p class="card-text">
                                                 <!-- Assuming there's a description -->
                                             </p>
@@ -109,16 +95,20 @@ IMG FOR FOOD 332*202
                                                 <%= f.getFoodPrice()%> VNĐ
                                             </p>
                                             <div class="d-grid gap-2">
+                                                <form action="MainController?action=viewfood" method="POST">
+                                                    <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
+                                                     <a><button class="btn btn-secondary button-card">Xem món ăn</button></a>
+                                                </form>
                                                 <form action="MainController?action=addfoodtocart" method="POST">
                                                     <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
-                                                    <a href="MainController?action=buyfood"><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
+                                                    <a><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
                                                 </form>
 
                                                 <form action="MainController?action=addproductcart" method="POST">
                                                     <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
-                                                    <a href="MainController?action=buyproduct"><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
+                                                    <a><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
                                                 </form>
-                                                <a href="MainController?action=addtomenu"><button class="btn btn-secondary button-card">Thêm vào Menu</button></a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -181,8 +171,6 @@ IMG FOR FOOD 332*202
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <div id="preloader"></div>
-
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
@@ -191,7 +179,6 @@ IMG FOR FOOD 332*202
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
         <script>
-                        // Chuyển 1000 thành 1.000 và tương tự với 100000 thành 100.000
                         function formatCurrency(amount) {
                             return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                         }

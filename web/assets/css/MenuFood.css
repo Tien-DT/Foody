@@ -2,7 +2,7 @@
 .body-content {
     
     margin-top: 100px;
-   min-height: 73vh;
+   min-height: 75%;
     
 }
 .menu-title.h1 {
@@ -34,4 +34,8 @@
     border-width: 10px;  
     margin: 10px;
         
+}
+#button-food{
+    border-width: 0px;
+    border-color: white;
 }

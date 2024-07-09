@@ -12,12 +12,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/MenuFoodDetail.css" rel="stylesheet">
-        <title>JSP Page</title>
+        <title>Chi tiết thực đơn</title>
     </head>
 
     <jsp:include page="Header.jsp" />
     <body>
-        <div class="container-fluid body-content">
+        <div class="container-fluid body-content" style="min-height: 75%!important;">
 
             <div class="box-menu col-md-12 box-body">
                 <h1 class="text-center my-4">Thực Đơn Chi Tiết</h1>
@@ -41,10 +41,9 @@
                     ArrayList<MenuDetail> list = (ArrayList) request.getAttribute("MenuDetail");
                     if (list != null) {
                         for (MenuDetail md : list) {
-                            // Lấy ngày của menu (ví dụ: 2 cho thứ 2, 3 cho thứ 3, ...)
+                            
                             int menuDay = md.getMenuDay();
 
-                            // Thêm MenuDetail vào ArrayList tương ứng với ngày của nó
                             switch (menuDay) {
                                 case 2:
                                     monday.add(md);

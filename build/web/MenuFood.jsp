@@ -21,7 +21,7 @@
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-        <title>JSP Page</title>
+        <title>Thực Đơn</title>
     </head>
     <jsp:include page="Header.jsp" />
     <body>
