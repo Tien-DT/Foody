@@ -50,7 +50,7 @@
                                     <p data-aos="fade-up" data-aos-delay="100">Món ăn này thường xuất hiện ở Nam Trung Bộ và các tỉnh miền Nam. Bánh xèo ở từng vùng miền sẽ khác nhau về màu sắc, kích cỡ, loại nhân bên trong, nước chấm. Điểm chung của tất cả các loại đều được làm từ bột gạo tẻ pha loãng, sau đó được tráng mỏng trên chảo và chiên giòn.</p>
                                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                                         <a href="#book-a-table" class="btn-book-a-table">Đặt Mua</a>
-                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Xem Video</span></a>
+                                 
                                     </div>
                                 </div>
                                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -69,7 +69,7 @@
                                     <p data-aos="fade-up" data-aos-delay="100">Một món bánh cuốn ngon sẽ được tráng thật kỹ lưỡng, đảm bảo độ mỏng dính vừa phải nhưng lại vừa dai thơm. Bên trong ruột sẽ là phần nhân với thịt heo, tôm, mộc nhĩ, nấm hương. Phía trên bánh sẽ rắc thêm chút hành phi, khi ăn ta sẽ chấm với nước mắm tỏi ớt là số 1.</p>
                                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                                         <a href="#book-a-table" class="btn-book-a-table">Đặt Mua</a>
-                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Xem Video</span></a>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -88,7 +88,7 @@
                                     <p data-aos="fade-up" data-aos-delay="100">Bún chả là thức quà có sức sống bền lâu nhất của vùng đất Hà thành. Những viên chả thơm ngon được làm từ thịt nạc vai băm nhỏ, viên tròn, thêm một vài lát thịt ba chỉ thái lát, nướng vàng ăn kèm với bún, nước mắm pha loãng. Món ngon còn có vị chua của dưa góp cùng mùi thơm hài hòa của tỏi và sự thanh mát của rau sống ăn kèm.</p>
                                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                                         <a href="#book-a-table" class="btn-book-a-table">Đặt Mua</a>
-                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Xem Video</span></a>
+                          
                                     </div>
                                 </div>
                                 <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">

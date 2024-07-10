@@ -40,7 +40,6 @@ public class MenuDAO implements Serializable {
                     String menuName = rs.getNString("MenuName");
                     int menuDate = rs.getInt("MenuDate");
                     int uID = rs.getInt("UserID");
-
                     boolean menuStatus = rs.getBoolean("MenuStatus");
                     String menuTag = rs.getNString("MenuTag");
                     boolean menuRole = rs.getBoolean("MenuRole");
@@ -193,17 +192,18 @@ public class MenuDAO implements Serializable {
             cn = DBUtil.makeConnection();
             if (cn != null) {
                 String sql = "SELECT \n"
-                        + "    Menu.MenuID,\n"
-                        + "    Menu.MenuName,\n"
-                        + "    MenuDetail.MenuDay,\n"
-                        + "    Food.FoodName\n"
-                        + "FROM \n"
-                        + "    Menu\n"
+                        + "Menu.MenuID,\n"
+                        + "Menu.MenuName,\n"
+                        + "MenuDetail.MenuDay,\n"
+                        + "Food.FoodName,\n"
+                        + "Food.FoodID\n"
+                        + "FROM\n"
+                        + "Menu\n"
                         + "INNER JOIN \n"
-                        + "    MenuDetail ON Menu.MenuID = MenuDetail.MenuID\n"
+                        + "MenuDetail ON Menu.MenuID = MenuDetail.MenuID\n"
                         + "INNER JOIN \n"
-                        + "    Food ON MenuDetail.FoodID = Food.FoodID\n"
-                        + "WHERE Menu.MenuID =? ";
+                        + "Food ON MenuDetail.FoodID = Food.FoodID\n"
+                        + "WHERE Menu.MenuID =?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, menuID);
                 ResultSet rs = pst.executeQuery();
@@ -212,7 +212,8 @@ public class MenuDAO implements Serializable {
                     String menuName = rs.getNString("MenuName");
                     int menuDay = rs.getInt("MenuDay");
                     String foodName = rs.getNString("FoodName");
-                    MenuDetail menu = new MenuDetail(MenuID, menuName, menuDay, foodName);
+                    int foodID = rs.getInt("FoodID");
+                    MenuDetail menu = new MenuDetail(MenuID, menuName, menuDay, foodName,foodID);
                     list.add(menu);
                 }
             }

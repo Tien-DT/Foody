@@ -31,7 +31,10 @@
                     <div>
                         <button class="btn btn-primary" onclick="">Mua Món Ăn</button>
                         <button class="btn btn-secondary" onclick="">Mua Nguyên Liệu</button>
-                        <button class="btn btn-success" onclick="">Thêm vào Menu</button>
+                        <form action="MainController?action=addfoodtomenu" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= f.getFoodID() %>">
+                                <button type="submit" class="btn btn-success" id="openFormButton" >Thêm Vào Menu</button>
+                                </form>
                     </div>
                 </div>
                 <div class="card-body col-md-12">

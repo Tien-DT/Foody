@@ -15,16 +15,17 @@ public class MenuDetail {
     private String menuName;
     private int menuDay;
     private String foodName;
-
+    private int foodID;
 
     public MenuDetail() {
     }
 
-    public MenuDetail(int menuID, String menuName, int menuDay, String foodName) {
+    public MenuDetail(int menuID, String menuName, int menuDay, String foodName, int foodID) {
         this.menuID = menuID;
         this.menuName = menuName;
         this.menuDay = menuDay;
         this.foodName = foodName;
+        this.foodID = foodID;
     }
 
     public int getMenuID() {
@@ -60,4 +61,13 @@ public class MenuDetail {
         this.menuDay = menuDay;
     }
 
+    public int getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(int foodID) {
+        this.foodID = foodID;
+    }
+
+    
 }

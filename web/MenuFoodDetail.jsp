@@ -79,7 +79,10 @@
                             <%            for (MenuDetail menu : monday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }
@@ -93,7 +96,10 @@
                             <%            for (MenuDetail menu : tuesday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }
@@ -107,7 +113,10 @@
                             <%            for (MenuDetail menu : wednesday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }
@@ -120,7 +129,10 @@
                             <%            for (MenuDetail menu : thursday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }
@@ -133,7 +145,10 @@
                             <%            for (MenuDetail menu : friday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }
@@ -146,7 +161,10 @@
                             <%            for (MenuDetail menu : saturday) {
                             %>
                             <div class="menu-item">
-                                <h4><%= menu.getFoodName()%></h4>
+                                <form action="MainController?action=viewfood" method="POST">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
+                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
                             </div>
                             <%
                                 }

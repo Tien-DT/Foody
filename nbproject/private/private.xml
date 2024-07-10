@@ -3,13 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/MenuFoodDetail.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodList.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Cart.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/MainController.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetCartServlet.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/FoodDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/CartDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetFoodListServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Cart.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/MenuDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/Menu.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/MenuFood.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/assets/css/Main.css</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetMenuDetailServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Index.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/MenuDetail.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodDetail.jsp</file>
         </group>
     </open-files>
 </project-private>
