@@ -106,6 +106,10 @@
         <servlet-name>DeleteMenuServlet</servlet-name>
         <servlet-class>Controller.DeleteMenuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StaffDashBoardServlet</servlet-name>
+        <servlet-class>Controller.StaffDashBoardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -181,6 +185,10 @@
     <servlet-mapping>
         <servlet-name>DeleteMenuServlet</servlet-name>
         <url-pattern>/DeleteMenuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffDashBoardServlet</servlet-name>
+        <url-pattern>/StaffDashBoardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

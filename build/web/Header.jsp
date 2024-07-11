@@ -46,7 +46,7 @@
                         <li><a href="GetCartServlet">Giỏ Hàng</a></li>
                         <li><a href="MainController?action=vieworder">Đơn Hàng</a></li>
                         <li><a href="MainController?action=menu">Thực Đơn</a></li>
-                        <li><a href="MainController?action=mydashboard">DashBoard</a></li>
+                        <li><a href="MainController?action=staffdashboard">DashBoard</a></li>
                         <c:if test="${empty sessionScope.LoginedUser}">
                             <li><a href="MainController?action=loginform">Đăng nhập</a></li>
                             </c:if>

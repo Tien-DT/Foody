@@ -96,6 +96,38 @@ public class MenuDAO implements Serializable {
         return check;
     }
 
+    public String checkWeekMenuByEmail(String Email, int menuWeek) {
+        Connection cn = null;
+        String check = "1";
+
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT MenuName, Email FROM dbo.[User] u\n"
+                        + "INNER JOIN dbo.Menu m ON m.UserID = u.UserID\n"
+                        + "WHERE u.Email=? AND m.MenuDate=? AND m.MenuStatus ='1'";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, Email);
+                pst.setInt(2, menuWeek);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    check = null;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+
     public String insertWeekMenu(int userID, int menuWeek, String newMenuName, String menuTag) {
         Connection cn = null;
         String result = null;
@@ -114,6 +146,65 @@ public class MenuDAO implements Serializable {
 
                 // Execute update and get affected rows
                 int affectedRows = pst.executeUpdate();
+
+                if (affectedRows > 0) {
+                    // Commit the transaction if insert is successful
+                    cn.commit();
+                    result = "Insert successful";
+                } else {
+                    // Rollback the transaction if insert failed
+                    cn.rollback();
+                    result = null;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                if (cn != null) {
+                    cn.rollback();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            result = "An error occurred: " + e.getMessage();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    public String insertWeekMenuByStaff(String email, int menuWeek, String newMenuName, String menuTag) {
+        Connection cn = null;
+        String result = null;
+        int userID =0;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                
+                cn.setAutoCommit(false);
+                String sql1 ="Select * from dbo.[User] WHERE Email=?";
+                PreparedStatement pst1 = cn.prepareStatement(sql1);
+                pst1.setString(1,email);
+                ResultSet rs = pst1.executeQuery();
+                while(rs.next()){
+                    userID = rs.getInt("UserID");
+                }
+                
+                String sql2 = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus, MenuRole) VALUES (?, ?, ?, ?, '1','1')";
+                PreparedStatement pst2 = cn.prepareStatement(sql2);
+                pst2.setInt(1, userID);
+                pst2.setInt(2, menuWeek);
+                pst2.setNString(3, newMenuName);
+                pst2.setString(4, menuTag);
+
+                // Execute update and get affected rows
+                int affectedRows = pst2.executeUpdate();
 
                 if (affectedRows > 0) {
                     // Commit the transaction if insert is successful

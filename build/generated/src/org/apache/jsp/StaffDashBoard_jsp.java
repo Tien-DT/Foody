@@ -64,16 +64,18 @@ public final class StaffDashBoard_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <link href=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">\n");
-      out.write("        <script src=\"//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n");
       out.write("        <link href=\"assets/css/StaffDashBoard.css\" rel=\"stylesheet\">\n");
       out.write("        <link href=\"assets/css/Footer.css\" rel=\"stylesheet\">\n");
-      out.write("        <link href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"assets/vendor/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n");
+      out.write("        <script src=\"assets/vendor/bootstrap/js/bootstrap.bundle.min.js\"></script>\n");
+      out.write("        <link href=\"assets/vendor/bootstrap-icons/bootstrap-icons.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"assets/vendor/aos/aos.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"assets/vendor/glightbox/css/glightbox.min.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"assets/vendor/swiper/swiper-bundle.min.css\" rel=\"stylesheet\">\n");
       out.write("        <title>Giỏ Hàng</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("       \n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
@@ -123,7 +125,7 @@ public final class StaffDashBoard_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                        <li><a href=\"GetCartServlet\">Giỏ Hàng</a></li>\n");
       out.write("                        <li><a href=\"MainController?action=vieworder\">Đơn Hàng</a></li>\n");
       out.write("                        <li><a href=\"MainController?action=menu\">Thực Đơn</a></li>\n");
-      out.write("                        <li><a href=\"MainController?action=mydashboard\">DashBoard</a></li>\n");
+      out.write("                        <li><a href=\"MainController?action=staffdashboard\">DashBoard</a></li>\n");
       out.write("                        ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
@@ -146,18 +148,75 @@ public final class StaffDashBoard_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    </body>\n");
       out.write("</html>\n");
       out.write(" \n");
-      out.write("        \n");
-      out.write("        <div style\"margin-top:100px;\">\n");
-      out.write("            <h1 class=\"jumbotron-heading cart\">Bảng điều khiển cho Nhân Viên </h1>\n");
-      out.write("        </div>  \n");
+      out.write("        <div class=\"container body-content\" style=\"margin-top: 100px; min-height: 75%;\">\n");
+      out.write("            <h1>Bảng điều khiển cho Nhân Viên</h1>\n");
+      out.write("            ");
+
+                String function = (String) request.getAttribute("Function");
+            
       out.write("\n");
-      out.write("        <div class=\"container mb-4 cart-frame\">\n");
       out.write("            <div class=\"row\">\n");
-      out.write("              \n");
-      out.write("                    \n");
+      out.write("                <div class=\"col-12\">\n");
+      out.write("                    <div class=\"list-group\" id=\"list-tab\" role=\"tablist\">\n");
+      out.write("                        <a class=\"list-group-item list-group-item-action active\" id=\"list-order-list\" data-bs-toggle=\"list\" href=\"#list-order\" role=\"tab\" aria-controls=\"home\">Quản Lý Đơn hàng</a>\n");
+      out.write("                        <a class=\"list-group-item list-group-item-action\" id=\"list-menu-list\" data-bs-toggle=\"list\" href=\"#list-menu\" role=\"tab\" aria-controls=\"profile\">Quản Lý Menu</a>\n");
+      out.write("                        <a class=\"list-group-item list-group-item-action\" id=\"list-user-list\" data-bs-toggle=\"list\" href=\"#list-user\" role=\"tab\" aria-controls=\"messages\">Quản Lý Người dùng</a>\n");
+      out.write("\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-12\" style=\"margin-top:20px;\">\n");
+      out.write("                    <div class=\"tab-content\" id=\"nav-tabContent\">\n");
+      out.write("                        <div class=\"tab-pane fade show active\" id=\"list-order\" role=\"tabpanel\" aria-labelledby=\"list-home-list\">\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                        </div>\n");
+      out.write("                        <div class=\"tab-pane fade\" id=\"list-menu\" role=\"tabpanel\" aria-labelledby=\"list-profile-list\">\n");
+      out.write("                            <form action=\"MainController?action=funcdashboard\" method=\"POST\">\n");
+      out.write("                                <button type=\"submit\" name=\"menu\" value=\"addmenu\" class=\"btn btn-primary\">Thêm Menu</button>\n");
+      out.write("                                <button type=\"submit\" name=\"menu\" value=\"deletemenu\" class=\"btn btn-danger\">Xóa Menu</button>\n");
+      out.write("                            </form>\n");
+      out.write("                        </div>\n");
+      out.write("                        <div class=\"tab-pane fade\" id=\"list-user\" role=\"tabpanel\" aria-labelledby=\"list-messages-list\">\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                        </div>                 \n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                \n");
+      out.write("                ");
+
+                                if (function.contains("ADDMENU")) {
+
+
+                            
+      out.write("\n");
+      out.write("                            <form action=\"MainController?action=funcdashboard\" method=\"POST\">\n");
+      out.write("                                <div class=\"mb-3\">\n");
+      out.write("                                    <label for=\"Tên Thực Đơn\" class=\"form-label\">Tên Thực Đơn</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" name=\"txtmenuname\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <select type=\"text\" id=\"inputState\" class=\"form-control\" name=\"txtweek\" required>\n");
+      out.write("                                    <option selected>Chọn Tuần</option>\n");
+      out.write("                                    <option value=\"1\">Tuần 1</option> \n");
+      out.write("                                    <option value=\"2\">Tuần 2</option>\n");
+      out.write("                                    <option value=\"3\">Tuần 3</option> \n");
+      out.write("                                    <option value=\"4\">Tuần 4</option>\n");
+      out.write("                                    <option value=\"5\">Tuần 5</option>\n");
+      out.write("                                </select>\n");
+      out.write("                                <div class=\"mb-3\">\n");
+      out.write("                                    <label for=\"Tên Nhãn\" class=\"form-label\">Tên Nhãn</label>\n");
+      out.write("                                    <input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" name=\"txttag\" required>\n");
+      out.write("                                </div>\n");
+      out.write("                                <div class=\"col-12\">\n");
+      out.write("                                    <button type=\"submit\" class=\"btn btn-primary\">Tạo Thực Đơn</button>\n");
+      out.write("                                </div>\n");
+      out.write("                            </form>\n");
+      out.write("                            ");
+                                }
+                            
+      out.write("\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
-      out.write("\n");
       out.write("        ");
       out.write("\n");
       out.write("\n");
@@ -208,7 +267,7 @@ public final class StaffDashBoard_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("<!-- End Footer -->\n");
       out.write("\n");
       out.write("    </body>\n");
-      out.write("</html>");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

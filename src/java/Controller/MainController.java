@@ -102,6 +102,12 @@ public class MainController extends HttpServlet {
                 case "deletemenu":
                     url="DeleteMenuServlet";
                     break;
+                case "staffdashboard":
+                    url="StaffDashBoard.jsp";
+                    break;
+                case "funcdashboard":
+                    url="StaffDashBoardServlet";
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
