@@ -3,18 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/MenuFoodDetail.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodList.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/MainController.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Cart.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/MenuDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Filter/CheckUserFilter.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetCartServlet.java</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/Menu.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/MenuFood.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/assets/css/Main.css</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetMenuDetailServlet.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/Index.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/MenuDetail.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/TestPage.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodDetail.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/LoginServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Filter/CheckUrlFilter.java</file>
         </group>
     </open-files>
 </project-private>

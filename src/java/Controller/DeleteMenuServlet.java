@@ -5,22 +5,19 @@
  */
 package Controller;
 
-import DAO.CartDAO;
-import DTO.ItemCart;
+import DAO.MenuDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author USER
  */
-public class GetCartServlet extends HttpServlet {
+public class DeleteMenuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,25 +31,12 @@ public class GetCartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         
         try (PrintWriter out = response.getWriter()) {
-          
-           HttpSession session = request.getSession();
-        Object loginedUID = session.getAttribute("LoginedUID");
-        if(loginedUID != null){
-         
-        
-            int userID = 0;
-            userID = Integer.parseInt(loginedUID.toString());
-          
-            CartDAO cart = new CartDAO();
-            ArrayList<ItemCart> list = cart.getAllCart(userID);
-            request.setAttribute("ItemCart", list);
-            request.getRequestDispatcher("Cart.jsp").forward(request, response);
-            }else{
-            request.setAttribute("Error", "Vui lòng đăng nhập để truy cập giỏ hàng");
-            request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
-        }
+            String menuIDString = request.getParameter("menuid");
+            int menuID = Integer.parseInt(menuIDString);
+            MenuDAO menu = new MenuDAO();
+            menu.deleteWeekMenu(menuID);
+            request.getRequestDispatcher("MainController?action=menu").forward(request, response);
         }
     }
 

@@ -39,3 +39,8 @@
     border-width: 0px;
     border-color: white;
 }
+.frame-menu{
+    border-width: 100px;
+    border-style: dashed;
+    border-color: blue;
+}

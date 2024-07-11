@@ -37,63 +37,71 @@ public class GetMenuFoodServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = response.getWriter()) {       
-        HttpSession session = request.getSession();
-        int userID = 0;
-        userID = (int) session.getAttribute("LoginedUID");
-        if( userID > 0 ){
-        MenuDAO Menu = new MenuDAO(); 
-        ArrayList<Menu> list = Menu.getMenuFood(userID);
-        if(list != null){
-        request.setAttribute("MenuFood",list);    
-        request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+
+            Object loginedUID = session.getAttribute("LoginedUID");
+            if (loginedUID != null) {
+                int userID = 0;
+                userID = Integer.parseInt(loginedUID.toString());
+
+                MenuDAO Menu = new MenuDAO();
+                ArrayList<Menu> list = Menu.getMenuFood(userID);
+                if (list != null) {
+                    request.setAttribute("MenuFood", list);
+                    request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
+                }
+
+            }else{
+                request.setAttribute("Error", "Vui lòng đăng nhập để truy cập thực đơn");
+                request.getRequestDispatcher("LoginForm.jsp").forward(request, response);
+            }
         }
-    }
-}
-   }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        }
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        /**
+         * Handles the HTTP <code>GET</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doGet
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            processRequest(request, response);
+        }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        /**
+         * Handles the HTTP <code>POST</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            processRequest(request, response);
+        }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
-
+    }

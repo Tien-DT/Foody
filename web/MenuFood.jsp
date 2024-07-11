@@ -41,22 +41,31 @@
                                 if (m.isMenuStatus()) {
                                     count++;
                     %>
-                    <form action="MainController?action=menudetail" method="POST">
-                        <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
-                        <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
-                            Tên Menu: <%= m.getMenuName()%><br>
-                            Tuần: <%= m.getMenuDate()%><br>
-                            Nhãn Menu: <%= m.getMenuTag()%><br>
-                            Menu Tạo bởi: <%
-                                if (!m.isMenuRole()) {
-                                    out.print("Người dùng");
-                                } else {
-                                    out.print("Nhân viên");
-                                }
-                            %><br>
-                        </button>
-                    </form>
-
+                    <div class="frame-menu" style="border-width: 3px;
+                         border-style: solid;
+                         border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
+                        <form action="MainController?action=menudetail" method="POST">
+                            <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
+                                Tên Menu: <%= m.getMenuName()%><br>
+                                Tuần: <%= m.getMenuDate()%><br>
+                                Nhãn Menu: <%= m.getMenuTag()%><br>
+                                Menu Tạo bởi: <%
+                                    if (!m.isMenuRole()) {
+                                        out.print("Người dùng");
+                                    } else {
+                                        out.print("Nhân viên");
+                                    }
+                                %><br>
+                            </button>
+                        </form>
+                        <form action="MainController?action=deletemenu" method="POST">
+                            <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
+                                Xóa thực đơn
+                            </button>
+                        </form>
+                    </div>
                     <%
                             }
                         }

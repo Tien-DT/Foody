@@ -61,44 +61,6 @@ public class MenuDAO implements Serializable {
         return list;
     }
 
-    public ArrayList<Menu> insertNewMenu(int userID) {
-        ArrayList<Menu> list = new ArrayList<>();
-        Connection cn = null;
-        try {
-            cn = DBUtil.makeConnection();
-            if (cn != null) {
-                String sql = "SELECT m.MenuID,m.FoodID, m.MenuDate, m.UserID,m.MenuName, m.MenuStatus\n"
-                        + "FROM dbo.Menu m\n"
-                        + "INNER JOIN dbo.Food f ON m.FoodID = f.FoodID\n"
-                        + "WHERE m.UserID=?";
-                PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1, userID);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    int menuID = rs.getInt("MenuID");
-                    int foodID = rs.getInt("FoodID");
-                    int menuDate = rs.getInt("MenuDate");
-                    int uID = rs.getInt("UserID");
-                    String menuName = rs.getNString("MenuName");
-                    boolean menuStatus = rs.getBoolean("MenuStatus");
-                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus);
-                    list.add(menu);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (cn != null) {
-                    cn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    }
-
     public String checkWeekMenu(int userID, int menuWeek) {
         Connection cn = null;
         String check = null; // Assume menu does not exist
@@ -213,7 +175,7 @@ public class MenuDAO implements Serializable {
                     int menuDay = rs.getInt("MenuDay");
                     String foodName = rs.getNString("FoodName");
                     int foodID = rs.getInt("FoodID");
-                    MenuDetail menu = new MenuDetail(MenuID, menuName, menuDay, foodName,foodID);
+                    MenuDetail menu = new MenuDetail(MenuID, menuName, menuDay, foodName, foodID);
                     list.add(menu);
                 }
             }
@@ -229,5 +191,33 @@ public class MenuDAO implements Serializable {
             }
         }
         return list;
+    }
+
+    public boolean deleteWeekMenu(int menuID) {
+        Connection cn = null;
+        boolean check = false;
+        int uid = 0;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM dbo.MenuDetail WHERE MenuID =?\n"
+                        + "DELETE FROM dbo.Menu WHERE MenuID =?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menuID);
+                pst.setInt(2, menuID);
+                ResultSet rs = pst.executeQuery();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
     }
 }
