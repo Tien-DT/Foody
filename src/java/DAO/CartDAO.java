@@ -21,55 +21,6 @@ import java.util.HashMap;
  */
 public class CartDAO implements Serializable {
 
-    /*public ArrayList<HashMap<String, Object>> loadCart(int userID) {
-        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
-        Connection cn = null;
-        try {
-            cn = DBUtil.makeConnection();
-            if (cn != null) {
-                String sql = "SELECT c.CartID, u.UserID,\n"
-                        + "       CASE WHEN f.foodID IS NOT NULL THEN f.FoodName END AS FoodName,\n"
-                        + "       CASE WHEN f.foodID IS NOT NULL THEN f.FoodPrice END AS FoodPrice,\n"
-                        + "	   CASE WHEN f.foodID IS NOT NULL THEN f.FoodPrice END AS FoodImage,\n"
-                        + "       CASE WHEN p.productID IS NOT NULL THEN p.ProductName END AS ProductName,\n"
-                        + "       CASE WHEN p.productID IS NOT NULL THEN p.ProductPrice END AS ProductPrice,\n"
-                        + "	   CASE WHEN p.productID IS NOT NULL THEN p.ProductPrice END AS ProductImage\n"
-                        + "FROM Cart c\n"
-                        + "INNER JOIN [User] u ON c.userID = u.userID\n"
-                        + "LEFT JOIN Food f ON f.foodID = c.foodID\n"
-                        + "LEFT JOIN Product p ON p.productID = f.productID\n"
-                        + "WHERE u.UserID =?";
-                PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, userID);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    HashMap<String, Object> item = new HashMap<>();
-                    item.put("CartID", rs.getString("CartID"));
-                    item.put("UserID", rs.getString("UserID"));
-                    item.put("FoodID", rs.getString("foodID"));
-                    item.put("FoodName", rs.getString("FoodName"));
-                    item.put("FoodPrice", rs.getInt("FoodPrice"));
-                    item.put("FoodImage", rs.getString("FoodImage"));
-                    item.put("ProductID", rs.getString("productID"));
-                    item.put("ProductName", rs.getString("ProductName"));
-                    item.put("ProductPrice", rs.getInt("ProductPrice"));
-                    item.put("ProductImage", rs.getString("ProductImage"));
-                    list.add(item);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (cn != null) {
-                    cn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return list;
-    } */
     public int checkCart(int UID, int foodID) {
         Connection cn = null;
         int CartID = 0;
@@ -233,6 +184,35 @@ public class CartDAO implements Serializable {
                 PreparedStatement pst = cn.prepareStatement(sql);
 
                 pst.setInt(1, cartID);
+
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+     public void deleteUserCart(int userID) {
+        Connection cn = null;
+
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM dbo.Cart WHERE userID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+
+                pst.setInt(1, userID);
 
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {

@@ -114,6 +114,12 @@ public class MainController extends HttpServlet {
                 case "searchmenu":
                     url="SearchMenuServlet";
                     break;
+                case "order":
+                    url="OrderFormServlet";
+                    break;
+                case "getorder":
+                    url="GetOrderServlet";
+                    break;
                
             }
             request.getRequestDispatcher(url).forward(request, response);

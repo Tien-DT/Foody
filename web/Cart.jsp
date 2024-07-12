@@ -75,6 +75,9 @@
                                     <td><strong>Tổng Tiền Sản Phẩm: <%=totalPrice %></strong></td>
                                     <td class="text-right"><strong id="totalPrice"><span class="formatted-price"></span></strong></td>
                                     <td></td>
+                                    <%
+                                        request.setAttribute("TotalPrice", totalPrice);
+                                    %>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,9 +88,13 @@
                         <div class="col-sm-12 col-md-6">
                             <a href="MainController?action=foodlist" class="btn btn-block btn-light">Tiếp Tục Mua Hàng</a>
                         </div>
+                        <form action="MainController?action=order" method="POST">
                         <div class="col-sm-12 col-md-6 text-right">
-                            <button class="btn btn-lg btn-block btn-danger text-uppercase">Đặt Hàng</button>
+                            <input type="hidden" name="function" value="orderform">
+                            <input type="hidden" name="totalprice" value="<%=totalPrice %>">
+                            <button class="btn btn-lg btn-block btn-danger text-uppercase " type="submit">Đặt Hàng</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

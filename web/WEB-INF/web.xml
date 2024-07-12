@@ -122,6 +122,14 @@
         <servlet-name>SearchMenuServlet</servlet-name>
         <servlet-class>Controller.SearchMenuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderFormServlet</servlet-name>
+        <servlet-class>Controller.OrderFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetOrderServlet</servlet-name>
+        <servlet-class>Controller.GetOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -213,6 +221,14 @@
     <servlet-mapping>
         <servlet-name>SearchMenuServlet</servlet-name>
         <url-pattern>/SearchMenuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderFormServlet</servlet-name>
+        <url-pattern>/OrderFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetOrderServlet</servlet-name>
+        <url-pattern>/GetOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

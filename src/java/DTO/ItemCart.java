@@ -10,16 +10,17 @@ package DTO;
  * @author USER
  */
 public class ItemCart {
+
     private int CartID;
     private String itemName;
     private int itemPrice;
-    private int itemQuantity; 
+    private int itemQuantity;
     private String itemImage;
 
     public ItemCart() {
     }
 
-    public ItemCart(int CartID,String itemName, int itemPrice, int itemQuantity, String itemImage) {
+    public ItemCart(int CartID, String itemName, int itemPrice, int itemQuantity, String itemImage) {
         this.CartID = CartID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -66,6 +67,11 @@ public class ItemCart {
     public void setItemImage(String itemImage) {
         this.itemImage = itemImage;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        double totalPrice = itemPrice * itemQuantity;
+        return String.format("Tên: %s"+"-----------------"+"Số lượng: %d"+"----------------"+"Giá tiền: %.0f", itemName, itemQuantity, totalPrice);
+    }
+
 }

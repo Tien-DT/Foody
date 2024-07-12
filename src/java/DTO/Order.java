@@ -5,6 +5,8 @@
  */
 package DTO;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author USER
@@ -12,22 +14,24 @@ package DTO;
 public class Order {
 
     private int orderID;
-    private String orderDate;
-    private byte orderStatus;
-    private int orderTotalPrice;
+    private Timestamp orderDate;
+    private int orderStatus;
+    private String orderDetail;
     private int userID;
-    private int foodPrice;
+    private String orderPhone;
+    private String orderAddress;
 
     public Order() {
     }
 
-    public Order(int orderID, String orderDate, byte orderStatus, int orderTotalPrice, int userID, int foodPrice) {
+    public Order(int orderID, Timestamp orderDate, int orderStatus, String orderDetail, int userID, String orderPhone,String orderAddress) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
-        this.orderTotalPrice = orderTotalPrice;
+        this.orderDetail = orderDetail;
         this.userID = userID;
-        this.foodPrice = foodPrice;
+        this.orderPhone = orderPhone;
+        this.orderAddress = orderAddress;
     }
 
     public int getOrderID() {
@@ -38,28 +42,20 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public String getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
 
-    public byte getOrderStatus() {
+    public int getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(byte orderStatus) {
+    public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    public int getOrderTotalPrice() {
-        return orderTotalPrice;
-    }
-
-    public void setOrderTotalPrice(int orderTotalPrice) {
-        this.orderTotalPrice = orderTotalPrice;
     }
 
     public int getUserID() {
@@ -70,11 +66,30 @@ public class Order {
         this.userID = userID;
     }
 
-    public int getFoodPrice() {
-        return foodPrice;
+    public String getOrderDetail() {
+        return orderDetail;
     }
 
-    public void setFoodPrice(int foodPrice) {
-        this.foodPrice = foodPrice;
+    public void setOrderDetail(String orderDetail) {
+        this.orderDetail = orderDetail;
     }
+
+    
+
+    public String getOrderPhone() {
+        return orderPhone;
+    }
+
+    public void setOrderPhone(String orderPhone) {
+        this.orderPhone = orderPhone;
+    }
+
+    public String getOrderAddress() {
+        return orderAddress;
+    }
+
+    public void setOrderAddress(String orderAddress) {
+        this.orderAddress = orderAddress;
+    }
+
 }
