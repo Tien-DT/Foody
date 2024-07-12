@@ -105,7 +105,7 @@ IMG FOR FOOD 332*202
                                                 </form>
 
                                                 <form action="MainController?action=addproductcart" method="POST">
-                                                    <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
+                                                    <input type="hidden" name="productid" value="<%= f.getFoodID()%>">
                                                     <a><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
                                                 </form>
                                                

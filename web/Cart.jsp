@@ -40,19 +40,26 @@
                             <tbody>
                                 <%
                                    ArrayList<ItemCart> listitem = (ArrayList) request.getAttribute("ItemCart");
+                                   int totalPrice =0;
                                     if (listitem != null) {
                                         for (ItemCart i : listitem) {
+                                            totalPrice += i.getItemPrice() * i.getItemQuantity();
                                 %>
                                 <tr>
+                            
                                     <td><img src="<%= i.getItemImage()%>" width="50" height="50" /></td>
                                     <td><%= i.getItemName() %></td>
                                     <td class="text-right"><span class="formatted-price"><%= i.getItemQuantity() %></span></td>
                                     <td class="text-right item-total"><span class="formatted-price"><%= i.getItemPrice() %></span></td>
                                     <td class="text-right">
-                                        <button class="btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <form action="MainController?action=deletecart" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <input type="hidden" name="cartid" value="<%=i.getCartID() %>">
+                                            <p>Xóa</p>
+                                            </button>
+                                        </form>
                                     </td>
+                                   
                                 </tr>
                                 <%
                                         }
@@ -65,7 +72,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><strong>Tổng Tiền Sản Phẩm:</strong></td>
+                                    <td><strong>Tổng Tiền Sản Phẩm: <%=totalPrice %></strong></td>
                                     <td class="text-right"><strong id="totalPrice"><span class="formatted-price"></span></strong></td>
                                     <td></td>
                                 </tr>

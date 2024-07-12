@@ -1,3 +1,4 @@
+<%@page import="DTO.Menu"%>
 <%@page import="DTO.User"%>
 <%@page import="DTO.User"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,6 +24,7 @@
             <h1>Bảng điều khiển cho Nhân Viên</h1>
             <%
                 String function = (String) request.getAttribute("Function");
+                String action =(String) request.getAttribute("Action");
             %>
             <div class="row">
                 <div class="col-12">
@@ -46,16 +48,19 @@
                             </form>
                         </div>
                         <div class="tab-pane fade" id="list-user" role="tabpanel" aria-labelledby="list-messages-list">
+                            <form action="MainController?action=funcdashboard" method="POST">
+                                <button type="submit" name="menu" value="listuser" class="btn btn-primary">Danh Sách Người Dùng</button>
 
+                            </form>
 
                         </div>                 
                     </div>
                 </div>
 
-                <%        
+                <%
                     if (function != null) {
                         if (function.contains("ADDMENU")) {
-                            
+
 
                 %>
                 <form action="MainController?action=funcdashboard" method="POST">
@@ -85,18 +90,107 @@
                         <button type="submit" class="btn btn-primary" name="menu" value="addmenunow">Tạo Thực Đơn</button>
                     </div>
                 </form>
-                <%                                }
-                        function = null;
-                    }
+                <div>
+                    <%                      function = null;          }
+
+                        }
+                        
+
+                        String result = (String) request.getAttribute("Result");
+                        if (result != null) {
+                            out.print(result);
+                        }
+                        request.removeAttribute("Result");
+
+                    %>
                     
-                    String result = (String) request.getAttribute("Result");
-                    if (result != null) {
-                        out.print(result);
-                    }
-                    request.removeAttribute("Result");
+                    <%  if (function != null) {
+                        if (function.contains("LISTUSER")) {
+                        ArrayList<User> listUser = (ArrayList<User>) request.getAttribute("ListAllUser");
 
-                %>
-
+                        if (listUser != null) {
+                        
+                            for (User u : listUser) {
+                                
+                    %>
+                    <div class="frame-menu" style="border-width: 3px;
+                         border-style: solid;
+                         border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
+                     
+                           
+                                ID Người Dùng: <%= u.getUserID() %><br>
+                                Tên Người Dùng: <%= u.getFullName() %><br>
+                                Email Người Dùng: <%= u.getEmail() %><br>
+                                Loại Người Dùng: <%
+                                if(u.isRole()) {
+                                    out.print("Nhân Viên");
+                                }else{
+                                    out.print("Người Dùng");
+                                }
+                                %><br>
+                           
+                        <form action="MainController?action=funcdashboard" method="POST">
+                           <input type="hidden" name="userid" value="<%= u.getUserID() %>">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger" name="menu" value="deletemenunow">
+                                Xóa Người Dùng
+                            </button>
+                        </form>
+                    </div>
+                    <%
+                         }
+                        } 
+function=null; }
+}
+                    %>
+                   
+                </div>
+                   
+                   <%
+                        ArrayList<Menu> list = (ArrayList<Menu>) request.getAttribute("MenuFoodStaff");
+                        
+                        if (list != null && !list.isEmpty()) {
+                            int count = 0;
+                            for (Menu m : list) {
+                                if (m.isMenuStatus()) {
+                                    count++;
+                    %>
+                    <div class="frame-menu" style="border-width: 3px;
+                         border-style: solid;
+                         border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
+                        
+                            <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
+                                Tên Menu: <%= m.getMenuName()%><br>
+                                Tuần: <%= m.getMenuDate()%><br>
+                                Nhãn Menu: <%= m.getMenuTag()%><br>
+                                Menu Tạo bởi: <%
+                                    if (!m.isMenuRole()) {
+                                        out.print("Người dùng");
+                                    } else {
+                                        out.print("Nhân viên");
+                                    }
+                                %><br>
+                            </button>
+                    
+                        <form action="MainController?action=funcdashboard" method="POST">
+                            <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger" name="menu" value="<%=action %>">
+                                Xóa thực đơn
+                            </button>
+                        </form>
+                    </div>
+                    <%
+                            }
+                        }
+                        if (count == 0) {
+                    %>
+                    <li class="list-group-item">Chưa Có Thực Đơn Nào</li>
+                        <%
+                            }
+                        } 
+                        %>
+                        
+                    
             </div>
         </div>
         <%@include file="Footer.jsp" %>

@@ -10,6 +10,7 @@ package DTO;
  * @author USER
  */
 public class ItemCart {
+    private int CartID;
     private String itemName;
     private int itemPrice;
     private int itemQuantity; 
@@ -18,11 +19,20 @@ public class ItemCart {
     public ItemCart() {
     }
 
-    public ItemCart(String itemName, int itemPrice, int itemQuantity, String itemImage) {
+    public ItemCart(int CartID,String itemName, int itemPrice, int itemQuantity, String itemImage) {
+        this.CartID = CartID;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.itemQuantity = itemQuantity;
         this.itemImage = itemImage;
+    }
+
+    public int getCartID() {
+        return CartID;
+    }
+
+    public void setCartID(int CartID) {
+        this.CartID = CartID;
     }
 
     public String getItemName() {

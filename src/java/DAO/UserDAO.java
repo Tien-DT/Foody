@@ -25,18 +25,19 @@ public class UserDAO implements Serializable {
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.User";
+                String sql = "select * from dbo.[User]";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
-                    String userID = rs.getString("UserID");
+                    int userID = rs.getInt("UserID");
+                    String fullName = rs.getNString("FullName");
                     String email = rs.getString("Email");
                     boolean role = rs.getBoolean("Role");
                     String password = rs.getString("Password");
-                    String menuID = rs.getString("MenuID");
-                    String orderID = rs.getString("OrderID");
+
                     boolean userStatus = rs.getBoolean("UserStatus");
-                    User user = new User();
+
+                    User user = new User(userID, fullName, email, role, password, userStatus);
                     list.add(user);
                 }
             }
@@ -115,6 +116,36 @@ public class UserDAO implements Serializable {
         return userID;
     }
 
+    public boolean deleteUserByID(int userID) {
+        boolean check = false;
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "DELETE dbo.[User]\n"
+                        + "WHERE UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next()){
+                    
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+
     public String getFullName(String email) {
         String fullName = null;
         Connection cn = null;
@@ -173,7 +204,7 @@ public class UserDAO implements Serializable {
         return Email;
     }
 
-    public String registerUser(String fullName, String email, String passwordEncoded ) {
+    public String registerUser(String fullName, String email, String passwordEncoded) {
         Connection cn = null;
         String result = null;
         try {

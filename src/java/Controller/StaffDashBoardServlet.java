@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.MenuDAO;
 import DAO.UserDAO;
+import DTO.Menu;
 import DTO.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,6 +37,7 @@ public class StaffDashBoardServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String function = request.getParameter("menu");
+            request.removeAttribute("Action");
             MenuDAO menu = new MenuDAO();
             UserDAO user = new UserDAO();
             switch (function) {
@@ -66,8 +68,38 @@ public class StaffDashBoardServlet extends HttpServlet {
                     }
                     break;
                 case "deletemenu":
-                    request.setAttribute("Function","ADDMENU");
+                    request.setAttribute("Function","DELETEMENU");
+                    request.setAttribute("Action","deletemenunow");
+                    ArrayList<Menu> allMenu = menu.getAllMenuFood();
+                    request.setAttribute("MenuFoodStaff",allMenu);
                     request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                break;
+                case "deletemenunow":                  
+                    int menuID = Integer.parseInt(request.getParameter("menuid"));
+                    boolean checkDeleteMenu = menu.deleteWeekMenu(menuID);
+                    if(!checkDeleteMenu){
+                        request.setAttribute("Result", "Xóa Menu Thành Công");
+                    }else{
+                        request.setAttribute("Result", "Xóa Menu Thất Bại");
+                    }
+                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                break;
+                case "listuser":
+                    request.setAttribute("Function", "LISTUSER");
+                    ArrayList<User> listUser = user.getUser();
+                    request.setAttribute("ListAllUser",listUser);
+                   request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                   break;
+                case "deleteusernow":
+                    String userIDString = request.getParameter("userid");
+                    int userID = Integer.parseInt(userIDString);
+                        
+                   // request.setAttribute("Function", "LISTUSER");
+                    user.deleteUserByID(userID);
+                    request.setAttribute("Result","Xóa Người Dùng Thành Công");
+                   request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                   break;
+                
             }
         }
     }

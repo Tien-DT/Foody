@@ -5,11 +5,9 @@
  */
 package Controller;
 
-import DAO.FoodDAO;
-import DTO.Food;
+import DAO.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author USER
  */
-public class AddFoodToCartServlet extends HttpServlet {
+public class AddProductCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,43 +36,28 @@ public class AddFoodToCartServlet extends HttpServlet {
             String foodIDString = request.getParameter("foodid");
             int foodID = Integer.parseInt(foodIDString);
 
-            // Retrieve food item from database
-            FoodDAO foodDAO = new FoodDAO();
-            ArrayList<Food> foodList = foodDAO.getFoodByID(foodID);
-
-            // Get the session and cart from session
             HttpSession session = request.getSession();
-            ArrayList<Food> cart = (ArrayList<Food>) session.getAttribute("cart");
+            int UID = (int) session.getAttribute("LoginedUID");
 
-            if (cart == null) {
-                cart = new ArrayList<>();
-              
-            }
+            CartDAO cart = new CartDAO();
+            int CartID = cart.checkCart(UID, foodID);
 
-            // Add item to cart if not already present
-            boolean found = false;
-            for (Food food : cart) {
-                if (food.getFoodID() == foodID) {
-                    found = true;
-                    break;
+            if (CartID == 0) {
+                cart.insertCart(UID, foodID);
+            } else {
+                int quantity = cart.checkFoodCart(UID, foodID);
+                if (quantity >= 1) {
+                    int quantityUpdate = quantity + 1;
+                    cart.updateFoodQuantity(UID, foodID, quantityUpdate);
+                } else {
+                    // Nếu không tìm thấy food trong cart thì thêm mới
+                    cart.insertCart(UID, foodID);
                 }
             }
 
-            if (!found && !foodList.isEmpty()) {
-                // Add new food item to cart
-                cart.add(foodList.get(0)); // Assuming foodList contains only one item
-            }
+            // Forward tới servlet hoặc JSP để lấy lại giỏ hàng (cart)
+            request.getRequestDispatcher("GetCartServlet").forward(request, response);
 
-            // Update session with the updated cart
-            session.setAttribute("cart", cart);
-
-            // Forward to Cart.jsp to display cart
-            request.getRequestDispatcher("Cart.jsp").forward(request, response);
-        } catch (NumberFormatException | ServletException | IOException e) {
-            // Handle exceptions appropriately
-            e.printStackTrace();
-            // Optionally redirect to an error page
-            response.sendRedirect("error.jsp");
         }
     }
 

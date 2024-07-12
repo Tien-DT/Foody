@@ -182,20 +182,20 @@ public class MenuDAO implements Serializable {
     public String insertWeekMenuByStaff(String email, int menuWeek, String newMenuName, String menuTag) {
         Connection cn = null;
         String result = null;
-        int userID =0;
+        int userID = 0;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                
+
                 cn.setAutoCommit(false);
-                String sql1 ="Select * from dbo.[User] WHERE Email=?";
+                String sql1 = "Select * from dbo.[User] WHERE Email=?";
                 PreparedStatement pst1 = cn.prepareStatement(sql1);
-                pst1.setString(1,email);
+                pst1.setString(1, email);
                 ResultSet rs = pst1.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     userID = rs.getInt("UserID");
                 }
-                
+
                 String sql2 = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus, MenuRole) VALUES (?, ?, ?, ?, '1','1')";
                 PreparedStatement pst2 = cn.prepareStatement(sql2);
                 pst2.setInt(1, userID);
@@ -310,5 +310,81 @@ public class MenuDAO implements Serializable {
             }
         }
         return check;
+    }
+
+    public ArrayList<Menu> getAllMenuFood() {
+        ArrayList<Menu> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT * \n"
+                        + "FROM dbo.Menu";
+                PreparedStatement pst = cn.prepareStatement(sql);
+
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int menuID = rs.getInt("MenuID");
+                    String menuName = rs.getNString("MenuName");
+                    int menuDate = rs.getInt("MenuDate");
+                    int uID = rs.getInt("UserID");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    String menuTag = rs.getNString("MenuTag");
+                    boolean menuRole = rs.getBoolean("MenuRole");
+                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus, menuTag, menuRole);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+    
+    public ArrayList<Menu> searchMenuFood(int userID, String search) {
+        ArrayList<Menu> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT * \n"
+                        + "FROM dbo.Menu \n"
+                        + "WHERE UserID=? AND MenuName LIKE ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                pst.setNString(2, search);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int menuID = rs.getInt("MenuID");
+                    String menuName = rs.getNString("MenuName");
+                    int menuDate = rs.getInt("MenuDate");
+                    int uID = rs.getInt("UserID");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    String menuTag = rs.getNString("MenuTag");
+                    boolean menuRole = rs.getBoolean("MenuRole");
+                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus, menuTag, menuRole);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }

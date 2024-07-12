@@ -4,14 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/MainController.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Filter/CheckUserFilter.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/GetCartServlet.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DTO/Menu.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/StaffDashBoard.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/MenuFood.jsp</file>
             <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/TestPage.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/web/FoodDetail.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/LoginServlet.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Filter/CheckUrlFilter.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/InsertNewMenuServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/Controller/StaffDashBoardServlet.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/Foody/src/java/DAO/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>

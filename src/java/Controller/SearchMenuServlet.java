@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import DAO.FoodDAO;
-import DTO.Food;
+import DAO.MenuDAO;
+import DTO.Menu;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author USER
  */
-public class AddProductToCartServlet extends HttpServlet {
+public class SearchMenuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,46 +35,20 @@ public class AddProductToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String productIDString = request.getParameter("productid");
-            int productID = Integer.parseInt(productIDString);
-
-            // Retrieve food item from database
-            FoodDAO foodDAO = new FoodDAO();
-            ArrayList<Food> productList = foodDAO.getFoodByID(productID);
-
-            // Get the session and cart from session
             HttpSession session = request.getSession();
-            ArrayList<Food> cart = (ArrayList<Food>) session.getAttribute("cart");
+            Object loginedUID = session.getAttribute("LoginedUID");
+            int userID = Integer.parseInt(loginedUID.toString());
 
-            if (cart == null) {
-                cart = new ArrayList<>();
-              
+            String search = request.getParameter("txtsearch");
+            request.setAttribute("SearchContent", search);
+            if (search != null) {
+                MenuDAO menu = new MenuDAO();
+                ArrayList<Menu> list = menu.searchMenuFood(userID, search);
+                request.setAttribute("MenuFood", list);
+                request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
             }
-
-            // Add item to cart if not already present
-            boolean found = false;
-            for (Food food : cart) {
-                if (food.getFoodID() == productID) {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found && !productList.isEmpty()) {
-                // Add new food item to cart
-                cart.add(productList.get(0)); // Assuming foodList contains only one item
-            }
-
-            // Update session with the updated cart
-            session.setAttribute("cart", cart);
-
-            // Forward to Cart.jsp to display cart
-            request.getRequestDispatcher("Cart.jsp").forward(request, response);
-        } catch (NumberFormatException | ServletException | IOException e) {
-            // Handle exceptions appropriately
-            e.printStackTrace();
-            // Optionally redirect to an error page
-            response.sendRedirect("error.jsp");
         }
     }
 

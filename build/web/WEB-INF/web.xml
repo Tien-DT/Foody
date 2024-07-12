@@ -110,6 +110,18 @@
         <servlet-name>StaffDashBoardServlet</servlet-name>
         <servlet-class>Controller.StaffDashBoardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCartServlet</servlet-name>
+        <servlet-class>Controller.DeleteCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductCartServlet</servlet-name>
+        <servlet-class>Controller.AddProductCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchMenuServlet</servlet-name>
+        <servlet-class>Controller.SearchMenuServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -189,6 +201,18 @@
     <servlet-mapping>
         <servlet-name>StaffDashBoardServlet</servlet-name>
         <url-pattern>/StaffDashBoardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartServlet</servlet-name>
+        <url-pattern>/DeleteCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductCartServlet</servlet-name>
+        <url-pattern>/AddProductCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchMenuServlet</servlet-name>
+        <url-pattern>/SearchMenuServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

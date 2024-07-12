@@ -15,22 +15,18 @@ public class User {
     private String fullName;
     private String email;
     private boolean role;
-    private String password;
-    private int menuID;
-    private int orderID;
+    private String password;  
     private boolean userStatus;
 
     public User() {
     }
 
-    public User(int userID, String fullName, String email, boolean role, String password, int menuID, int orderID, boolean userStatus) {
+    public User(int userID, String fullName, String email, boolean role, String password, boolean userStatus) {
         this.userID = userID;
         this.fullName = fullName;
         this.email = email;
         this.role = role;
         this.password = password;
-        this.menuID = menuID;
-        this.orderID = orderID;
         this.userStatus = userStatus;
     }
 
@@ -73,23 +69,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public int getMenuID() {
-        return menuID;
-    }
-
-    public void setMenuID(int menuID) {
-        this.menuID = menuID;
-    }
-
-    public int getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
-
     public boolean isUserStatus() {
         return userStatus;
     }
