@@ -387,4 +387,34 @@ public class MenuDAO implements Serializable {
         }
         return list;
     }
+    
+    public boolean insertFoodToMenu(int menuID, int menuDate, int foodID) {
+        boolean check = false;
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "INSERT INTO MenuDetail (MenuID,MenuDay,FoodID) VALUES (?, ?, ?)";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menuID);
+                pst.setInt(2, menuDate);
+                pst.setInt(3, foodID);
+                int rowsAffected = pst.executeUpdate();
+                if (rowsAffected > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
 }

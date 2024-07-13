@@ -130,6 +130,18 @@
         <servlet-name>GetOrderServlet</servlet-name>
         <servlet-class>Controller.GetOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>Controller.TestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFoodToMenuServlet</servlet-name>
+        <servlet-class>Controller.AddFoodToMenuServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetMenuDetailAfterAddServlet</servlet-name>
+        <servlet-class>Controller.GetMenuDetailAfterAddServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -229,6 +241,18 @@
     <servlet-mapping>
         <servlet-name>GetOrderServlet</servlet-name>
         <url-pattern>/GetOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFoodToMenuServlet</servlet-name>
+        <url-pattern>/AddFoodToMenuServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMenuDetailAfterAddServlet</servlet-name>
+        <url-pattern>/GetMenuDetailAfterAddServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

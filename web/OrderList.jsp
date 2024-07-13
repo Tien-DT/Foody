@@ -25,6 +25,13 @@
                     <h1 id="title-list">Danh sách đơn hàng</h1>
                 </div>
             </div>
+            <% 
+                String result =(String) request.getAttribute("Result");
+                if(result != null){
+                    %><h3 style="color: green;"><%=result %></h3>   <%
+                        request.removeAttribute("Result");
+                }
+            %>
             <div class="row">
                 <div clas="col-md-12">
                     <form class="form-inline" action="MainController?action=searchmenu" method="POST">

@@ -21,10 +21,13 @@
         <h1>
 
             <h1><%
-                String userID = (String) request.getAttribute("Temp1");
-                out.print(userID);
+                
+                int menuID =(int)session.getAttribute("MenuIDTemp");
+                
+               
+                out.print(menuID);
                 %></h1>
-            <h1>Xin chao</h1>
+            
 
 
         </h1>

@@ -90,7 +90,7 @@
                         </div>
                         <form action="MainController?action=order" method="POST">
                         <div class="col-sm-12 col-md-6 text-right">
-                            <input type="hidden" name="function" value="orderform">
+                            <input type="hidden" name="function" value="ORDERFORM">
                             <input type="hidden" name="totalprice" value="<%=totalPrice %>">
                             <button class="btn btn-lg btn-block btn-danger text-uppercase " type="submit">Đặt Hàng</button>
                         </div>

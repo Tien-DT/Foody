@@ -28,7 +28,7 @@
             <form action="MainController?action=order" method="POST">
             <div class="box-menu box-list">
                 <%
-
+                    //String totalPrice =(String) request.getAttribute("TotalPrice");
                     ArrayList<ItemCart> listitem = (ArrayList) request.getAttribute("OrderItem");
                     int totalPrice = 0;
                     if (listitem != null) {
@@ -37,10 +37,11 @@
 
                 %>
                 <h3 style="margin-top:20px;"><%=i.toString()%></h3>
+                
                 <%                        }
                     }
                 %>
-                
+                <h3 style="color:red;">Tổng Tiền: <%=totalPrice %></h3>
                     <div class="form-group" style="margin-top:20px;">
                         <label for="exampleInputEmail1">Địa chỉ nhận hàng</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ" name="txtaddress">

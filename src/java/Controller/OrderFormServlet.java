@@ -44,10 +44,10 @@ public class OrderFormServlet extends HttpServlet {
             // request.getRequestDispatcher("TestPage.jsp").forward(request, response);
             int userID = Integer.parseInt(loginedUID.toString());
             CartDAO cart = new CartDAO();
-            String totalPrice = request.getParameter("totalprice");
+            String totalPrice = (String) request.getAttribute("TotalPrice");
             
             switch (function) {
-                case "orderform":
+                case "ORDERFORM":
                     ArrayList<ItemCart> list = cart.getAllCart(userID);
                     request.setAttribute("OrderItem", list);
                     request.getRequestDispatcher("OrderForm.jsp").forward(request, response);
@@ -64,13 +64,14 @@ public class OrderFormServlet extends HttpServlet {
                         }
                          
                     }
+                    orderDetail.append("Tổng tiền: "+totalPrice+"</br>");
                         
                     OrderDAO orderDAO = new OrderDAO();
                     String checkAddOrder = orderDAO.insertNewOrder(userID, orderDetail.toString(), orderPhone, orderAddress);
                     if(checkAddOrder != null){
                         request.setAttribute("Result", "Cảm ơn Bạn đã đặt hàng, đơn hàng sẽ được giao cho bạn trong thời gian sớm nhất !");
                         cart.deleteUserCart(userID);
-                        request.getRequestDispatcher("Index.jsp").forward(request, response);
+                        request.getRequestDispatcher("MainController?action=getorder").forward(request, response);
                     }else{
                         request.setAttribute("Result", "Xin lỗi ! Có lỗi xảy ra trong quá trình đặt hàng, vui lòng thử lại.");
                         request.getRequestDispatcher("MenuFood.jsp").forward(request, response);

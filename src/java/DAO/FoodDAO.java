@@ -30,7 +30,7 @@ public class FoodDAO implements Serializable {
                     String FoodStep = rs.getString("FoodStep");
                     int FoodPrice = rs.getInt("FoodPrice");
                     String FoodImage = rs.getString("FoodImage");
-                    Food food = new Food(FoodID, FoodName, FoodStatus,FoodStep, FoodPrice, FoodImage);
+                    Food food = new Food(FoodID, FoodName, FoodStatus, FoodStep, FoodPrice, FoodImage);
                     list.add(food);
                 }
             }
@@ -88,6 +88,6 @@ public class FoodDAO implements Serializable {
         }
         return list;
     }
-    
+
     
 }

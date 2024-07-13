@@ -62,6 +62,7 @@
                              border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
                             <form action="MainController?action=menudetail" method="POST">
                                 <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                              <input type="hidden" name="function" value="VIEWMENU">
                                 <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
                                     Tên Menu: <%= m.getMenuName()%><br>
                                     Tuần: <%= m.getMenuDate()%><br>
@@ -74,6 +75,7 @@
                                         }
                                     %><br>
                                 </button>
+                               
                             </form>
                             <form action="MainController?action=deletemenu" method="POST">
                                 <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">

@@ -81,7 +81,7 @@ IMG FOR FOOD 332*202
                                 %>
                                 <div class="col-lg-4 col-md-6 col-sm-12 menu-item">
                                     <div class="card h-150">
-                                        <a href="assets/img/menu/menu-item-1.png" class="glightbox item-card">
+                                        <a href="#" class="glightbox item-card">
                                             <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
                                         </a>
                                         <div class="card-body d-flex flex-column">
@@ -104,7 +104,7 @@ IMG FOR FOOD 332*202
                                                     <a><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
                                                 </form>
 
-                                                <form action="MainController?action=addproductcart" method="POST">
+                                               <form action="MainController?action=addproductcart" method="POST">
                                                     <input type="hidden" name="productid" value="<%= f.getFoodID()%>">
                                                     <a><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
                                                 </form>

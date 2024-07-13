@@ -17,7 +17,17 @@
 
     <jsp:include page="Header.jsp" />
     <body>
+        
         <div class="container-fluid body-content" style="min-height: 75%!important;">
+            <%
+                String addResult = (String) request.getAttribute("AddResult");
+                if(addResult != null){
+                   %>
+                   <h4 style="color:red;background-color: yellow;width: 610px;" ><%=addResult %></h4>
+            <%
+                
+                }
+        %>
 
             <div class="box-menu col-md-12 box-body">
                 <h1 class="text-center my-4">Thực Đơn Chi Tiết</h1>
@@ -32,6 +42,9 @@
                 </div>
                 <!-- Time Slots -->
                 <%
+                    int flag = 0;
+                  
+                    int menuDay = 0;
                     ArrayList<MenuDetail> monday = new ArrayList<>();
                     ArrayList<MenuDetail> tuesday = new ArrayList<>();
                     ArrayList<MenuDetail> wednesday = new ArrayList<>();
@@ -39,11 +52,17 @@
                     ArrayList<MenuDetail> friday = new ArrayList<>();
                     ArrayList<MenuDetail> saturday = new ArrayList<>();
                     ArrayList<MenuDetail> list = (ArrayList) request.getAttribute("MenuDetail");
+
                     if (list != null) {
                         for (MenuDetail md : list) {
-                            
-                            int menuDay = md.getMenuDay();
 
+                            menuDay = md.getMenuDay();
+                            if (flag == 0) {
+                                int menuIDTemp = md.getMenuID();
+                                ServletContext context = getServletContext();
+                                context.setAttribute("MenuIDTemp", menuIDTemp);
+                                flag = 1;
+                            }
                             switch (menuDay) {
                                 case 2:
                                     monday.add(md);
@@ -76,17 +95,22 @@
                     <div class="col-12 col-md-2">
 
                         <div class="menu-items">
-                            <%            for (MenuDetail menu : monday) {
+                            <%                                for (MenuDetail menu : monday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="2">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
 
                     </div>
@@ -97,8 +121,8 @@
                             %>
                             <div class="menu-item">
                                 <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
@@ -114,8 +138,8 @@
                             %>
                             <div class="menu-item">
                                 <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
@@ -130,8 +154,8 @@
                             %>
                             <div class="menu-item">
                                 <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
@@ -146,8 +170,8 @@
                             %>
                             <div class="menu-item">
                                 <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
@@ -162,8 +186,8 @@
                             %>
                             <div class="menu-item">
                                 <form action="MainController?action=viewfood" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID() %>">
-                                <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%

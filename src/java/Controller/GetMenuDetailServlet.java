@@ -10,6 +10,7 @@ import DTO.MenuDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,12 +35,18 @@ public class GetMenuDetailServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String menuIDString =request.getParameter("menuid");
+            ServletContext context = getServletContext();
+
+            String menuIDString = request.getParameter("menuid");
             int menuID = Integer.parseInt(menuIDString);
-            if(menuID > 0){
+            context.setAttribute("MenuIDTemp", menuID);
+        
+
+            if (menuID > 0) {
+
                 MenuDAO menu = new MenuDAO();
                 ArrayList<MenuDetail> list = menu.getMenuDetail(menuID);
-                request.setAttribute("MenuDetail",list);
+                request.setAttribute("MenuDetail", list);
                 request.getRequestDispatcher("MenuFoodDetail.jsp").forward(request, response);
             }
         }
