@@ -46,6 +46,7 @@
                         </div>
                         <div class="tab-pane fade" id="list-menu" role="tabpanel" aria-labelledby="list-profile-list">
                             <form action="MainController?action=funcdashboard" method="POST">
+                                <button type="submit" name="menu" value="listmenu" class="btn btn-success">Danh sách menu</button>
                                 <button type="submit" name="menu" value="addmenu" class="btn btn-primary">Thêm Menu</button>
                                 <button type="submit" name="menu" value="deletemenu" class="btn btn-danger">Xóa Menu</button>
                             </form>
@@ -59,7 +60,7 @@
                         </div>                 
                     </div>
                 </div>
-
+                <!--FUNCTION ADD MENU BY STAFF -->
                 <%
                     if (function != null) {
                         if (function.contains("ADDMENU")) {
@@ -93,6 +94,9 @@
                         <button type="submit" class="btn btn-primary" name="menu" value="addmenunow">Tạo Thực Đơn</button>
                     </div>
                 </form>
+               
+                
+                 
                 <div>
                     <%                      function = null;
                             }
@@ -106,7 +110,9 @@
                         request.removeAttribute("Result");
 
                     %>
-
+                     <!--FUNCTION ADD MENU BY STAFF -->
+                     
+                   <!--FUNCTION SHOW LIST USER -->
                     <%  if (function != null) {
                             if (function.contains("LISTUSER")) {
                                 ArrayList<User> listUser = (ArrayList<User>) request.getAttribute("ListAllUser");
@@ -114,6 +120,7 @@
                                 if (listUser != null) {
 
                                     for (User u : listUser) {
+                                     
 
                     %>
                     <div class="frame-menu" style="border-width: 3px;
@@ -130,14 +137,33 @@
                             } else {
                                 out.print("Người Dùng");
                             }
-                        %><br>
-
+                        %><br>                    
+                        Trạng Thái: <%if(u.isUserStatus()){
+                               out.print("Hoạt Động");
+                        }else{
+                            out.print("Đã Khóa");
+                        }%>
+                        <%if(u.isUserStatus()){ %>  
                         <form action="MainController?action=funcdashboard" method="POST">
                             <input type="hidden" name="userid" value="<%= u.getUserID()%>">
+                            <input type="hidden" name="menu" value="disableuser">
                             <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger" name="menu" value="deletemenunow">
-                                Xóa Người Dùng
+                                Khóa Người Dùng
                             </button>
                         </form>
+                            <%
+                            }else{
+                            %>
+                            <form action="MainController?action=funcdashboard" method="POST">
+                            <input type="hidden" name="userid" value="<%= u.getUserID()%>">
+                            <input type="hidden" name="menu" value="enableuser">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success" name="menu" value="deletemenunow">
+                               Mở Khóa Người Dùng
+                            </button>
+                        </form>
+                            <%
+                                }
+                            %>
                     </div>
                     <%
                                     }
@@ -148,6 +174,9 @@
                     %>
 
                 </div>
+                    <!--FUNCTION ADD MENU BY STAFF -->
+                    
+                    <!--FUNCTION DELETE MENU BY STAFF -->
 
                 <%
                     ArrayList<Menu> list = (ArrayList<Menu>) request.getAttribute("MenuFoodStaff");
@@ -193,7 +222,45 @@
                             }
                         }
                     %>
+                    <!--FUNCTION DELETE MENU BY STAFF -->
+                    
+                    <!--FUNCTION VIEW MENU BY STAFF -->
+                <%
+                    ArrayList<Menu> listMenu = (ArrayList<Menu>) request.getAttribute("MenuFood");
+                    if (listMenu != null && !listMenu.isEmpty()) {
+                        int count = 0;
+                        for (Menu m : listMenu) {
+                            if (m.isMenuStatus()) {
 
+                %>
+                <div class="frame-menu" style="border-width: 3px;
+                     border-style: solid;
+                     border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
+                    <form action="MainController?action=menudetail" method="POST">
+                        <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
+                        <input type="hidden" name="function" value="VIEWMENU">
+                        <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
+                            ID Người Dùng: <%=m.getUserID() %><br>
+                            Tên Menu: <%= m.getMenuName()%><br>
+                            Tuần: <%= m.getMenuDate()%><br>
+                            Nhãn Menu: <%= m.getMenuTag()%><br>
+                            Menu Tạo bởi: <%
+                                if (!m.isMenuRole()) {
+                                    out.print("Người dùng");
+                                } else {
+                                    out.print("Nhân viên");
+                                }
+                            %><br>
+                        </button>
+
+                    </form>
+                </div>
+                <%
+                            }
+                        }
+                    }
+                %>
+                <!--FUNCTION VIEW MENU BY STAFF -->
 
             </div>
         </div>

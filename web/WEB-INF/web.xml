@@ -142,6 +142,10 @@
         <servlet-name>GetMenuDetailAfterAddServlet</servlet-name>
         <servlet-class>Controller.GetMenuDetailAfterAddServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteFoodMenuServlet</servlet-name>
+        <servlet-class>Controller.DeleteFoodMenuServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -253,6 +257,10 @@
     <servlet-mapping>
         <servlet-name>GetMenuDetailAfterAddServlet</servlet-name>
         <url-pattern>/GetMenuDetailAfterAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFoodMenuServlet</servlet-name>
+        <url-pattern>/DeleteFoodMenuServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

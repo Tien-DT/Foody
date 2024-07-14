@@ -99,6 +99,35 @@ public class StaffDashBoardServlet extends HttpServlet {
                     request.setAttribute("Result","Xóa Người Dùng Thành Công");
                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                    break;
+                   
+                 case "listmenu":
+                    ArrayList<Menu> listMenu = menu.getMenuFoodByStaff();
+                    request.setAttribute("MenuFood",listMenu);
+                   request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                   break;
+                   
+                 case "disableuser":
+                     int userIDToDelete = Integer.parseInt(request.getParameter("userid"));
+                     boolean checkUserDisble = user.disableUser(userIDToDelete);
+                     if(checkUserDisble){
+                     ArrayList<User> listUserAfter = user.getUser();
+                    request.setAttribute("ListAllUser",listUserAfter);
+                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                     }else{
+                         request.getRequestDispatcher("Index.jsp").forward(request, response);
+                     }
+                     break;
+                 case "enableuser":
+                     int userIDToEnable = Integer.parseInt(request.getParameter("userid"));
+                     boolean checkUserEnable = user.enableUser(userIDToEnable);
+                     if(checkUserEnable){
+                     ArrayList<User> listUserAfter = user.getUser();
+                    request.setAttribute("ListAllUser",listUserAfter);
+                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                     }else{
+                         request.getRequestDispatcher("Index.jsp").forward(request, response);
+                     }
+                     break;
                 
             }
         }

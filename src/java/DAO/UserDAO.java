@@ -64,7 +64,7 @@ public class UserDAO implements Serializable {
             if (cn != null) {
 
                 String sql = "select Email, Password from dbo.[User]\n"
-                        + "where Email=? and Password=? COLLATE Latin1_General_CS_AS";
+                        + "where Email=? and Password=? COLLATE Latin1_General_CS_AS and UserStatus='1'";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, email);
                 pst.setString(2, passwordDecoded);
@@ -254,4 +254,63 @@ public class UserDAO implements Serializable {
         return result;
     }
 
+    public boolean disableUser(int userIDToDelete) {
+        Connection cn = null;
+        boolean check = false;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.[User]\n"
+                        + "SET UserStatus ='0' \n"
+                        + "WHERE UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1,userIDToDelete);
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+    
+    public boolean enableUser(int userIDToEnable) {
+        Connection cn = null;
+        boolean check = false;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.[User]\n"
+                        + "SET UserStatus ='1' \n"
+                        + "WHERE UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1,userIDToEnable);
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
 }

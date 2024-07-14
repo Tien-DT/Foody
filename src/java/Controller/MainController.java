@@ -120,8 +120,11 @@ public class MainController extends HttpServlet {
                 case "getorder":
                     url="GetOrderServlet";
                     break;
-                case"getmenuafteradd":
+                case "getmenuafteradd":
                     url="GetMenuDetailAfterAddServlet";
+                    break;
+                case "deletefoodmenu":
+                    url="DeleteFoodMenuServlet";
                     break;
                
             }

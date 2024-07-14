@@ -97,10 +97,15 @@
                         <div class="menu-items">
                             <%                                for (MenuDetail menu : monday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="2">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
@@ -120,14 +125,19 @@
                             <%            for (MenuDetail menu : tuesday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
-                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <button type="submit" class="btn btn-light" > <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="3">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
                     </div>
 
@@ -137,14 +147,19 @@
                             <%            for (MenuDetail menu : wednesday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
-                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="4">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
                     </div>
                     <!-- Thứ Năm -->
@@ -153,14 +168,19 @@
                             <%            for (MenuDetail menu : thursday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;"> 
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
-                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="5">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
                     </div>
                     <!-- Thứ Sáu -->
@@ -169,14 +189,19 @@
                             <%            for (MenuDetail menu : friday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
-                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="6">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
                     </div>
                     <!-- Thứ Bảy -->
@@ -185,14 +210,19 @@
                             <%            for (MenuDetail menu : saturday) {
                             %>
                             <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
-                                    <button type="submit"> <h4><%= menu.getFoodName()%></h4></button>
+                                    <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
                                 </form>
                             </div>
                             <%
                                 }
                             %>
+                            <form action="MainController?action=addfoodtomenu" method="POST">
+                                <input type="hidden" name="menudate" value="7">
+                             
+                                <button type="submit" style="margin-top:20px;" class="btn btn-primary"><h4>Thêm món ăn</h4></button>
+                            </form>
                         </div>
                     </div>
                 </div>

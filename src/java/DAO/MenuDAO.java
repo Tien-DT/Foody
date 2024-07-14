@@ -60,6 +60,42 @@ public class MenuDAO implements Serializable {
         }
         return list;
     }
+    
+    public ArrayList<Menu> getMenuFoodByStaff() {
+        ArrayList<Menu> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "SELECT * \n"
+                        + "FROM dbo.Menu \n";                      
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int menuID = rs.getInt("MenuID");
+                    String menuName = rs.getNString("MenuName");
+                    int menuDate = rs.getInt("MenuDate");
+                    int uID = rs.getInt("UserID");
+                    boolean menuStatus = rs.getBoolean("MenuStatus");
+                    String menuTag = rs.getNString("MenuTag");
+                    boolean menuRole = rs.getBoolean("MenuRole");
+                    Menu menu = new Menu(menuID, menuDate, uID, menuName, menuStatus, menuTag, menuRole);
+                    list.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 
     public String checkWeekMenu(int userID, int menuWeek) {
         Connection cn = null;
@@ -312,6 +348,37 @@ public class MenuDAO implements Serializable {
         return check;
     }
 
+    public boolean deleteFoodInMenu(int menuID, int menuDate, int foodID) {
+        Connection cn = null;
+        boolean check = false;
+        int uid = 0;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM dbo.MenuDetail WHERE MenuID =? AND MenuDay=? AND FoodID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, menuID);
+                pst.setInt(2, menuDate);
+                pst.setInt(3, foodID);
+                int rowsAffected = pst.executeUpdate();
+                if (rowsAffected > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+
     public ArrayList<Menu> getAllMenuFood() {
         ArrayList<Menu> list = new ArrayList<>();
         Connection cn = null;
@@ -348,7 +415,7 @@ public class MenuDAO implements Serializable {
         }
         return list;
     }
-    
+
     public ArrayList<Menu> searchMenuFood(int userID, String search) {
         ArrayList<Menu> list = new ArrayList<>();
         Connection cn = null;
@@ -387,7 +454,7 @@ public class MenuDAO implements Serializable {
         }
         return list;
     }
-    
+
     public boolean insertFoodToMenu(int menuID, int menuDate, int foodID) {
         boolean check = false;
         Connection cn = null;
