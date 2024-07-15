@@ -123,10 +123,14 @@ public class MainController extends HttpServlet {
                 case "getmenuafteradd":
                     url="GetMenuDetailAfterAddServlet";
                     break;
+                case "cancelorder":
+                    url="CancelOrderServlet";
+                    break;
                 case "deletefoodmenu":
                     url="DeleteFoodMenuServlet";
-                    break;
-               
+                    break;   
+                 
+
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

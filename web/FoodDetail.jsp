@@ -1,9 +1,3 @@
-<%-- 
-    Document   : FoodDetail
-    Created on : Jul 9, 2024, 7:01:03 PM
-    Author     : USER
---%>
-
 <%@page import="DTO.Food"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,7 +24,7 @@
                     <h4>Giá:<%= f.getFoodPrice()%> VND</h4>
                     <div>
                         <button class="btn btn-primary" onclick="">Mua Món Ăn</button>
-                        <button class="btn btn-secondary" onclick="">Mua Nguyên Liệu</button>
+                       <!-- <button class="btn btn-secondary" onclick="">Mua Nguyên Liệu</button> -->
                         <form action="MainController?action=addfoodtomenu" method="POST">
                                     <input type="hidden" name="foodid"value="<%= f.getFoodID() %>">
                                 <button type="submit" class="btn btn-success" id="openFormButton" >Thêm Vào Menu</button>

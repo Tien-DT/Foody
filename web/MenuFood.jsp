@@ -1,9 +1,3 @@
-<%-- 
-    Document   : MenuFood
-    Created on : Jul 3, 2024, 9:33:35 AM
-    Author     : USER
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Menu"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

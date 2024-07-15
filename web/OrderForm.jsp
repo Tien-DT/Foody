@@ -40,11 +40,13 @@
                 
                 <%                        }
                     }
+                        ServletContext context = request.getServletContext();
+                        context.setAttribute("TotalPrice", totalPrice);
                 %>
-                <h3 style="color:red;">Tổng Tiền: <%=totalPrice %></h3>
+                <h3 style="color:red;">Tổng Tiền: <%=totalPrice %>VNĐ</h3>
                     <div class="form-group" style="margin-top:20px;">
-                        <label for="exampleInputEmail1">Địa chỉ nhận hàng</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ" name="txtaddress">
+                        <label for="exampleInputEmail1">Tên Người Nhận-Địa chỉ nhận hàng</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập Tên Người Nhận - Địa Chỉ" name="txtaddress">
                     </div>
                     
                     <div class="form-group" style="margin-top:20px;">

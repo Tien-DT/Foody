@@ -26,6 +26,7 @@
                 </div>
             </div>
             <% 
+                
                 String result =(String) request.getAttribute("Result");
                 if(result != null){
                     %><h3 style="color: green;"><%=result %></h3>   <%
@@ -33,17 +34,6 @@
                 }
             %>
             <div class="row">
-                <div clas="col-md-12">
-                    <form class="form-inline" action="MainController?action=searchmenu" method="POST">
-                        <div class="input-group">
-                            <input type="text" class="form-control rounded" placeholder="<%
-                                                          
-                              
-                                   %>" aria-label="Search" aria-describedby="search-addon" name="txtsearch" />
-                            <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Tìm Kiếm</button>
-                        </div>
-                    </form>
-                </div>
                 <div class="box-menu box-list col-md-12">
                     <ul class="list-group row">
                         <%
@@ -83,8 +73,8 @@
                                  </div>   
                            
                                 <%if(o.getOrderStatus()==1){ %>
-                            <form action="MainController?action=deletemenu" method="POST">
-                                <input type="hidden" name="menuid" value="">
+                            <form action="MainController?action=cancelorder" method="POST">
+                                <input type="hidden" name="orderid" value="<%=o.getOrderID()%>">
                                 <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
                                    Hủy Đơn Hàng: <%=o.getOrderID()%>
                                 </button>

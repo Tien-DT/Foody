@@ -5,12 +5,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+          <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
         <link href="assets/css/Cart.css" rel="stylesheet">
         <link href="assets/css/Footer.css" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
         <title>Giỏ Hàng</title>
     </head>
     <body>
@@ -21,7 +27,7 @@
             <h1 class="jumbotron-heading cart">Giỏ Hàng</h1>
         </div>  
 
-        <div class="container mb-4 cart-frame">
+        <div class="container mb-4 cart-frame" style="min-height: 65%;">
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -85,16 +91,18 @@
                 </div>
                 <div class="col mb-2">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-6" style="max-width: 600px;">
                             <a href="MainController?action=foodlist" class="btn btn-block btn-light">Tiếp Tục Mua Hàng</a>
                         </div>
-                        <form action="MainController?action=order" method="POST">
+                        
                         <div class="col-sm-12 col-md-6 text-right">
+                            <form action="MainController?action=order" method="POST">
                             <input type="hidden" name="function" value="ORDERFORM">
                             <input type="hidden" name="totalprice" value="<%=totalPrice %>">
                             <button class="btn btn-lg btn-block btn-danger text-uppercase " type="submit">Đặt Hàng</button>
+                            </form>
                         </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>

@@ -1,10 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : May 30, 2024, 5:48:34 PM
-    Author     : USER
-IMG FOR FOOD 332*202
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="DTO.Food"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -31,41 +24,7 @@ IMG FOR FOOD 332*202
     <body>
         <jsp:include page="Header.jsp" />
         <section class="row filter-food">
-            <div class="col-md-2">
-                <!-- Filter For List -->
-                <h1 id="filter">Filter</h1>
-                <form>
-                    <div class="form-group">
-                        <label for="min-price">Giá Tối Thiểu:</label>
-                        <input type="number" class="form-control" id="min-price" name="min-price">
-                    </div>
-                    <div class="form-group">
-                        <label for="max-price">Giá Tối Đa:</label>
-                        <input type="number" class="form-control" id="max-price" name="max-price">
-                    </div>
-                    <div class="form-group">
-                        <label for="food-type">Loại món ăn:</label>
-                        <select class="form-control" id="food-type" name="food-type">
-                            <option value="">Tất cả</option>
-                            <option value="nước">Nước</option>
-                            <option value="khô">Khô</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="sort-by">Phân loại theo:</label>
-                        <select class="form-control" id="sort-by" name="sort-by">
-                            <option value="price-asc">Giá tăng dần</option>
-                            <option value="price-desc">Giá giảm dần</option>
-                            <option value="rating-asc">Đánh giá tăng dần</option>
-                            <option value="rating-desc">Đánh giá giảm dần</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-primary button-filter" onclick="filterMenu()">Lọc</button>
-                </form>
-            </div>
-
-
-            <section id="menu" class="menu col-md-10">
+            <section id="menu" class="menu col-md-12">
                 <div class="container" data-aos="fade-up">
                     <div class="section-header">
                         <p>Danh Sách Món Ăn</p>
@@ -104,10 +63,10 @@ IMG FOR FOOD 332*202
                                                     <a><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
                                                 </form>
 
-                                               <form action="MainController?action=addproductcart" method="POST">
+                                             <!--  <form action="MainController?action=addproductcart" method="POST">
                                                     <input type="hidden" name="productid" value="<%= f.getFoodID()%>">
                                                     <a><button class="btn btn-primary button-card">Mua Nguyên Liệu</button></a>
-                                                </form>
+                                                </form> -->
                                                
                                             </div>
                                         </div>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : LoginForm
-    Created on : Jun 19, 2024, 9:35:26 AM
-    Author     : USER
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>

@@ -1,5 +1,6 @@
+<%@page import="DTO.Order"%>
+<%@page import="DTO.Food"%>
 <%@page import="DTO.Menu"%>
-<%@page import="DTO.User"%>
 <%@page import="DTO.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="javax.servlet.http.HttpSession"%>
@@ -22,15 +23,19 @@
         <%@include file="Header.jsp" %> 
         <div class="container body-content" style="margin-top: 100px; min-height: 75%;">
             <h1>Bảng điều khiển cho Nhân Viên</h1>
-            <%
+            <%  int role = (int) session.getAttribute("Role");
+                if (role == 0) {
+                    request.getRequestDispatcher("Index").forward(request, response);
+                }
                 String function = (String) request.getAttribute("Function");
                 String action = (String) request.getAttribute("Action");
+
             %>
             <div class="row">
                 <div class="col-12">
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active" id="list-order-list" data-bs-toggle="list" href="#list-order" role="tab" aria-controls="home">Quản Lý Đơn hàng</a>
-                        <a class="list-group-item list-group-item-action" id="list-menu-list" data-bs-toggle="list" href="#list-menu" role="tab" aria-controls="profile">Quản Lý Menu</a>
+                        <a class="list-group-item list-group-item-action" id="list-menu-list" data-bs-toggle="list" href="#list-menu" role="tab" aria-controls="profile">Quản Lý Menu và Món Ăn</a>
                         <a class="list-group-item list-group-item-action" id="list-user-list" data-bs-toggle="list" href="#list-user" role="tab" aria-controls="messages">Quản Lý Người dùng</a>
 
                     </div>
@@ -39,8 +44,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-order" role="tabpanel" aria-labelledby="list-home-list">
                             <form action="MainController?action=funcdashboard" method="POST">
-                                <button type="submit" name="menu" value="listorder" class="btn btn-primary">Danh Sách Đơn Hàng</button>
-                                <button type="submit" name="menu" value="statusorder" class="btn btn-danger">Chuyển trạng thái đơn hàng</button>
+                                <button type="submit" name="menu" value="listorder" class="btn btn-primary">Danh Sách Đơn Hàng</button> 
                             </form>
 
                         </div>
@@ -49,6 +53,21 @@
                                 <button type="submit" name="menu" value="listmenu" class="btn btn-success">Danh sách menu</button>
                                 <button type="submit" name="menu" value="addmenu" class="btn btn-primary">Thêm Menu</button>
                                 <button type="submit" name="menu" value="deletemenu" class="btn btn-danger">Xóa Menu</button>
+                                <button type="submit" name="menu" value="addfoodlist" class="btn btn-info">Thêm món ăn vào danh sách</button>                             
+                                
+                                <div style="margin-top: 10px;">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control rounded" placeholder="<%                                String searchContent = (String) request.getAttribute("SearchContent");
+                                                if (searchContent != null) {
+                                                    out.print(searchContent);
+                                                } else {
+                                                    out.print("Nhập Mã đơn hàng, số điện thoại, email, tên người nhận cần tìm");
+                                                }
+                                                   %>" aria-label="Search" aria-describedby="search-addon" name="txtsearchorder" />
+                                            <input type="hidden" name="menu" value="searchorder">
+                                            <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>Tìm Kiếm</button>
+                                        </div>
+                                </div>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="list-user" role="tabpanel" aria-labelledby="list-messages-list">
@@ -59,10 +78,111 @@
 
                         </div>                 
                     </div>
+
+                    <%                       String resultAll = (String) request.getAttribute("ResultAll");
+                        if (resultAll != null) {
+                    %><h2 style="color: green;"><%=resultAll%></h2><%
+                                }
+                                request.removeAttribute("ResultAll");
+                    %>
                 </div>
-                <!--FUNCTION ADD MENU BY STAFF -->
+                <!--FUNCTION LIST ORDER BY STAFF -->
+
+                <%                            String statusColor = null;
+                    String status = null;
+                    ArrayList<Order> listOrder = (ArrayList<Order>) request.getAttribute("ListOrder");
+                    if (listOrder != null && !listOrder.isEmpty()) {
+                        for (Order o : listOrder) {
+                            if (o.getOrderStatus() == 1) {
+                                status = "Đang chờ Nhân Viên xác nhận";
+                                statusColor = "btn btn-secondary";
+                            } else if (o.getOrderStatus() == 2) {
+                                status = "Nhân Viên đang gói hàng";
+                                statusColor = "btn btn-info";
+                            } else if (o.getOrderStatus() == 3) {
+                                status = "Đơn hàng đang được vận chuyển";
+                                statusColor = "btn btn-warning";
+                            } else if (o.getOrderStatus() == 4) {
+                                status = "Giao hàng thành công";
+                                statusColor = "btn btn-success";
+                            }
+
+                %>
+                <div class="frame-menu" style="border-width: 3px;
+                     border-style: solid;
+                     border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
+                    <div style="margin:10px;">
+                        Mã đơn hàng: <%=o.getOrderID()%><br> 
+                        Ngày Đặt Hàng: <%=o.getOrderDate()%><br>
+                        Nội Dung:<br> <%=o.getOrderDetail()%><br>
+                        Số điện thoại nhận hàng: <%=o.getOrderPhone()%><br>
+                        Địa chỉ nhận hàng: <%=o.getOrderAddress()%><br>
+                        <div class="<%=statusColor%>">
+                            <%=status%>
+                        </div>
+                    </div>
+                </div>   
+
+                <%if (o.getOrderStatus() == 1) {%>
+                <form action="MainController?action=funcdashboard" method="POST">
+                    <input type="hidden" name="orderstatus" value="2">
+                    <input type="hidden" name="orderid" value="<%=o.getOrderID()%>">
+                    <input type="hidden" name="menu" value="updateorder">
+                    <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
+                        Xác nhận Đơn Hàng và đóng gói: <%=o.getOrderID()%>
+                    </button>
+                </form>
+                <form action="MainController?action=funcdashboard" method="POST">
+                    <input type="hidden" name="orderstatus" value="2">
+                    <input type="hidden" name="orderid" value="<%=o.getOrderID()%>">
+                    <input type="hidden" name="menu" value="cancelorder">
+                    <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
+                        Hủy Đơn Hàng: <%=o.getOrderID()%>
+                    </button>
+                </form>
+
+
                 <%
-                    if (function != null) {
+                } else if (o.getOrderStatus() == 2) {
+                %>
+                <form action="MainController?action=funcdashboard" method="POST">
+                    <input type="hidden" name="orderstatus" value="3">
+                    <input type="hidden" name="orderid" value="<%=o.getOrderID()%>">
+                    <input type="hidden" name="menu" value="updateorder">
+                    <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
+                        Đang Vận Chuyển: <%=o.getOrderID()%>
+                    </button>
+                </form>
+
+
+                <%
+
+                } else if (o.getOrderStatus() == 3) {
+                %>
+                <form action="MainController?action=funcdashboard" method="POST">
+                    <input type="hidden" name="orderstatus" value="4">
+                    <input type="hidden" name="orderid" value="<%=o.getOrderID()%>">
+                    <input type="hidden" name="menu" value="updateorder">
+                    <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-danger">
+                        Giao hàng thành công: <%=o.getOrderID()%>
+                    </button>
+                </form>
+
+
+                <%
+
+                            }
+
+                        }
+
+                    }
+
+                %>
+
+                <!--FUNCTION LIST ORDER BY STAFF -->
+
+                <!--FUNCTION ADD MENU FORM BY STAFF -->
+                <%                    if (function != null) {
                         if (function.contains("ADDMENU")) {
 
 
@@ -94,25 +214,18 @@
                         <button type="submit" class="btn btn-primary" name="menu" value="addmenunow">Tạo Thực Đơn</button>
                     </div>
                 </form>
-               
-                
-                 
+
+
+
                 <div>
                     <%                      function = null;
                             }
 
                         }
-
-                        String result = (String) request.getAttribute("Result");
-                        if (result != null) {
-                            out.print(result);
-                        }
-                        request.removeAttribute("Result");
-
                     %>
-                     <!--FUNCTION ADD MENU BY STAFF -->
-                     
-                   <!--FUNCTION SHOW LIST USER -->
+                    <!--FUNCTION ADD MENU FORM BY STAFF -->
+
+                    <!--FUNCTION SHOW LIST USER -->
                     <%  if (function != null) {
                             if (function.contains("LISTUSER")) {
                                 ArrayList<User> listUser = (ArrayList<User>) request.getAttribute("ListAllUser");
@@ -120,7 +233,7 @@
                                 if (listUser != null) {
 
                                     for (User u : listUser) {
-                                     
+
 
                     %>
                     <div class="frame-menu" style="border-width: 3px;
@@ -138,12 +251,12 @@
                                 out.print("Người Dùng");
                             }
                         %><br>                    
-                        Trạng Thái: <%if(u.isUserStatus()){
-                               out.print("Hoạt Động");
-                        }else{
-                            out.print("Đã Khóa");
-                        }%>
-                        <%if(u.isUserStatus()){ %>  
+                        Trạng Thái: <%if (u.isUserStatus()) {
+                                out.print("Hoạt Động");
+                            } else {
+                                out.print("Đã Khóa");
+                            }%>
+                        <%if (u.isUserStatus()) {%>  
                         <form action="MainController?action=funcdashboard" method="POST">
                             <input type="hidden" name="userid" value="<%= u.getUserID()%>">
                             <input type="hidden" name="menu" value="disableuser">
@@ -151,19 +264,27 @@
                                 Khóa Người Dùng
                             </button>
                         </form>
-                            <%
-                            }else{
-                            %>
-                            <form action="MainController?action=funcdashboard" method="POST">
+                        <%
+                        } else {
+                        %>
+                        <form action="MainController?action=funcdashboard" method="POST">
                             <input type="hidden" name="userid" value="<%= u.getUserID()%>">
                             <input type="hidden" name="menu" value="enableuser">
                             <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success" name="menu" value="deletemenunow">
-                               Mở Khóa Người Dùng
+                                Mở Khóa Người Dùng
                             </button>
                         </form>
-                            <%
-                                }
-                            %>
+                        <%
+                            }
+                        %>
+                      
+                        <form action="MainController?action=funcdashboard" method="POST">
+                            <input type="hidden" name="userid" value="<%= u.getUserID()%>">
+                            <input type="hidden" name="menu" value="setstaff">
+                            <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-primary">
+                                Đặt tài khoản thành nhân viên
+                            </button>
+                        </form>
                     </div>
                     <%
                                     }
@@ -174,9 +295,9 @@
                     %>
 
                 </div>
-                    <!--FUNCTION ADD MENU BY STAFF -->
-                    
-                    <!--FUNCTION DELETE MENU BY STAFF -->
+                <!--FUNCTION ADD MENU BY STAFF -->
+
+                <!--FUNCTION DELETE MENU BY STAFF -->
 
                 <%
                     ArrayList<Menu> list = (ArrayList<Menu>) request.getAttribute("MenuFoodStaff");
@@ -222,9 +343,9 @@
                             }
                         }
                     %>
-                    <!--FUNCTION DELETE MENU BY STAFF -->
-                    
-                    <!--FUNCTION VIEW MENU BY STAFF -->
+                <!--FUNCTION DELETE MENU BY STAFF -->
+
+                <!--FUNCTION VIEW MENU BY STAFF -->
                 <%
                     ArrayList<Menu> listMenu = (ArrayList<Menu>) request.getAttribute("MenuFood");
                     if (listMenu != null && !listMenu.isEmpty()) {
@@ -240,7 +361,7 @@
                         <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
                         <input type="hidden" name="function" value="VIEWMENU">
                         <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
-                            ID Người Dùng: <%=m.getUserID() %><br>
+                            ID Người Dùng: <%=m.getUserID()%><br>
                             Tên Menu: <%= m.getMenuName()%><br>
                             Tuần: <%= m.getMenuDate()%><br>
                             Nhãn Menu: <%= m.getMenuTag()%><br>
@@ -262,7 +383,53 @@
                 %>
                 <!--FUNCTION VIEW MENU BY STAFF -->
 
+                <!--FUNCTION ADD FOODLIST BY STAFF -->
+                <%
+                    if (function != null) {
+                        if (function.contains("ADDFOODLISTFORM")) {
+
+
+                %>
+                <form action="MainController?action=funcdashboard" method="POST">
+
+                    <div class="mb-3">
+                        <label for="Tên Thực Đơn" class="form-label">Tên Món Ăn</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" name="txtname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Tên Thực Đơn" class="form-label">Nội Dung</label>
+                        <textarea class="form-control" id="formGroupExampleInput" name="txtfoodstep" rows="10" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Tên Thực Đơn" class="form-label">Giá món ăn</label>
+                        <input type="number" class="form-control" id="formGroupExampleInput" name="txtprice" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Tên Nhãn" class="form-label">Đường link đến thư mục chứa hình ảnh món ăn</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" name="txtpath" placeholder="assets\img\ten_mon_an.jpeg" required>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" name="menu" value="addfoodlistnow">Thêm Món Ăn</button>
+                    </div>
+                </form>
+                <%                      function = null;
+                        }
+
+                    }
+
+                    String resultFoodList = (String) request.getAttribute("Result");
+                    if (resultFoodList != null) {
+                        out.print(resultFoodList);
+                    }
+                    request.removeAttribute("Result");
+
+                %>
+                <!--FUNCTION ADD FOODLIST BY STAFF -->
+
             </div>
+
         </div>
         <%@include file="Footer.jsp" %>
     </body>

@@ -51,7 +51,9 @@ public class LoginServlet extends HttpServlet {
                 int userID = userDAO.getUserID(email);               
                 session.setAttribute("LoginedUID", userID);
                 String fullName = userDAO.getFullName(Email);
-                session.setAttribute("LoginedUser", fullName);     
+                session.setAttribute("LoginedUser", fullName);  
+                int userRole = userDAO.isStaff(userID);
+                session.setAttribute("Role", userRole);
                 request.removeAttribute("PasswordDecoded");
                 request.getRequestDispatcher("Index.jsp").forward(request, response);
             } else {

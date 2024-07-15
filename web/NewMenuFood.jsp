@@ -1,9 +1,3 @@
-<%-- 
-    Document   : NewMenuFood
-    Created on : Jul 4, 2024, 6:35:16 PM
-    Author     : USER
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Footer
-    Created on : Jun 24, 2024, 4:11:47 PM
-    Author     : USER
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="assets/css/Footer.css" rel="stylesheet">
 <!-- ======= Footer ======= -->
@@ -41,8 +35,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12 footer-links">
                 <h4>Theo Dõi</h4>
                 <div class="social-links d-flex">
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/tuitentien007" class="facebook"><i class="bi bi-facebook"></i></a>
                 </div>
             </div>
         </div>

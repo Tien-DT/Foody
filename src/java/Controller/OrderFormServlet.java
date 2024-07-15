@@ -12,6 +12,7 @@ import DTO.ItemCart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,12 +41,13 @@ public class OrderFormServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Object loginedUID = session.getAttribute("LoginedUID");
             String function = request.getParameter("function");
+            // String totalPrice = request.getParameter("totalprice");
             //request.setAttribute("Temp1", function);
             // request.getRequestDispatcher("TestPage.jsp").forward(request, response);
             int userID = Integer.parseInt(loginedUID.toString());
             CartDAO cart = new CartDAO();
-            String totalPrice = (String) request.getAttribute("TotalPrice");
-            
+            //String totalPrice = (String) request.getAttribute("TotalPrice");
+
             switch (function) {
                 case "ORDERFORM":
                     ArrayList<ItemCart> list = cart.getAllCart(userID);
@@ -60,23 +62,25 @@ public class OrderFormServlet extends HttpServlet {
 
                     if (listOrder != null && !listOrder.isEmpty()) {
                         for (ItemCart itemCart : listOrder) {
-                            orderDetail.append(itemCart.toString()).append("<br>");                        
+                            orderDetail.append(itemCart.toString()).append("<br>");
                         }
-                         
+
                     }
-                    orderDetail.append("Tổng tiền: "+totalPrice+"</br>");
-                        
+                    ServletContext context = request.getServletContext();
+                    int totalPrice = (int) context.getAttribute("TotalPrice");
+                    orderDetail.append("Tổng tiền: ").append(totalPrice).append("-VNĐ").append("</br>");
+
                     OrderDAO orderDAO = new OrderDAO();
                     String checkAddOrder = orderDAO.insertNewOrder(userID, orderDetail.toString(), orderPhone, orderAddress);
-                    if(checkAddOrder != null){
+                    if (checkAddOrder != null) {
                         request.setAttribute("Result", "Cảm ơn Bạn đã đặt hàng, đơn hàng sẽ được giao cho bạn trong thời gian sớm nhất !");
                         cart.deleteUserCart(userID);
                         request.getRequestDispatcher("MainController?action=getorder").forward(request, response);
-                    }else{
+                    } else {
                         request.setAttribute("Result", "Xin lỗi ! Có lỗi xảy ra trong quá trình đặt hàng, vui lòng thử lại.");
                         request.getRequestDispatcher("MenuFood.jsp").forward(request, response);
                     }
-                   
+
                     break;
             }
         }

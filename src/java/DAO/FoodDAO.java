@@ -89,5 +89,78 @@ public class FoodDAO implements Serializable {
         return list;
     }
 
+    public boolean insertFoodList(String foodName, String foodStep, int foodPrice, String foodImage) {
+        Connection cn = null;
+        boolean check = false;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                cn.setAutoCommit(false);
+
+                String sql = "INSERT INTO Food (FoodName,FoodStatus,FoodStep,FoodPrice,FoodImage) VALUES (?, '1', ?, ?, ?)";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setNString(1, foodName);
+                pst.setNString(2, foodStep);
+                pst.setInt(3, foodPrice);
+                pst.setString(4, foodImage);
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    cn.commit();
+                    check = true;
+                } else {
+                    cn.rollback();
+                    check =false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                if (cn != null) {
+                    cn.rollback();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+          
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+    
+    public boolean deleteFoodByID(int foodID) {
+        Connection cn = null;
+        boolean check = false;
+   
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM dbo.Food WHERE FoodID =?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, foodID);
+                int rowsAffected = pst.executeUpdate();
+                if (rowsAffected > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
     
 }

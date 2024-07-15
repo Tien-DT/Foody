@@ -174,6 +174,34 @@ public class UserDAO implements Serializable {
         }
         return fullName;
     }
+    
+    public int isStaff(int userID) {
+        int userRole = 0;
+        Connection cn = null;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "select Role from dbo.[User] where UserID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    userRole = rs.getInt("Role");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userRole;
+    }
 
     public String getUserByEmail(String email) {
         String Email = null;
@@ -295,6 +323,36 @@ public class UserDAO implements Serializable {
                         + "WHERE UserID=?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1,userIDToEnable);
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return check;
+    }
+    
+    public boolean setStaff(int userIDSet) {
+        Connection cn = null;
+        boolean check = false;
+        try {
+            cn = DBUtil.makeConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.[User]\n"
+                        + "SET Role ='1' \n"
+                        + "WHERE UserID=?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1,userIDSet);
                 int affectedRows = pst.executeUpdate();
                 if (affectedRows > 0) {
                     check = true;

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : AddFoodMenu
-    Created on : Jul 13, 2024, 9:26:10 PM
-    Author     : USER
---%>
-
 <%@page import="DTO.Food"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,11 +23,11 @@
         %>
         <div class="frame-menu col-md-3" style="border-width: 3px;
            
-            border-radius: 15px;margin: 10px;display:inline;">
+            border-radius: 15px;margin: 10px;display:inline;min-height: ">
             <form action="AddFoodToMenuServlet" method="POST">
                 <input type="hidden" name="foodid" value="<%=f.getFoodID() %>">
                 <input type="hidden" name="function" value="ADDFOODMENU">
-                <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">                 
+                <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success" style="min-height: 300px;min-width: 300px;">                 
                     <h4><%=f.getFoodName() %></h4><br>
                     <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="30" width="30" alt="">
                 </button>

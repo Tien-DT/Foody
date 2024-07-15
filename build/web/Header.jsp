@@ -46,19 +46,22 @@
                         <li><a href="GetCartServlet">Giỏ Hàng</a></li>
                         <li><a href="MainController?action=getorder">Đơn Hàng</a></li>
                         <li><a href="MainController?action=menu">Thực Đơn</a></li>
-                        <li><a href="MainController?action=staffdashboard">DashBoard</a></li>
+                            <c:if test="${not empty sessionScope.Role and sessionScope.Role == 1}">
+                            <li><a href="MainController?action=staffdashboard">DashBoard</a></li>
+                            </c:if>
+
                         <c:if test="${empty sessionScope.LoginedUser}">
                             <li><a href="MainController?action=loginform">Đăng nhập</a></li>
                             </c:if>
                             <c:if test="${not empty sessionScope.LoginedUser}">
-                            <li><a href="MainController?action=mydashboard">Xin chào: ${sessionScope.LoginedUser}</a></li>
-                            <c:if test="${not empty sessionScope.LoginedUser}">
-                                
-                            <li><a href="MainController?action=logout">Đăng xuất</a></li>
-                               
-                                </c:if>
+                            <li><a href="MainController?action=welcome">Xin chào: ${sessionScope.LoginedUser}</a></li>
+                                <c:if test="${not empty sessionScope.LoginedUser}">
+
+                                <li><a href="MainController?action=logout">Đăng xuất</a></li>
+
+                            </c:if>
                         </c:if>
-                            
+
                     </ul>
                 </nav><!-- .navbar -->
 
@@ -67,7 +70,7 @@
 
             </div>
 
-            
+
         </header><!-- End Header -->
     </body>
 </html>

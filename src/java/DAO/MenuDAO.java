@@ -99,7 +99,7 @@ public class MenuDAO implements Serializable {
 
     public String checkWeekMenu(int userID, int menuWeek) {
         Connection cn = null;
-        String check = null; // Assume menu does not exist
+        String check = null; 
         int uid = 0;
         try {
             cn = DBUtil.makeConnection();
@@ -170,7 +170,6 @@ public class MenuDAO implements Serializable {
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                // Disable auto-commit mode
                 cn.setAutoCommit(false);
 
                 String sql = "INSERT INTO Menu (UserID, MenuDate, MenuName, MenuTag, MenuStatus, MenuRole) VALUES (?, ?, ?, ?, '1','0')";
@@ -179,16 +178,11 @@ public class MenuDAO implements Serializable {
                 pst.setInt(2, menuWeek);
                 pst.setString(3, newMenuName);
                 pst.setString(4, menuTag);
-
-                // Execute update and get affected rows
                 int affectedRows = pst.executeUpdate();
-
                 if (affectedRows > 0) {
-                    // Commit the transaction if insert is successful
                     cn.commit();
                     result = "Insert successful";
                 } else {
-                    // Rollback the transaction if insert failed
                     cn.rollback();
                     result = null;
                 }

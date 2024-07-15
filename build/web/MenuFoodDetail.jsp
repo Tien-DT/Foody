@@ -1,9 +1,3 @@
-<%-- 
-    Document   : MenuFoodDetail
-    Created on : Jul 4, 2024, 5:49:00 PM
-    Author     : USER
---%>
-
 <%@page import="DTO.MenuDetail"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -124,10 +118,15 @@
                         <div class="menu-items">
                             <%            for (MenuDetail menu : tuesday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light" > <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="3">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
@@ -146,10 +145,15 @@
                         <div class="menu-items">
                             <%            for (MenuDetail menu : wednesday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="4">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
@@ -167,10 +171,15 @@
                         <div class="menu-items">
                             <%            for (MenuDetail menu : thursday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;"> 
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6"> 
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="5">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
@@ -188,10 +197,15 @@
                         <div class="menu-items">
                             <%            for (MenuDetail menu : friday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="6">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
@@ -209,10 +223,15 @@
                         <div class="menu-items">
                             <%            for (MenuDetail menu : saturday) {
                             %>
-                            <div class="menu-item">
-                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;">
+                            <div class="menu-item row">
+                                <form action="MainController?action=viewfood" method="POST" style="margin-top:10px;" class="col-md-6">
                                     <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
                                     <button type="submit" class="btn btn-light"> <h4><%= menu.getFoodName()%></h4></button>
+                                </form>
+                                <form action="MainController?action=deletefoodmenu" method="POST" style="margin-top:10px;"class="col-md-6">
+                                    <input type="hidden" name="foodid"value="<%= menu.getFoodID()%>">
+                                    <input type="hidden" name="menudate" value="7">
+                                    <button type="submit" class="btn btn-warning"> <h4>Xóa</h4></button>
                                 </form>
                             </div>
                             <%
