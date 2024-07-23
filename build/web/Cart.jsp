@@ -17,6 +17,8 @@
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+        
         <title>Giỏ Hàng</title>
     </head>
     <body>
@@ -37,7 +39,7 @@
                                     <th scope="col"></th>
                                     <th scope="col">Sản Phẩm</th>
                                     
-                                    <th scope="col" class="text-center">Số Lượng</th>
+                                    <th scope="col" class="text-right">Số Lượng</th>
                                     <th scope="col" class="text-right">Giá (VNĐ)</th>
                                     <th scope="col" class="text-right">Tổng</th>
                                     <th></th>
@@ -78,8 +80,8 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><strong>Tổng Tiền Sản Phẩm: <%=totalPrice %></strong></td>
-                                    <td class="text-right"><strong id="totalPrice"><span class="formatted-price"></span></strong></td>
+                                    <td><strong>Tổng Tiền Sản Phẩm: <%=totalPrice %> VNĐ</strong></td>
+                                    <td class="text-center"><strong id="totalPrice"><span class="formatted-price"></span></strong></td>
                                     <td></td>
                                     <%
                                         request.setAttribute("TotalPrice", totalPrice);
@@ -94,7 +96,9 @@
                         <div class="col-sm-12 col-md-6" style="max-width: 600px;">
                             <a href="MainController?action=foodlist" class="btn btn-block btn-light">Tiếp Tục Mua Hàng</a>
                         </div>
-                        
+                        <% 
+                            if(totalPrice > 0){
+                        %>
                         <div class="col-sm-12 col-md-6 text-right">
                             <form action="MainController?action=order" method="POST">
                             <input type="hidden" name="function" value="ORDERFORM">
@@ -102,7 +106,9 @@
                             <button class="btn btn-lg btn-block btn-danger text-uppercase " type="submit">Đặt Hàng</button>
                             </form>
                         </div>
-                        
+                        <% 
+                            }
+                        %>
                     </div>
                 </div>
             </div>

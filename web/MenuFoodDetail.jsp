@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/MenuFoodDetail.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
         <title>Chi tiết thực đơn</title>
     </head>
 
@@ -25,7 +26,7 @@
 
             <div class="box-menu col-md-12 box-body">
                 <h1 class="text-center my-4">Thực Đơn Chi Tiết</h1>
-                <!-- Header Row -->
+               
                 <div class="row schedule">
                     <div class="col-12 col-md-2 day">Thứ Hai</div>
                     <div class="col-12 col-md-2 day">Thứ Ba</div>
@@ -34,7 +35,7 @@
                     <div class="col-12 col-md-2 day">Thứ Sáu</div>
                     <div class="col-12 col-md-2 day">Thứ Bảy</div>
                 </div>
-                <!-- Time Slots -->
+                
                 <%
                     int flag = 0;
                   

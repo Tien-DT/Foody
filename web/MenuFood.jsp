@@ -9,7 +9,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/MenuFood.css" rel="stylesheet">
         <link href="assets/css/Header.css" rel="stylesheet">
-
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -56,7 +55,7 @@
                              border-color: #0dcaf0;border-radius: 15px;margin: 10px;">
                             <form action="MainController?action=menudetail" method="POST">
                                 <input type="hidden" name="menuid" value="<%= m.getMenuID()%>">
-                              <input type="hidden" name="function" value="VIEWMENU">
+                              
                                 <button type="submit" class="col-md-12 col-sm-12 button-menu-food btn btn-outline-success">
                                     Tên Menu: <%= m.getMenuName()%><br>
                                     Tuần: <%= m.getMenuDate()%><br>

@@ -2,13 +2,14 @@
 <%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+        <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Đăng Nhập/Đăng Kí</title>
         <link rel="stylesheet" href="assets/css/LoginForm.css">
         <link rel="stylesheet" href="assets/css/Main.css">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
     </head>
     <body>
 
@@ -95,17 +96,7 @@
                 }
             }
             
-            function validateForm() {
-            var email = document.querySelector("input[name='txtemail']").value.trim();
-            var regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-
-            if (!email.match(regex)) {
-                alert("Email không hợp lệ. Email phải có đuôi @gmail.com");
-                return false; 
-            }
-
-            return true;
-        }
+           
         </script>
 
 

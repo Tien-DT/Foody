@@ -13,16 +13,16 @@ public class Cart {
     private int CartID;
     private int UserID;
     private int FoodID;
-    private int ProductID;
+
 
     public Cart() {
     }
 
-    public Cart(int CartID, int UserID, int FoodID, int ProductID) {
+    public Cart(int CartID, int UserID, int FoodID) {
         this.CartID = CartID;
         this.UserID = UserID;
         this.FoodID = FoodID;
-        this.ProductID = ProductID;
+
     }
 
     public int getCartID() {
@@ -47,17 +47,7 @@ public class Cart {
 
     public void setFoodID(int FoodID) {
         this.FoodID = FoodID;
-    }
-
-    public int getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
-    }
-
-    
+    }  
 }
 
   

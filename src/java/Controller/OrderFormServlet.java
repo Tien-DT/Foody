@@ -41,13 +41,8 @@ public class OrderFormServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Object loginedUID = session.getAttribute("LoginedUID");
             String function = request.getParameter("function");
-            // String totalPrice = request.getParameter("totalprice");
-            //request.setAttribute("Temp1", function);
-            // request.getRequestDispatcher("TestPage.jsp").forward(request, response);
             int userID = Integer.parseInt(loginedUID.toString());
             CartDAO cart = new CartDAO();
-            //String totalPrice = (String) request.getAttribute("TotalPrice");
-
             switch (function) {
                 case "ORDERFORM":
                     ArrayList<ItemCart> list = cart.getAllCart(userID);
@@ -60,7 +55,7 @@ public class OrderFormServlet extends HttpServlet {
                     StringBuilder orderDetail = new StringBuilder();
                     ArrayList<ItemCart> listOrder = cart.getAllCart(userID);
 
-                    if (listOrder != null && !listOrder.isEmpty()) {
+                    if (listOrder != null) {
                         for (ItemCart itemCart : listOrder) {
                             orderDetail.append(itemCart.toString()).append("<br>");
                         }

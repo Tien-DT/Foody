@@ -35,6 +35,7 @@ public class LogOutServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.removeAttribute("LoginedUser");
             session.removeAttribute("LoginedUID");
+            session.removeAttribute("Role");
             request.getRequestDispatcher("Index.jsp").forward(request, response);
         }
     }

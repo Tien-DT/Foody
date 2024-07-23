@@ -9,7 +9,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/UserFood.css" rel="stylesheet">
         <link href="assets/css/Header.css" rel="stylesheet">
-
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">

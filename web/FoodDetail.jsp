@@ -7,10 +7,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Chi tiết món ăn</title>
         <link href="assets/css/FoodDetail.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+       
     </head>
     <body>
         <jsp:include page="Header.jsp" />
-
         <div class="container body-detail">
             <h1>Chi Tiết Món Ăn</h1>
             <%
@@ -21,14 +22,12 @@
                 <div class="card-body col-md-12">
                     <img src="<%= f.getFoodImage()%>"style="width: 300px; height: 200px; object-fit: cover;" />
                     <h4><%= f.getFoodName()%></h4>
-                    <h4>Giá:<%= f.getFoodPrice()%> VND</h4>
+                    <h4>Giá:  <%= f.getFoodPrice()%> VNĐ</h4>
                     <div>
-                        <button class="btn btn-primary" onclick="">Mua Món Ăn</button>
-                       <!-- <button class="btn btn-secondary" onclick="">Mua Nguyên Liệu</button> -->
-                        <form action="MainController?action=addfoodtomenu" method="POST">
-                                    <input type="hidden" name="foodid"value="<%= f.getFoodID() %>">
-                                <button type="submit" class="btn btn-success" id="openFormButton" >Thêm Vào Menu</button>
-                                </form>
+                        <form action="MainController?action=addfoodtocart" method="POST">
+                            <input type="hidden" name="foodid" value="<%= f.getFoodID()%>">
+                            <a><button class="btn btn-danger button-card">Mua Món Ăn</button></a>
+                        </form>             
                     </div>
                 </div>
                 <div class="card-body col-md-12">
@@ -42,10 +41,6 @@
                 }
             %>
         </div>
-
-
-
-
         <jsp:include page="Footer.jsp" />
     </body>
 </html>

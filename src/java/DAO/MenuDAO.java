@@ -60,7 +60,7 @@ public class MenuDAO implements Serializable {
         }
         return list;
     }
-    
+
     public ArrayList<Menu> getMenuFoodByStaff() {
         ArrayList<Menu> list = new ArrayList<>();
         Connection cn = null;
@@ -68,7 +68,7 @@ public class MenuDAO implements Serializable {
             cn = DBUtil.makeConnection();
             if (cn != null) {
                 String sql = "SELECT * \n"
-                        + "FROM dbo.Menu \n";                      
+                        + "FROM dbo.Menu \n";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
@@ -99,7 +99,7 @@ public class MenuDAO implements Serializable {
 
     public String checkWeekMenu(int userID, int menuWeek) {
         Connection cn = null;
-        String check = null; 
+        String check = null;
         int uid = 0;
         try {
             cn = DBUtil.makeConnection();
@@ -233,15 +233,13 @@ public class MenuDAO implements Serializable {
                 pst2.setNString(3, newMenuName);
                 pst2.setString(4, menuTag);
 
-                // Execute update and get affected rows
                 int affectedRows = pst2.executeUpdate();
 
                 if (affectedRows > 0) {
-                    // Commit the transaction if insert is successful
+
                     cn.commit();
                     result = "Insert successful";
                 } else {
-                    // Rollback the transaction if insert failed
                     cn.rollback();
                     result = null;
                 }
@@ -255,7 +253,6 @@ public class MenuDAO implements Serializable {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            result = "An error occurred: " + e.getMessage();
         } finally {
             try {
                 if (cn != null) {
@@ -314,9 +311,9 @@ public class MenuDAO implements Serializable {
         return list;
     }
 
-    public boolean deleteWeekMenu(int menuID) {
+    public int deleteWeekMenu(int menuID) {
         Connection cn = null;
-        boolean check = false;
+        int check = 0;
         int uid = 0;
         try {
             cn = DBUtil.makeConnection();
@@ -326,7 +323,10 @@ public class MenuDAO implements Serializable {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, menuID);
                 pst.setInt(2, menuID);
-                ResultSet rs = pst.executeQuery();
+                int rowsAffected = pst.executeUpdate();
+                if (rowsAffected > 0) {
+                    check = 1;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -418,10 +418,13 @@ public class MenuDAO implements Serializable {
             if (cn != null) {
                 String sql = "SELECT * \n"
                         + "FROM dbo.Menu \n"
-                        + "WHERE UserID=? AND MenuName LIKE ?";
+                        + "WHERE UserID=? AND (MenuName LIKE ? OR MenuTag LIKE ? OR MenuDate LIKE ?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
+                String searchMenu = "%" + search + "%";
                 pst.setInt(1, userID);
-                pst.setNString(2, search);
+                pst.setNString(2, searchMenu);
+                pst.setNString(3, searchMenu);
+                pst.setNString(4, searchMenu);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     int menuID = rs.getInt("MenuID");

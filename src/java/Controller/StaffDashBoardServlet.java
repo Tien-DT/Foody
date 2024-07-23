@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,6 +41,8 @@ public class StaffDashBoardServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+
             String function = request.getParameter("menu");
             request.removeAttribute("Action");
             MenuDAO menu = new MenuDAO();
@@ -59,17 +62,29 @@ public class StaffDashBoardServlet extends HttpServlet {
                     String menuName = request.getParameter("txtmenuname");
                     String menuTag = request.getParameter("txttag");
                     String check = menu.checkWeekMenuByEmail(email, menuWeek);
-                    if (check != null) {
-                        String result = menu.insertWeekMenuByStaff(email, menuWeek, menuName, menuTag);
-                        if (result != null) {
-                            request.setAttribute("ResultAll", "Thêm Menu Thành Công");
-                            request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                    int emailValid = user.getUserID(email);
+                    if (emailValid > 0) {
+                        if (check != null) {
+                            String result = menu.insertWeekMenuByStaff(email, menuWeek, menuName, menuTag);
+                            if (result != null) {
+                                request.setAttribute("ResultAll", "Thêm Menu Thành Công");
+                                request.setAttribute("Function", "LISTMENU");
+                                ArrayList<Menu> listMenu = menu.getMenuFoodByStaff();
+                                request.setAttribute("MenuFood", listMenu);
+                                request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                            } else {
+                                request.setAttribute("ResultAll", "Có Lỗi Trong quá trình thêm Menu");
+                                request.setAttribute("Function", "ADDMENU");
+                                request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                            }
                         } else {
-                            request.setAttribute("ResultAll", "Có Lỗi Trong quá trình thêm Menu");
+                            request.setAttribute("ResultAll", "Menu của Tuần này đã tồn tại, vui lòng xóa menu cũ trước khi thêm mới");
+                            request.setAttribute("Function", "ADDMENU");
                             request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                         }
                     } else {
-                        request.setAttribute("ResultAll", "Menu của Tuần này đã tồn tại, vui lòng xóa menu cũ trước khi thêm mới");
+                        request.setAttribute("ResultAll", "Email không tồn tại");
+                        request.setAttribute("Function", "ADDMENU");
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
                     break;
@@ -82,13 +97,21 @@ public class StaffDashBoardServlet extends HttpServlet {
                     break;
                 case "deletemenunow":
                     int menuID = Integer.parseInt(request.getParameter("menuid"));
-                    boolean checkDeleteMenu = menu.deleteWeekMenu(menuID);
-                    if (!checkDeleteMenu) {
+                    int checkDeleteMenu = menu.deleteWeekMenu(menuID);
+                    if (checkDeleteMenu == 1) {
+                        request.setAttribute("Function", "MenuFoodStaff");
+                        ArrayList<Menu> allMenuAfter = menu.getAllMenuFood();
+                        request.setAttribute("MenuFoodStaff", allMenuAfter);
                         request.setAttribute("ResultAll", "Xóa Menu Thành Công");
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     } else {
                         request.setAttribute("ResultAll", "Xóa Menu Thất Bại");
+                        request.setAttribute("Function", "MenuFoodStaff");
+                        ArrayList<Menu> allMenuAfter = menu.getAllMenuFood();
+                        request.setAttribute("MenuFoodStaff", allMenuAfter);
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
-                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+
                     break;
                 case "listuser":
                     request.setAttribute("Function", "LISTUSER");
@@ -114,13 +137,20 @@ public class StaffDashBoardServlet extends HttpServlet {
 
                 case "disableuser":
                     int userIDToDelete = Integer.parseInt(request.getParameter("userid"));
-                    boolean checkUserDisble = user.disableUser(userIDToDelete);
-                    if (checkUserDisble) {
+
+                    if (userIDToDelete > 0) {
+                        boolean checkUserDisble = user.disableUser(userIDToDelete);
                         ArrayList<User> listUserAfter = user.getUser();
                         request.setAttribute("ListAllUser", listUserAfter);
+                        request.setAttribute("ResultAll", "Bạn đã vô hiệu hóa tài khoản: " + userIDToDelete + " thành công");
+                        request.setAttribute("Function", "LISTUSER");
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     } else {
-                        request.getRequestDispatcher("Index.jsp").forward(request, response);
+                        ArrayList<User> listUserAfter = user.getUser();
+                        request.setAttribute("ListAllUser", listUserAfter);
+                        request.setAttribute("Function", "LISTUSER");
+                        request.setAttribute("ResultAll", "Có lỗi xảy ra");
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
                     break;
                 case "enableuser":
@@ -129,9 +159,12 @@ public class StaffDashBoardServlet extends HttpServlet {
                     if (checkUserEnable) {
                         ArrayList<User> listUserAfter = user.getUser();
                         request.setAttribute("ListAllUser", listUserAfter);
+                        request.setAttribute("Function", "LISTUSER");
+                        request.setAttribute("ResultAll", "Bạn đã mở khóa tài khoản: "+userIDToEnable+ " thành công");
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     } else {
-                        request.getRequestDispatcher("Index.jsp").forward(request, response);
+
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
                     break;
                 case "addfoodlist":
@@ -152,19 +185,67 @@ public class StaffDashBoardServlet extends HttpServlet {
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
                     break;
-                case "deletefoodlist":
-                    ArrayList<Food> deleteFoodList = food.getAllFood();
-                    request.setAttribute("DeleteFoodList", deleteFoodList);
-                    request.setAttribute("Function", "DELETEFOODLIST");
+                case "disablefoodlist":
+                    ArrayList<Food> disableFoodList = food.getAllFood();
+                    request.setAttribute("DisableFoodList", disableFoodList);
+                    request.setAttribute("Function", "DISABLEFOODLIST");
                     request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     break;
-                case "deletefoodlistnow":
+                case "disablefoodlistnow":
                     int foodID = Integer.parseInt(request.getParameter("foodid"));
                     boolean checkDeleteFood = food.deleteFoodByID(foodID);
                     if (checkDeleteFood) {
+                        request.setAttribute("ResultAll", "Đã ẩn món ăn thành công");
+                        ArrayList<Food> disableFoodListAfter = food.getAllFood();
+                        request.setAttribute("DisableFoodList", disableFoodListAfter);
+                        request.setAttribute("Function", "DISABLEFOODLIST");
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     } else {
                         request.getRequestDispatcher("Index.jsp").forward(request, response);
+                    }
+                    break;
+
+                case "enablefoodlistnow":
+                    int foodIDEnable = Integer.parseInt(request.getParameter("foodid"));
+                    boolean checkEnableFood = food.enableFoodByID(foodIDEnable);
+                    if (checkEnableFood) {
+                        request.setAttribute("ResultAll", "Đã hiện món ăn thành công");
+                        ArrayList<Food> enableFoodList = food.getAllFood();
+                        request.setAttribute("DisableFoodList", enableFoodList);
+                        request.setAttribute("Function", "DISABLEFOODLIST");
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("Index.jsp").forward(request, response);
+                    }
+                    break;
+
+                case "updateinfofood":
+                    int foodIDUpdate = Integer.parseInt(request.getParameter("foodid"));
+                    Food foodUpdate = food.updateFood(foodIDUpdate);
+                    request.setAttribute("FoodUpdate", foodUpdate);
+                    request.setAttribute("Function", "UPDATEFOOD");
+                    request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                    break;
+
+                case "updateinfofoodnow":
+                    int foodIDUpdateNow = Integer.parseInt(request.getParameter("foodid"));
+                    String foodNameUpdate = request.getParameter("txtname");
+                    String foodStepUpdate = request.getParameter("txtfoodstep");
+                    int foodPriceUpdate = Integer.parseInt(request.getParameter("txtprice"));
+                    String foodImageUpdate = request.getParameter("txtpath");
+                    boolean checkFoodUpdate = food.updateInfoFood(foodNameUpdate, foodStepUpdate, foodPriceUpdate, foodImageUpdate, foodIDUpdateNow);
+                    if (checkFoodUpdate) {
+                        request.setAttribute("ResultAll", "Cập Nhật Thông tin món ăn thành công");
+                        ArrayList<Food> foodListUpdated = food.getAllFood();
+                        request.setAttribute("DisableFoodList", foodListUpdated);
+                        request.setAttribute("Function", "DISABLEFOODLIST");
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
+                    }else{
+                        request.setAttribute("ResultAll", "Có lỗi xảy ra trong quá trình cập nhật thông tin món ăn");
+                        ArrayList<Food> foodListUpdated = food.getAllFood();
+                        request.setAttribute("DisableFoodList", foodListUpdated);
+                        request.setAttribute("Function", "DISABLEFOODLIST");
+                        request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
                     break;
 
@@ -207,18 +288,22 @@ public class StaffDashBoardServlet extends HttpServlet {
 
                 case "setstaff":
                     int userIDSet = Integer.parseInt(request.getParameter("userid"));
-                    boolean checkUserSet = user.setStaff(userIDSet);
+                    int role = Integer.parseInt(request.getParameter("role"));
+                    boolean checkUserSet = user.setStaff(role, userIDSet);
                     if (checkUserSet) {
-                        request.setAttribute("ResultAll", "Bạn đã cấp quyền nhân viên thành công cho User ID: " + userIDSet);
+                        request.setAttribute("ResultAll", "Bạn đã phân quyền thành công cho User ID: " + userIDSet);
                         ArrayList<User> listUserAfter = user.getUser();
+                        request.setAttribute("Function", "LISTUSER");
                         request.setAttribute("ListAllUser", listUserAfter);
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     } else {
                         ArrayList<User> listUserAfter = user.getUser();
                         request.setAttribute("ListAllUser", listUserAfter);
-                        request.setAttribute("ResultAll", "Có lỗi trong quá trình cấp quyền");
+                        request.setAttribute("Function", "LISTUSER");
+                        request.setAttribute("ResultAll", "Có lỗi trong quá trình phân quyền");
                         request.getRequestDispatcher("StaffDashBoard.jsp").forward(request, response);
                     }
+                    break;
 
             }
         }

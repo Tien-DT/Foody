@@ -238,7 +238,6 @@ public class UserDAO implements Serializable {
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                // Disable auto-commit mode
                 cn.setAutoCommit(false);
 
                 String sql = "INSERT INTO [User] (FullName, Email, Password, UserStatus, Role) VALUES (?, ?, ?, '1', '0')";
@@ -246,16 +245,11 @@ public class UserDAO implements Serializable {
                 pst.setNString(1, fullName);
                 pst.setString(2, email);
                 pst.setString(3, passwordEncoded);
-
-                // Execute update and get affected rows
                 int affectedRows = pst.executeUpdate();
-
                 if (affectedRows > 0) {
-                    // Commit the transaction if insert is successful
                     cn.commit();
                     result = "Insert successful";
                 } else {
-                    // Rollback the transaction if insert failed
                     cn.rollback();
                     result = null;
                 }
@@ -342,17 +336,18 @@ public class UserDAO implements Serializable {
         return check;
     }
     
-    public boolean setStaff(int userIDSet) {
+    public boolean setStaff(int role,int userIDSet) {
         Connection cn = null;
         boolean check = false;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
                 String sql = "UPDATE dbo.[User]\n"
-                        + "SET Role ='1' \n"
+                        + "SET Role =? \n"
                         + "WHERE UserID=?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1,userIDSet);
+                pst.setInt(1,role);
+                pst.setInt(2, userIDSet);
                 int affectedRows = pst.executeUpdate();
                 if (affectedRows > 0) {
                     check = true;

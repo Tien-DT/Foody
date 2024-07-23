@@ -9,13 +9,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/MenuFood.css" rel="stylesheet">
         <link href="assets/css/Header.css" rel="stylesheet">
-
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">
         <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-        <title>Thực Đơn</title>
+        <title>Danh sách đơn hàng</title>
     </head>
     <jsp:include page="Header.jsp" />
     <body>

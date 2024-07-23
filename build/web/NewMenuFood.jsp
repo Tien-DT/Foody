@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/css/MenuFood.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
         <title>Tạo thực đơn mới</title>
     </head>
     <jsp:include page="Header.jsp" />

@@ -23,13 +23,13 @@
 
     <body>
         <jsp:include page="Header.jsp" />
-        <section class="row filter-food">
+        <section class="row filter-food"  style="min-height: 72%;">
             <section id="menu" class="menu col-md-12">
-                <div class="container" data-aos="fade-up">
+                <div class="container">
                     <div class="section-header">
                         <p>Danh Sách Món Ăn</p>
                     </div>
-                    <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tab-content">
                         <div class="tab-pane fade active show" id="menu-starters">
                             <div class="row gy-5">
                                 <%
@@ -40,15 +40,15 @@
                                 %>
                                 <div class="col-lg-4 col-md-6 col-sm-12 menu-item">
                                     <div class="card h-150">
-                                        <a href="#" class="glightbox item-card">
+                                        <a href="<%=f.getFoodImage() %>" class="glightbox item-card">
                                             <img src="<%= f.getFoodImage()%>" class="card-img-top menu-img img-fluid rounded food-img" class="rounded" width="300" width="300" alt="">
                                         </a>
-                                        <div class="card-body d-flex flex-column">
+                                        <div class="card-body d-flex flex-column" style="min-height: 240px;">
                                            
                                                 <h4 class="card-title"><%= f.getFoodName()%></h4>                                     
                                           
                                             <p class="card-text">
-                                                <!-- Assuming there's a description -->
+                                              
                                             </p>
                                             <p class="price card-text mt-auto">
                                                 <%= f.getFoodPrice()%> VNĐ
@@ -78,14 +78,13 @@
                                     }
                                 %>
                             </div>
-                            <!-- End Breakfast Menu Content -->
                         </div>
                     </div>
                 </div>
             </section>
         </section>
 
-        <!-- ======= Footer ======= -->
+  
         <footer id="footer" class="footer">
             <div class="container">
                 <div class="row gy-3 footercontent">
@@ -126,11 +125,9 @@
                     </div>
                 </div>
             </div>
-        </footer><!-- End Footer -->
+        </footer>
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-        <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/aos/aos.js"></script>
         <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -154,8 +151,6 @@
 
                         window.onload = formatAllPrices;
         </script>
-
-        <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
 
     </body>

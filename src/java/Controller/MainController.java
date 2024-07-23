@@ -129,7 +129,8 @@ public class MainController extends HttpServlet {
                 case "deletefoodmenu":
                     url="DeleteFoodMenuServlet";
                     break;   
-                 
+                 default:
+                     break;
 
             }
             request.getRequestDispatcher(url).forward(request, response);

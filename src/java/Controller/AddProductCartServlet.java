@@ -50,12 +50,9 @@ public class AddProductCartServlet extends HttpServlet {
                     int quantityUpdate = quantity + 1;
                     cart.updateFoodQuantity(UID, foodID, quantityUpdate);
                 } else {
-                    // Nếu không tìm thấy food trong cart thì thêm mới
                     cart.insertCart(UID, foodID);
                 }
             }
-
-            // Forward tới servlet hoặc JSP để lấy lại giỏ hàng (cart)
             request.getRequestDispatcher("GetCartServlet").forward(request, response);
 
         }

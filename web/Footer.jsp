@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="assets/css/Footer.css" rel="stylesheet">
-<!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="footer-all">
         <div class="row gy-3 footercontent">
@@ -40,5 +39,5 @@
             </div>
         </div>
     </div>
-</footer><!-- End Footer -->
-<!-- End Footer -->
+</footer>
+

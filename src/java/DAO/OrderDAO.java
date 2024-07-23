@@ -26,7 +26,6 @@ public class OrderDAO implements Serializable {
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                // Disable auto-commit mode
                 cn.setAutoCommit(false);
 
                 String sql = "INSERT dbo.[Order](OrderDate,OrderStatus,OrderDetail,UserID,OrderPhone,OrderAddress)\n"
@@ -80,7 +79,7 @@ public class OrderDAO implements Serializable {
                 String sql = "select * from dbo.[Order]\n"
                         + "where UserID=? ";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1,userID);
+                pst.setInt(1, userID);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     int OrderID = rs.getInt("OrderID");
@@ -107,7 +106,7 @@ public class OrderDAO implements Serializable {
         }
         return list;
     }
-    
+
     public ArrayList<Order> getAllUserOrder() {
         ArrayList<Order> list = new ArrayList<>();
         Connection cn = null;
@@ -142,7 +141,7 @@ public class OrderDAO implements Serializable {
         }
         return list;
     }
-    
+
     public void updateStatusOrder(int orderStatus, int orderID) {
         Connection cn = null;
         try {
@@ -168,10 +167,10 @@ public class OrderDAO implements Serializable {
             }
         }
     }
-    
+
     public void cancelOrder(int orderIDCancel) {
         Connection cn = null;
-        
+
         int uid = 0;
         try {
             cn = DBUtil.makeConnection();
@@ -192,23 +191,25 @@ public class OrderDAO implements Serializable {
                 e.printStackTrace();
             }
         }
-        
+
     }
-    
-     public ArrayList<Order> searchOrder(String searchOrder) {
+
+    public ArrayList<Order> searchOrder(String searchOrder) {
         ArrayList<Order> list = new ArrayList<>();
         Connection cn = null;
         try {
             cn = DBUtil.makeConnection();
             if (cn != null) {
-                String sql = "SELECT * \n"
-                        + "FROM dbo.[Order] \n"
-                        + "WHERE OrderID LIKE ? OR OrderPhone LIKE ? OR OrderAddress LIKE ?";
+                String sql = "SELECT o.OrderID,o.OrderDate,o.OrderStatus,o.OrderDetail,o.UserID,o.OrderPhone,o.OrderAddress \n"
+                        + "FROM dbo.[Order] o\n"
+                        + "INNER JOIN  dbo.[User] u ON u.UserID = o.UserID\n"
+                        + "WHERE o.OrderID LIKE ? OR o.OrderPhone LIKE ? OR o.OrderAddress LIKE ? OR u.Email LIKE ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 String search = "%" + searchOrder + "%";
                 pst.setNString(1, search);
                 pst.setNString(2, search);
                 pst.setNString(3, search);
+                pst.setNString(4, search);
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     int OrderID = rs.getInt("OrderID");

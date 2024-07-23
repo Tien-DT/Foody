@@ -54,8 +54,6 @@ public class CartDAO implements Serializable {
         return CartID;
     }
 
-    
-
     public int insertCart(int UID, int foodID) {
         Connection cn = null;
         int check = 0;
@@ -203,7 +201,8 @@ public class CartDAO implements Serializable {
         }
 
     }
-     public void deleteUserCart(int userID) {
+
+    public void deleteUserCart(int userID) {
         Connection cn = null;
 
         try {
@@ -211,13 +210,8 @@ public class CartDAO implements Serializable {
             if (cn != null) {
                 String sql = "DELETE FROM dbo.Cart WHERE userID=?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-
                 pst.setInt(1, userID);
-
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-
-                }
+                pst.executeQuery();
             }
         } catch (Exception e) {
             e.printStackTrace();
